@@ -1,0 +1,47 @@
+{
+  "model": "RF_Optuna_contextual_v1",
+  "log_loss": 0.9414,
+  "accuracy": 0.5902,
+  "n_features": 32,
+  "params": {
+    "n_estimators": 104,
+    "max_depth": 6,
+    "min_samples_leaf": 20,
+    "max_features": 0.7,
+    "class_weight": null
+  },
+  "feature_set": "C_knn+curated_ctx",
+  "description": "v1 freeze model \u2014 RF Optuna on Elo+Arch+Squad(KNN)+top contextual",
+  "note": "v1 freeze \u2014 definitive. Optuna 80-trial search on 32-feature set (Elo+Arch+Squad-KNN+curated-ctx)",
+  "comparison": {
+    "majority_baseline": {
+      "log_loss": 1.0587,
+      "accuracy": 0.4552
+    },
+    "hvattum_arntzen_2010": {
+      "log_loss": null,
+      "accuracy": 0.57,
+      "note": "Elo-only benchmark"
+    },
+    "groll_2019_best": {
+      "log_loss": null,
+      "accuracy": 0.61,
+      "note": "Best published WC model"
+    },
+    "pinnacle_market": {
+      "log_loss": null,
+      "accuracy": 0.645,
+      "note": "Sharp betting market ceiling"
+    },
+    "our_v1_model": {
+      "log_loss": 0.9414,
+      "accuracy": 0.5902,
+      "note": "v1 freeze"
+    },
+    "oos_2026_validation": {
+      "log_loss": 1.0347,
+      "accuracy": 0.5342,
+      "n_matches": 73
+    }
+  }
+}

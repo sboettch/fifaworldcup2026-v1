@@ -1,0 +1,44 @@
+# Python runtime artifacts
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Secrets and credentials
+.env
+credentials.json
+token.json
+client_secret_*.json
+kaggle.json
+.kaggle/
+
+# Raw data — re-fetch via `make collect`
+data/raw/
+
+# Large processed tables — re-generate via `make pipeline`
+# Only final_model.json and model_results_complete.csv are committed
+data/processed/fact_match.csv
+data/processed/fact_team_match.csv
+data/processed/fact_team_rating_snapshot.csv
+data/processed/fact_match_expectation.csv
+data/processed/bridge_squad.csv
+data/processed/dim_player.csv
+data/processed/elo_final_ratings.csv
+data/processed/fact_matchup_features.csv
+data/processed/fact_matchup_archetype.csv
+data/processed/fact_matchup_contextual.csv
+data/processed/cluster_assignments.csv
+data/processed/cluster_eval.csv
+data/processed/cluster_profiles.csv
+data/processed/validation_2026.csv
+data/processed/predictions_2026.csv
+data/processed/model_cv_folds.csv
+data/processed/model_cv_summary.csv
+data/processed/fjelstul_squads_enriched.csv
+data/raw/transfermarkt_*.csv
+
+# OS clutter
+.DS_Store
+Thumbs.db

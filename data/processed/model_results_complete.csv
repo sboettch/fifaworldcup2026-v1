@@ -1,0 +1,25 @@
+model,feature_set,log_loss,accuracy,model_family,note
+logistic_regression,A_elo_only,0.9581,0.559,classical,
+random_forest,A_elo_only,0.9542,0.58,classical,
+gradient_boosting,A_elo_only,1.0239,0.55,classical,
+mlp,A_elo_only,0.9621,0.568,classical,
+hyperneat,A_elo_only,1.0717,0.461,novel,
+ga_dynamic_ensemble,A_elo_only,1.0019,0.557,novel,
+gol_cellular_automaton,A_elo_only,1.2054,0.508,novel,
+logistic_regression,B_elo_archetypes,0.9566,0.557,classical,
+random_forest,B_elo_archetypes,0.9506,0.579,classical,
+gradient_boosting,B_elo_archetypes,1.0241,0.552,classical,
+mlp,B_elo_archetypes,0.9749,0.561,classical,
+hyperneat,B_elo_archetypes,1.0758,0.458,novel,
+ga_dynamic_ensemble,B_elo_archetypes,1.0052,0.551,novel,
+gol_cellular_automaton,B_elo_archetypes,1.0519,0.503,novel,
+logistic_regression,C_full,0.9642,0.556,classical,
+random_forest,C_full,0.9491,0.58,classical,
+gradient_boosting,C_full,1.007,0.57,classical,
+mlp,C_full,0.9898,0.558,classical,
+hyperneat,C_full,1.0739,0.462,novel,
+ga_dynamic_ensemble,C_full,0.9831,0.564,novel,
+gol_cellular_automaton,C_full,,,novel,DNF - search hung on final fold
+rf_optuna,C_full,0.9463,0.593,classical,Optuna tuned
+rf_knn_imputed,C_full_knn,0.9419,0.592,classical,"KNN squad imputation, current best"
+rf_contextual,C_full_knn+ctx,0.9435,0.591,classical,+ in-tournament momentum

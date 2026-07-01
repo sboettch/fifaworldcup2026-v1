@@ -1,0 +1,77 @@
+name: Collect 2026 Live Data
+
+on:
+  schedule:
+    # GitHub cron schedules are UTC. During the active tournament window,
+    # this runs every 6 hours and commits a timestamped raw snapshot.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect-2026-live
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install collector dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pandas requests tqdm beautifulsoup4
+
+      - name: Determine run window
+        id: window
+        run: |
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          today="$(date -u +%F)"
+          if [[ "$today" < "2026-06-11" || "$today" > "2026-07-20" ]]; then
+            echo "Outside configured tournament window: $today"
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "should_run=true" >> "$GITHUB_OUTPUT"
+
+      - name: Collect live 2026 raw snapshots
+        if: steps.window.outputs.should_run == 'true'
+        run: python -m src.data_collection.collect_2026_live
+
+      - name: Harmonize live data into backbone
+        if: steps.window.outputs.should_run == 'true'
+        run: python -m src.features.harmonize_2026_live
+
+      - name: Commit raw snapshot back to repository
+        if: steps.window.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add data/raw/2026_live data/run_manifest.csv data/processed
+
+          if git diff --cached --quiet; then
+            echo "No new 2026 raw snapshot changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Collect and harmonize 2026 live data snapshot"
+          git pull --rebase
+          git push
