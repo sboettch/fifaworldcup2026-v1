@@ -62,9 +62,9 @@ None of them beat classical Random Forest. The results by family:
 | HyperNEAT | 1.0717 | Feature set C |
 | GoL | DNF | Feature set C — search hung |
 
-### This is not a failure of implementation. It is the finding.
+### Why Random Forest wins — and what that tells us about the problem
 
-Once you look at the actual training regime, the result makes complete sense — and it tells you something real about the problem.
+At first glance, Random Forest outperforming HyperNEAT and GA ensemble methods looks surprising. These are more expressive architectures capable of learning complex, non-linear structure. Zooming out to the actual training regime makes the result make sense.
 
 The effective training set per LOTO fold is approximately **280 matches**. That is the mean number of WC matches available to train on when one full edition is held out across 23 tournaments. 280 labelled examples, ~50 features, 3-class classification.
 
@@ -97,7 +97,7 @@ The most clear-cut negative result of the project: artificially augmenting the t
 
 Δlog-loss from mirror augmentation: −0.023 (that is, log-loss increases by 0.023, which is a degradation). The reason is straightforward once stated: World Cup matches at neutral venues are not home/away symmetric. Even at a geographically neutral stadium, one team typically has larger traveling support, more favorable climate acclimatization, shorter travel distance from their training base, and — in the 2026 case — may be playing in their confederation's territory. The "home" encoding in the feature matrix captures a real structural asymmetry, not a statistical artifact. Destroying that information by treating every match as bidirectionally equivalent removes signal.
 
-**This is a publishable negative result.** It argues against a common augmentation strategy used in smaller sports datasets where venue neutrality is assumed.
+This result is worth noting because it indicates that home/away encoding carries real structural information even at nominally neutral venues — a common assumption in sports dataset augmentation (that neutral-site matches are bidirectionally symmetric) does not hold here.
 
 ### KNN Imputation Works
 
