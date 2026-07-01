@@ -4,7 +4,7 @@ on:
   schedule:
     # GitHub cron schedules are UTC. During the active tournament window,
     # this runs every 6 hours and commits a timestamped raw snapshot.
-    - cron: "17 */6 * * *"
+    # - cron: "17 */6 * * *"  # disabled on public repo — use workflow_dispatch
   workflow_dispatch:
 
 permissions:

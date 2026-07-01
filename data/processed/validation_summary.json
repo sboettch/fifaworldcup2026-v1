@@ -1,0 +1,17 @@
+{
+  "n_validated": 73,
+  "accuracy": 0.5753,
+  "log_loss": 0.9179,
+  "brier_score": 0.1826,
+  "upset_rate_actual": 0.0685,
+  "pre_match_snapshot_count": 0,
+  "retrospective_snapshot_count": 73,
+  "accuracy_by_archetype": {
+    "heavyweight_clash": 0.6087,
+    "favorite_vs_underdog": 0.6364,
+    "host_pressure": 0.7,
+    "generational_transition": 0.4,
+    "tactical_contrast": 0.5484
+  },
+  "validated_at_utc": "2026-07-01T17:13:53.033520+00:00"
+}

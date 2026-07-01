@@ -4,7 +4,7 @@
 *Proposal for Thesis / Milestone Project*
 *June 2026*
 
-**Author background.** Machine learning and data science coursework including supervised learning, unsupervised learning, deep learning, and feature engineering. Prior project experience in data pipeline architecture, web scraping at scale, and dimensional modeling across academic and industry contexts. This project integrates all of these competencies into a single end-to-end system: automated data collection via GitHub Actions cron jobs, dimensional modeling of 49K+ matches, archetype discovery, supervised prediction, and rubric-facing validation artifacts.
+**Author background.** Machine learning and data science coursework including supervised learning, unsupervised learning, deep learning, and feature engineering. Prior project experience in data pipeline architecture, web scraping at scale, and dimensional modeling across academic and industry contexts. This project integrates all of these competencies into a single end-to-end system: automated data collection via GitHub Actions cron jobs, dimensional modeling of 49K+ matches, archetype discovery, supervised prediction, and live validation against the 2026 tournament.
 
 **Repository:** [github.com/sboettch/fifaworldcup2026](https://github.com/sboettch/fifaworldcup2026)
 
@@ -30,7 +30,7 @@ Traditional approaches rely on team-level ratings (Elo, FIFA ranking, FiveThirty
 
 We hypothesize that matchups have **archetypes** — recurring structural patterns that transcend individual team identities — and that these archetypes carry predictive information about match outcomes (win probability, volatility, upset likelihood) beyond what scalar ratings capture.
 
-**Methods summary.** On the unsupervised side, we apply five clustering methods (k-means, GMM, hierarchical, HDBSCAN, NMF) to discover archetype structure in the matchup feature space and compare discovered clusters against rule-based labels. On the supervised side, the main scored comparison uses four implemented model families — probabilistic (logistic regression), tree-based bagging (random forest), tree-based boosting (gradient boosting), and neural network (multilayer perceptron) — to predict match outcomes conditioned on archetype features. Experimental GA, HyperNEAT-inspired, and cellular-automaton classifiers remain in `src/models/` as extension work, but they are not counted in the main rubric comparison unless their outputs are regenerated and reported. We evaluate via leave-one-tournament-out cross-validation and 2026 validation snapshots, comparing against Elo-only and majority-class baselines through formal ablation.
+**Methods summary.** On the unsupervised side, we apply five clustering methods (k-means, GMM, hierarchical, HDBSCAN, NMF) to discover archetype structure in the matchup feature space and compare discovered clusters against rule-based labels. On the supervised side, the main scored comparison uses four implemented model families — probabilistic (logistic regression), tree-based bagging (random forest), tree-based boosting (gradient boosting), and neural network (multilayer perceptron) — to predict match outcomes conditioned on archetype features. Experimental GA, HyperNEAT-inspired, and cellular-automaton classifiers remain in `src/models/` as extension work, but they are not included in the main comparison unless their outputs are regenerated and reported. We evaluate via leave-one-tournament-out cross-validation and 2026 validation snapshots, comparing against Elo-only and majority-class baselines through formal ablation.
 
 ### 1.2 The 2026 Opportunity
 
@@ -505,7 +505,7 @@ Five clustering methods applied to 1,037 WC matches on 6 Elo-based features (ful
 
 **Key finding**: The maximum Adjusted Rand Index between any unsupervised cluster and any rule-based archetype is 0.38 (`favorite_vs_underdog`); all others are below 0.17. Three independent methods converge on k = 4–5, suggesting this granularity reflects natural structure in WC matchup space that the rule-based taxonomy does not fully capture.
 
-Rubric-facing visualizations are generated for each unsupervised method: one PCA projection of World Cup matchups colored by cluster assignment and one cluster-profile heatmap showing archetype prevalence by cluster. These are written to `outputs/figures/unsupervised_*_pca.png` and `outputs/figures/unsupervised_*_profile.png`.
+Visualizations are generated for each unsupervised method: one PCA projection of World Cup matchups colored by cluster assignment and one cluster-profile heatmap showing archetype prevalence by cluster. These are written to `outputs/figures/unsupervised_*_pca.png` and `outputs/figures/unsupervised_*_profile.png`.
 
 ### 5.6 Supervised Model Results (LOTO-CV, 23 editions)
 
@@ -524,7 +524,7 @@ Rubric-facing visualizations are generated for each unsupervised method: one PCA
 
 **Feature importance**: Elo features occupy the top-6 positions. First archetype signal: `club_power_mismatch` (1.4%) at position 7, followed by `generational_transition` (1.3%).
 
-Fold-level reporting required by the rubric is now written to `model_cv_folds.csv` and summarized in `model_cv_summary.csv`. The best mean fold-level log-loss is Random Forest with Elo + archetypes: **0.9102 ± 0.1445** across 23 held-out tournaments. The comparable Elo-only Random Forest is **0.9137 ± 0.1464**, indicating a small but directionally positive archetype lift.
+Fold-level reporting is written to `model_cv_folds.csv` and summarized in `model_cv_summary.csv`. The best mean fold-level log-loss is Random Forest with Elo + archetypes: **0.9102 ± 0.1445** across 23 held-out tournaments. The comparable Elo-only Random Forest is **0.9137 ± 0.1464**, indicating a small but directionally positive archetype lift.
 
 ### 5.7 2026 Out-of-Sample Validation
 
@@ -559,7 +559,7 @@ The generated `failure_analysis_2026.csv` selects specific failed predictions an
 |-------|-------|-----------|:------:|
 | 1 | Jun 29 | Data backbone | ✅ |
 | 2 | Jun 29 | 2026 live collection | ✅ |
-| 3 | Jun 29–30 | Proposal + rubrics | ✅ |
+| 3 | Jun 29–30 | Proposal + initial pipeline | ✅ |
 | 4 | Jun 30 | Squad & player context | ✅ |
 | 5 | Jun 30 | Elo engine | ✅ |
 | 5b | Jul 1 | Matchup feature builder | ✅ |
@@ -689,7 +689,7 @@ The archetype hypothesis receives **partial support**:
 
 ### 10.4 Statement of Work
 
-This project is conducted as a solo thesis project by Sophia Boettcher. All data collection, pipeline engineering, feature design, modeling, evaluation, and writing are performed by the author. The automated data collection infrastructure operates autonomously during the 2026 tournament window. The full pipeline runs end-to-end from raw data with a single `make pipeline` command.
+This project is conducted as a solo research project by Sophia Boettcher. All data collection, pipeline engineering, feature design, modeling, evaluation, and writing are performed by the author. The automated data collection infrastructure operates autonomously during the 2026 tournament window. The full pipeline runs end-to-end from raw data with a single `make pipeline` command.
 
 
 ## 11. References

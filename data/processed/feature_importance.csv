@@ -1,0 +1,17 @@
+feature,importance
+elo_home_pre,0.1839
+elo_away_pre,0.1758
+elo_gap_abs,0.1413
+win_prob_home,0.1394
+win_prob_away,0.1388
+elo_gap,0.1033
+k_factor,0.0599
+club_power_mismatch,0.0138
+generational_transition,0.0122
+tactical_contrast,0.0103
+is_neutral,0.0058
+is_knockout,0.0044
+host_pressure,0.0038
+heavyweight_clash,0.0032
+knockout_volatility,0.0031
+favorite_vs_underdog,0.0011

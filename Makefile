@@ -1,17 +1,21 @@
-PYTHON ?= python
+PYTHON ?= python3
 
-.PHONY: help install collect live features models rubric report pipeline
+.PHONY: help install collect live features models validate pipeline
 
 help:
+	@echo "FIFA World Cup 2026 — Matchup Archetype Framework"
+	@echo ""
 	@echo "Targets:"
 	@echo "  install   Install Python dependencies"
-	@echo "  collect   Refresh raw source data from collectors"
-	@echo "  live      Collect and harmonize the latest 2026 live snapshot"
-	@echo "  features  Rebuild processed dimensional and matchup tables"
-	@echo "  models    Rebuild clustering, supervised models, and 2026 validation"
-	@echo "  rubric    Build rubric-facing CSV and figure artifacts"
-	@echo "  report    Rebuild the rubric-ready DOCX report"
-	@echo "  pipeline  Rebuild features, models, rubric artifacts, and report"
+	@echo "  collect   Fetch raw data (matches, squads, Elo inputs)"
+	@echo "  live      Collect and harmonize latest 2026 live snapshot"
+	@echo "  features  Build processed tables (dimensions, Elo, matchup features, archetypes)"
+	@echo "  models    Run clustering, supervised models, augmentation experiments"
+	@echo "  validate  Run 2026 out-of-sample validation"
+	@echo "  pipeline  Full pipeline: features → models → validate"
+	@echo ""
+	@echo "Quick start:"
+	@echo "  make install && make collect && make pipeline"
 
 install:
 	$(PYTHON) -m pip install -r requirements.txt
@@ -30,17 +34,13 @@ features:
 	$(PYTHON) -m src.features.build_elo
 	$(PYTHON) -m src.features.build_matchup_features
 	$(PYTHON) -m src.features.build_archetypes
+	$(PYTHON) -m src.features.contextual_features
 
 models:
 	$(PYTHON) -m src.models.cluster_archetypes
 	$(PYTHON) -m src.models.predict_outcomes
-	$(PYTHON) -m src.models.augment_and_improve
+
+validate:
 	$(PYTHON) -m src.models.validate_2026
 
-rubric:
-	$(PYTHON) -m src.models.build_rubric_artifacts
-
-report:
-	$(PYTHON) tools/build_rubric_ready_report_docx.py
-
-pipeline: features models rubric report
+pipeline: features models validate
