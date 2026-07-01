@@ -654,9 +654,9 @@ Example: *"Your squad classifies as `generational_transition` entering the knock
 
 **Archetype Cards** (Figure 5) and **Matchup Dashboard** (Figure 6). REST API: `GET /api/archetype-card/{match_id}` and `GET /api/predict/{match_id}`.
 
-![Figure 5: Archetype Card — a pre-match summary showing archetype badges, historical outcome rates, and similar matches for Argentina vs. Saudi Arabia (2022).](/Users/sophiaboettcher/fifaworldcup2026/docs/figures/fig6_archetype_card.jpg)
+![Figure 5: Archetype Card — a pre-match summary showing archetype badges, historical outcome rates, and similar matches for Argentina vs. Saudi Arabia (2022).](figures/fig6_archetype_card.jpg)
 
-![Figure 6: Dashboard mockup — archetype-aware matchup analysis dashboard.](/Users/sophiaboettcher/fifaworldcup2026/docs/figures/fig5_dashboard_mockup.jpg)
+![Figure 6: Dashboard mockup — archetype-aware matchup analysis dashboard.](figures/fig5_dashboard_mockup.jpg)
 
 ---
 
