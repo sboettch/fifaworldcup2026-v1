@@ -90,6 +90,10 @@ Five methods were applied to the 1,037 WC match dataset using six Elo-based feat
 
 UMAP visualizations confirm that rule-based archetypes do not form tight, separable regions in the low-dimensional projection — they overlap in ways consistent with their non-exclusive design. The overlap between `heavyweight_clash` and `knockout_volatility` is particularly pronounced, as expected from their co-occurrence logic.
 
+![Unsupervised PCA projections — WC matchup space across all five clustering methods. Each point is a match, coloured by cluster assignment.](/outputs/figures/unsupervised_pca_montage.png)
+
+![Cluster profile heatmaps — archetype prevalence by cluster across all five methods. K-Means k=5 and hierarchical k=4 show the clearest separation.](/outputs/figures/unsupervised_profile_montage.png)
+
 ---
 
 ## 6. Key Open Question Going into Check-in 2

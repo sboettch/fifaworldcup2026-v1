@@ -165,6 +165,8 @@ Beyond standard squad features, we engineer curated contextual features motivate
 
 Archetype lift (A → B): RF Δlog-loss = +0.0036; LR Δlog-loss = +0.0015. Gradient Boosting and MLP: no consistent gain. Best fold-level: RF with Elo + archetypes, 0.9102 ± 0.1445 across 23 held-out tournaments. First archetype feature in RF importance ranking: `club_power_mismatch` (1.4%, rank 7); `generational_transition` (1.3%, rank 8).
 
+![Model CV log-loss across all model families and feature sets. Lower is better. RF Optuna contextual (far right) is the v1 freeze model.](/outputs/figures/model_cv_log_loss.png)
+
 ### 4.2 Augmentation Results
 
 | Strategy | Effect on log-loss | Direction |
@@ -189,6 +191,10 @@ RF feature importance rankings (v1 freeze model, full contextual feature set):
 | 9–11 | Travel, altitude, qualifying form | < 1% each | Contextual |
 
 `form_GD5_gap` — the difference in goal-difference momentum over the trailing five matches — is the fourth-ranked feature and the strongest non-Elo signal in the model. It captures recent trajectory information that Elo, as a rolling average, smooths over.
+
+![RF feature importance — v1 freeze model (32 features). Elo dominates top-3; form_GD5_gap is the highest-ranked non-Elo feature at rank 4.](/outputs/figures/feature_importance.png)
+
+![Archetype threshold sensitivity — log-loss vs. ±30% variation in each rule-based archetype threshold. Robust across all tested ranges.](/outputs/figures/archetype_sensitivity.png)
 
 ### 4.4 Best Model: RF Optuna Contextual (ll = 0.9419, acc = 59.2%)
 

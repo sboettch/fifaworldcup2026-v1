@@ -62,11 +62,30 @@ None of them beat classical Random Forest. The results by family:
 | HyperNEAT | 1.0717 | Feature set C |
 | GoL | DNF | Feature set C — search hung |
 
-**This is not a failure of implementation. It is the finding.** The real training set per LOTO fold is approximately 280 matches (the mean fold size with 23 editions held out serially). At 280 training examples, neural and evolutionary methods are squarely in the high-variance regime. Random Forest's inductive bias — ensembling shallow decision trees, implicitly regularizing — is well-matched to this scale. HyperNEAT's neuroevolutionary search requires a much larger fitness-evaluation surface to converge reliably; on 280 examples, it consistently underfits the structure it is designed to find.
+### This is not a failure of implementation. It is the finding.
+
+Once you look at the actual training regime, the result makes complete sense — and it tells you something real about the problem.
+
+The effective training set per LOTO fold is approximately **280 matches**. That is the mean number of WC matches available to train on when one full edition is held out across 23 tournaments. 280 labelled examples, ~50 features, 3-class classification.
+
+At that scale, the bias-variance tradeoff is decisive. Neural and evolutionary methods have enormous hypothesis spaces — they are designed to fit complex, high-dimensional manifolds given sufficient data. But "sufficient" here means thousands to tens of thousands of examples, not 280. On 280 training samples, these methods are in the high-variance regime: they overfit the training fold structure, fail to generalise across the radically different tournament contexts held out in each fold, and cannot converge their search procedures reliably within any reasonable compute budget.
+
+Random Forest wins precisely *because* its inductive bias is well-matched to this regime:
+
+- **Shallow trees** (depth 6 in the v1 model) avoid memorising individual matches and instead learn coarse, robust decision boundaries
+- **Bagging over ~100 trees** dramatically reduces variance without increasing bias — the ensemble effect is essentially free regularisation
+- **`min_samples_leaf=20`** means no leaf is fit on fewer than 20 examples, directly preventing overfitting to small tournament-specific patterns
+- **`max_features=0.7`** introduces feature subsampling at each split, further decorrelating trees and adding implicit regularisation
+
+In other words: the optimal Optuna configuration for this dataset *looks like* a deliberately regularised, capacity-constrained forest. That is not a coincidence. Optuna found the configuration that best manages the bias-variance tradeoff at 280 training examples, and it landed on shallow, regularised, bagged trees — which is exactly what Random Forest is.
+
+The deeper implication: the more expressive a model's hypothesis space, the *more* data it needs to realise its potential. HyperNEAT's neuroevolutionary search over CPPN weight space is astronomically larger than RF's parameter space. GA ensemble search evolves weights over base classifiers. Both require a fitness evaluation signal that 280 examples simply cannot provide with enough resolution. They are the right tools for a different version of this problem — one with full-tournament event logs, in-play data, or a dataset an order of magnitude larger.
+
+This is also why v2 (Tournament-State Simulator) and v3 (In-Play Event Engine) are on the roadmap: as the feature space expands with event-level data and the dataset grows, the bias-variance balance shifts, and more expressive methods become appropriate.
 
 ### The GoL Result
 
-The GoL classifier did not finish (DNF) on Feature Set C. The search hung. This is consistent with a known scaling property of cellular automaton rule-table search: the search space scales exponentially with input dimensionality. Feature Set C has substantially more features than Sets A or B, and the CA rule-table enumeration becomes intractable. This is worth documenting explicitly — it is not a bug in the implementation but a predictable consequence of applying a CA search method to a high-dimensional input without a pruning strategy.
+The GoL classifier did not finish (DNF) on Feature Set C. The search hung. This is consistent with a known scaling property of cellular automaton rule-table search: the rule-table space grows as $2^{2^k}$ where $k$ is the neighbourhood size, which scales exponentially with input dimensionality. Feature Set C has substantially more binary-encoded features than Sets A or B, and the CA rule-table enumeration becomes intractable without a pruning or sampling strategy. This is not a bug — it is a predictable consequence of applying an exhaustive CA search to a high-dimensional input, and it is documented as such.
 
 ---
 
