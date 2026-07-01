@@ -1,6 +1,6 @@
 # Classifying International Football Matchup Archetypes: A Longitudinal Analysis of FIFA World Cup Outcomes (1930–2026)
 
-**Sophia Boettcher**
+**sophia**
 *Proposal for Thesis / Milestone Project*
 *June 2026*
 
@@ -689,7 +689,7 @@ The archetype hypothesis receives **partial support**:
 
 ### 10.4 Statement of Work
 
-This project is conducted as a solo research project by Sophia Boettcher. All data collection, pipeline engineering, feature design, modeling, evaluation, and writing are performed by the author. The automated data collection infrastructure operates autonomously during the 2026 tournament window. The full pipeline runs end-to-end from raw data with a single `make pipeline` command.
+This project is conducted as a solo research project by sophia. All data collection, pipeline engineering, feature design, modeling, evaluation, and writing are performed by the author. The automated data collection infrastructure operates autonomously during the 2026 tournament window. The full pipeline runs end-to-end from raw data with a single `make pipeline` command.
 
 
 ## 11. References

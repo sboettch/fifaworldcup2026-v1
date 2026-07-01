@@ -1,0 +1,14 @@
+model,n_matches,accuracy,log_loss,brier_score,auc_macro,feature_set,n_tournaments
+majority_class_baseline,1037,0.4552,1.0587,0.2133,,baseline,
+logistic_regression,1037,0.5593,0.9581,0.1881,0.6819,A_elo_only,23.0
+random_forest,1037,0.5796,0.9542,0.1876,0.6826,A_elo_only,23.0
+gradient_boosting,1037,0.5535,1.0218,0.2,0.6662,A_elo_only,23.0
+mlp,1037,0.568,0.9621,0.1889,0.6704,A_elo_only,23.0
+logistic_regression,1037,0.5574,0.9566,0.188,0.6856,B_elo_archetypes,23.0
+random_forest,1037,0.5786,0.9506,0.187,0.6834,B_elo_archetypes,23.0
+gradient_boosting,1037,0.5439,1.0256,0.2008,0.6646,B_elo_archetypes,23.0
+mlp,1037,0.5612,0.9749,0.1918,0.6669,B_elo_archetypes,23.0
+logistic_regression,1037,0.5564,0.9642,0.1885,0.6825,C_full,23.0
+random_forest,1037,0.5796,0.9491,0.1867,0.6802,C_full,23.0
+gradient_boosting,1037,0.5728,1.0103,0.1959,0.6704,C_full,23.0
+mlp,1037,0.5583,0.9898,0.1931,0.6619,C_full,23.0

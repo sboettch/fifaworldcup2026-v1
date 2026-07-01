@@ -1,6 +1,6 @@
 # Check-in 2: Supervised Learning through v1 Freeze
 **FIFA World Cup 2026 — Matchup Archetype Classification**
-*Sophia Boettcher · Phases 6–10*
+*sophia · Phases 6–10*
 
 ---
 

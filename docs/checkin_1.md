@@ -1,6 +1,6 @@
 # Check-in 1: Data Pipeline through Archetype Framework
 **FIFA World Cup 2026 — Matchup Archetype Classification**
-*Sophia Boettcher · Phases 1–5*
+*sophia · Phases 1–5*
 
 ---
 

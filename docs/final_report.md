@@ -1,6 +1,6 @@
 # Classifying World Cup Matchup Archetypes: A Predictive Framework
 
-**Sophia Boettcher**
+**sophia**
 *July 2026*
 
 ---
