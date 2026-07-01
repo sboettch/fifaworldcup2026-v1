@@ -1,11 +1,11 @@
 # Classifying International Football Matchup Archetypes: A Longitudinal Analysis of FIFA World Cup Outcomes (1930–2026)
 
 **sophia**
-*fell down a rabbit hole · June 2026*
+*down the rabbit hole · June 2026*
 
 **About.** Started as a curiosity about whether World Cup matchups have structural types that matter for prediction. Became a full data pipeline, archetype framework, and live validation system. Contact: [sboettcher@ub313.net](mailto:sboettcher@ub313.net)
 
-**Repository:** [github.com/sboettch/fifaworldcup2026](https://github.com/sboettch/fifaworldcup2026)
+**Repository:** [github.com/sboettch/fifaworldcup2026-v1](https://github.com/sboettch/fifaworldcup2026-v1)
 
 > **Key figures:** 49,493 international matches (1872–2026) · 1,290 player entries across 48 squads · 342 canonical teams · 23 World Cup editions · 8 proposed archetype labels · 2026 live data snapshots continuing through July 19, 2026.
 
