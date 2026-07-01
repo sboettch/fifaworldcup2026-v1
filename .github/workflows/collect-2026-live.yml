@@ -1,9 +1,9 @@
 name: Collect 2026 Live Data
 
 on:
+  schedule:
+    - cron: "17 */6 * * *"
   workflow_dispatch:
-    # Trigger manually via GitHub Actions UI or `gh workflow run collect-2026-live.yml`
-    # (Cron disabled on public repo — see private repo for scheduled collection)
 
 permissions:
   contents: write
