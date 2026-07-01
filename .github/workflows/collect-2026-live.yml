@@ -57,19 +57,20 @@ jobs:
         if: steps.window.outputs.should_run == 'true'
         run: python -m src.features.harmonize_2026_live
 
-      - name: Commit raw snapshot back to repository
+      - name: Commit harmonized data to repository
         if: steps.window.outputs.should_run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add data/raw/2026_live data/run_manifest.csv data/processed
+          # Public repo: data/raw/ is gitignored — only commit processed outputs
+          git add data/processed
 
           if git diff --cached --quiet; then
-            echo "No new 2026 raw snapshot changes to commit."
+            echo "No new changes to commit."
             exit 0
           fi
 
-          git commit -m "Collect and harmonize 2026 live data snapshot"
+          git commit -m "Update 2026 live data snapshot"
           git pull --rebase
           git push
