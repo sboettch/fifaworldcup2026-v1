@@ -571,7 +571,7 @@ The generated `failure_analysis_2026.csv` selects specific failed predictions an
 
 All phases complete. The automated collector continues updating through the World Cup Final (July 19).
 
-**Partial-value milestones.** Even if the archetype hypothesis had failed (archetypes do not improve prediction beyond raw features), the project delivers: (a) the longitudinal dataset, (b) the Elo reconstruction, (c) the unsupervised discovery of 4–5 latent match clusters, and (d) the negative predictive result itself.
+**Robustness of partial results.** Even if the archetype hypothesis had failed (archetypes do not improve prediction beyond raw features), the project delivers: (a) the longitudinal dataset, (b) the Elo reconstruction, (c) the unsupervised discovery of 4–5 latent match clusters, and (d) the negative predictive result itself.
 
 ---
 
