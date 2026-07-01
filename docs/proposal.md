@@ -1,10 +1,9 @@
 # Classifying International Football Matchup Archetypes: A Longitudinal Analysis of FIFA World Cup Outcomes (1930–2026)
 
 **sophia**
-*Proposal for Thesis / Milestone Project*
-*June 2026*
+*a rabbit hole · June 2026*
 
-**Author background.** Machine learning and data science coursework including supervised learning, unsupervised learning, deep learning, and feature engineering. Prior project experience in data pipeline architecture, web scraping at scale, and dimensional modeling across academic and industry contexts. This project integrates all of these competencies into a single end-to-end system: automated data collection via GitHub Actions cron jobs, dimensional modeling of 49K+ matches, archetype discovery, supervised prediction, and live validation against the 2026 tournament.
+**About.** Started as a curiosity about whether World Cup matchups have structural types that matter for prediction. Became a full data pipeline, archetype framework, and live validation system. Contact: [sboettcher@ub313.net](mailto:sboettcher@ub313.net)
 
 **Repository:** [github.com/sboettch/fifaworldcup2026](https://github.com/sboettch/fifaworldcup2026)
 
