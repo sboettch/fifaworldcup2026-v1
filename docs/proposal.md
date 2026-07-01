@@ -1,7 +1,7 @@
 # Classifying International Football Matchup Archetypes: A Longitudinal Analysis of FIFA World Cup Outcomes (1930–2026)
 
 **sophia**
-*a rabbit hole · June 2026*
+*fell down a rabbit hole · June 2026*
 
 **About.** Started as a curiosity about whether World Cup matchups have structural types that matter for prediction. Became a full data pipeline, archetype framework, and live validation system. Contact: [sboettcher@ub313.net](mailto:sboettcher@ub313.net)
 
