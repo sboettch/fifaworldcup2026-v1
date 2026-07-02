@@ -10,6 +10,9 @@ const els = {
   resetCountry: document.querySelector("#reset-country"),
   upsetToggle: document.querySelector("#upset-toggle"),
   auditSummary: document.querySelector("#audit-summary"),
+  auditViewToggle: document.querySelector("#audit-view-toggle"),
+  auditVisual: document.querySelector("#audit-visual"),
+  auditGrid: document.querySelector("#audit-grid"),
   auditStatGrid: document.querySelector("#audit-stat-grid"),
   auditStateList: document.querySelector("#audit-state-list"),
   auditTimestamp: document.querySelector("#audit-timestamp"),
@@ -50,6 +53,7 @@ const state = {
   selectedId: null,
   countries: [],
   countryCounts: new Map(),
+  auditView: "visual",
   lineupExpanded: false,
 };
 
@@ -176,6 +180,34 @@ function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
   });
+}
+
+async function loadMatchupData() {
+  if (window.MATCHUP_DATA && window.location.protocol === "file:") {
+    return window.MATCHUP_DATA;
+  }
+
+  try {
+    const response = await fetch(DATA_URL, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Unable to load ${DATA_URL}`);
+    return await response.json();
+  } catch (error) {
+    if (window.MATCHUP_DATA) return window.MATCHUP_DATA;
+    throw error;
+  }
+}
+
+function renderLoadError(error) {
+  const shell = document.querySelector(".app-shell") || document.body;
+  const panel = document.createElement("article");
+  panel.className = "panel load-error-panel";
+  panel.innerHTML = `
+    <div class="panel-kicker">Data Load Issue</div>
+    <h2>Unable to load matchup data</h2>
+    <p>${escapeHtml(error.message || "The matchup dataset could not be loaded.")}</p>
+    <p>For local development, run the dashboard from the project folder with <code>python -m http.server 8877</code>, then open <code>http://127.0.0.1:8877/web/matchup-card/</code>.</p>
+  `;
+  shell.prepend(panel);
 }
 
 function cleanLabel(value) {
@@ -425,6 +457,186 @@ function auditRoleLabel(role) {
   );
 }
 
+function auditMetricValue(value, fallback = 0) {
+  const metric = Number(value);
+  return value === null || value === undefined || Number.isNaN(metric) ? fallback : metric;
+}
+
+function auditMetricLabel(value) {
+  return value === null || value === undefined || Number.isNaN(Number(value)) ? "--" : pct(value, 1);
+}
+
+function auditCounts(audit) {
+  const actualizedFallback = state.matches.filter(isActualized).length;
+  const correctFallback = state.matches.filter((match) => modelGrade(match) === "exact_correct").length;
+  const drawPushFallback = state.matches.filter((match) => modelGrade(match) === "draw_push").length;
+  const incorrectFallback = state.matches.filter((match) => modelGrade(match) === "incorrect").length;
+  const focus = audit.focus_rows ?? state.matches.length;
+  const forecasted = audit.prediction_available_rows ?? state.matches.length;
+  const actualized = audit.actual_available_rows ?? actualizedFallback;
+  const pending = audit.pending_actual_rows ?? Math.max(0, state.matches.length - actualizedFallback);
+  const correct = audit.correct_rows ?? correctFallback;
+  const drawPush = audit.draw_push_rows ?? drawPushFallback;
+  const incorrect = audit.incorrect_rows ?? incorrectFallback;
+  const evaluated = audit.evaluated_rows ?? correct + drawPush + incorrect;
+  const unresolved = Math.max(0, focus - forecasted);
+
+  return { actualized, correct, drawPush, evaluated, focus, forecasted, incorrect, pending, unresolved };
+}
+
+function auditSegmentButton(segment, total) {
+  const width = total ? (segment.value / total) * 100 : 0;
+  return `
+    <button
+      class="audit-stack-segment audit-stack-${segment.key}${segment.value ? "" : " audit-stack-empty"}"
+      type="button"
+      style="--segment-width: ${width.toFixed(2)}%;"
+      data-audit-detail="${escapeHtml(segment.detail)}"
+      aria-label="${escapeHtml(`${segment.label}: ${segment.value}`)}"
+      title="${escapeHtml(segment.detail)}"
+    >
+      <span>${segment.value}</span>
+    </button>
+  `;
+}
+
+function auditBarButton(segment, maxValue) {
+  const height = maxValue ? Math.max(8, (segment.value / maxValue) * 100) : 8;
+  return `
+    <button
+      class="audit-histogram-bar audit-histogram-${segment.key}"
+      type="button"
+      style="--bar-height: ${height.toFixed(2)}%;"
+      data-audit-detail="${escapeHtml(segment.detail)}"
+      title="${escapeHtml(segment.detail)}"
+    >
+      <span>${segment.value}</span>
+      <small>${segment.shortLabel}</small>
+    </button>
+  `;
+}
+
+function renderAuditVisual(audit) {
+  const counts = auditCounts(audit);
+  const adjusted = auditMetricValue(audit.draw_adjusted_score);
+  const adjustedLabel = auditMetricLabel(audit.draw_adjusted_score);
+  const exactLabel = auditMetricLabel(audit.strict_exact_accuracy);
+  const coverage = counts.focus ? counts.forecasted / counts.focus : 0;
+  const actualizedShare = counts.focus ? counts.actualized / counts.focus : 0;
+  const pendingShare = counts.focus ? counts.pending / counts.focus : 0;
+  const outcomeTotal = counts.correct + counts.drawPush + counts.incorrect + counts.pending + counts.unresolved;
+  const evaluatedMax = Math.max(1, counts.correct, counts.drawPush, counts.incorrect);
+
+  const segments = [
+    {
+      key: "correct",
+      label: "Model correct",
+      shortLabel: "Correct",
+      value: counts.correct,
+      detail: `${counts.correct} actualized matches were exact model calls.`,
+    },
+    {
+      key: "draw",
+      label: "Actual draw / partial credit",
+      shortLabel: "Draw credit",
+      value: counts.drawPush,
+      detail: `${counts.drawPush} actualized matches ended in draws and are treated as partial-credit rows.`,
+    },
+    {
+      key: "incorrect",
+      label: "Model incorrect",
+      shortLabel: "Incorrect",
+      value: counts.incorrect,
+      detail: `${counts.incorrect} actualized matches disagreed with the model's called result.`,
+    },
+    {
+      key: "pending",
+      label: "Pending actual",
+      shortLabel: "Pending",
+      value: counts.pending,
+      detail: `${counts.pending} announced forecasts are waiting for final scores.`,
+    },
+    {
+      key: "unresolved",
+      label: "Unresolved bracket slots",
+      shortLabel: "Unresolved",
+      value: counts.unresolved,
+      detail: `${counts.unresolved} bracket slots are not forecasted yet because the teams are unresolved.`,
+    },
+  ];
+  const defaultDetail = `${adjustedLabel} draw-adjusted score across ${counts.evaluated} actualized audit rows; exact strict accuracy is ${exactLabel}.`;
+
+  els.auditVisual.innerHTML = `
+    <div class="audit-visual-grid">
+      <article class="audit-viz-card audit-gauge-card">
+        <div class="audit-viz-kicker">Draw-adjusted score</div>
+        <button
+          class="audit-gauge audit-viz-active"
+          type="button"
+          style="--score-angle: ${(adjusted * 360).toFixed(1)}deg;"
+          data-audit-detail="${escapeHtml(defaultDetail)}"
+          aria-label="${escapeHtml(`Draw-adjusted score ${adjustedLabel}`)}"
+        >
+          <span>${adjustedLabel}</span>
+        </button>
+        <p>Strict exact result accuracy: <strong>${exactLabel}</strong></p>
+      </article>
+
+      <article class="audit-viz-card audit-stack-card">
+        <div class="audit-viz-kicker">Forecast outcome mix</div>
+        <div class="audit-stacked-bar" aria-label="Forecast outcome mix">
+          ${segments.map((segment) => auditSegmentButton(segment, outcomeTotal)).join("")}
+        </div>
+        <div class="audit-viz-legend">
+          ${segments
+            .map(
+              (segment) => `
+                <span><i class="audit-legend-dot audit-dot-${segment.key}"></i>${segment.label}</span>
+              `,
+            )
+            .join("")}
+        </div>
+      </article>
+
+      <article class="audit-viz-card audit-histogram-card">
+        <div class="audit-viz-kicker">Actualized match audit</div>
+        <div class="audit-histogram" aria-label="Actualized model audit histogram">
+          ${segments.slice(0, 3).map((segment) => auditBarButton(segment, evaluatedMax)).join("")}
+        </div>
+      </article>
+
+      <article class="audit-viz-card audit-readiness-card">
+        <div class="audit-viz-kicker">Data readiness</div>
+        <div class="audit-readiness-row">
+          <span>Forecast coverage</span>
+          <strong>${counts.forecasted}/${counts.focus}</strong>
+          <i><b style="--progress: ${(coverage * 100).toFixed(1)}%;"></b></i>
+        </div>
+        <div class="audit-readiness-row">
+          <span>Actualized</span>
+          <strong>${counts.actualized}</strong>
+          <i><b style="--progress: ${(actualizedShare * 100).toFixed(1)}%;"></b></i>
+        </div>
+        <div class="audit-readiness-row">
+          <span>Pending</span>
+          <strong>${counts.pending}</strong>
+          <i><b style="--progress: ${(pendingShare * 100).toFixed(1)}%;"></b></i>
+        </div>
+      </article>
+    </div>
+    <p class="audit-viz-detail" id="audit-viz-detail">${escapeHtml(defaultDetail)}</p>
+  `;
+}
+
+function setAuditView(view) {
+  state.auditView = view;
+  const showingNumbers = view === "numbers";
+  els.auditVisual.hidden = showingNumbers;
+  els.auditGrid.hidden = !showingNumbers;
+  els.auditViewToggle.textContent = showingNumbers ? "Show visuals" : "Show numbers";
+  els.auditViewToggle.setAttribute("aria-pressed", String(showingNumbers));
+}
+
 function selectedMatch() {
   return state.matches.find((match) => String(match.match_id) === String(state.selectedId)) || state.filtered[0] || state.matches[0];
 }
@@ -496,6 +708,7 @@ function renderAuditOverview() {
   els.auditSummary.textContent =
     audit.summary_line ||
     "Train on historical World Cup matches, then audit 2026 predictions against actual results as they arrive.";
+  renderAuditVisual(audit);
 
   const coverage = `${audit.prediction_available_rows || 0}/${audit.focus_rows || 0}`;
   const actualized = `${audit.actual_available_rows || 0}`;
@@ -575,6 +788,7 @@ function renderAuditOverview() {
   )} to ${shortDateTime(audit.predicted_at_max_utc)}. Fixture and actual-status layer as of ${
     audit.as_of_local || audit.as_of_utc || "unknown"
   }.`;
+  setAuditView(state.auditView);
 }
 
 function renderLineup() {
@@ -1110,9 +1324,7 @@ function setupSectionNav() {
 }
 
 async function init() {
-  const response = await fetch(DATA_URL, { cache: "no-store" });
-  if (!response.ok) throw new Error(`Unable to load ${DATA_URL}`);
-  state.data = await response.json();
+  state.data = await loadMatchupData();
   state.matches = (state.data.matches || []).slice().sort(chronologySort);
   state.selectedId = state.matches[0]?.match_id ?? null;
 
@@ -1123,6 +1335,18 @@ async function init() {
   applyFilters();
   setupSectionNav();
 
+  els.auditViewToggle.addEventListener("click", () => {
+    setAuditView(state.auditView === "visual" ? "numbers" : "visual");
+  });
+  els.auditVisual.addEventListener("click", (event) => {
+    const node = event.target.closest("[data-audit-detail]");
+    if (!node) return;
+    for (const item of els.auditVisual.querySelectorAll("[data-audit-detail]")) {
+      item.classList.toggle("audit-viz-active", item === node);
+    }
+    const detail = els.auditVisual.querySelector("#audit-viz-detail");
+    if (detail) detail.textContent = node.dataset.auditDetail || "";
+  });
   els.stageFilter.addEventListener("change", applyFilters);
   els.countryFilter.addEventListener("change", applyFilters);
   els.resetCountry.addEventListener("click", () => {
@@ -1154,5 +1378,5 @@ async function init() {
 
 init().catch((error) => {
   console.error(error);
-  document.body.innerHTML = `<main class="app-shell"><article class="panel match-panel"><h1>Unable to load matchup data</h1><p>${error.message}</p></article></main>`;
+  renderLoadError(error);
 });

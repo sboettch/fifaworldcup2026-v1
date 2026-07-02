@@ -8,7 +8,7 @@
       name="description"
       content="A data-backed matchup card for FIFA World Cup 2026 archetypes, probabilities, radar profiles, and similar historical matches."
     >
-    <link rel="stylesheet" href="./styles.css?v=37">
+    <link rel="stylesheet" href="./styles.css?v=44">
   </head>
   <body>
     <main class="app-shell">
@@ -76,9 +76,15 @@
             <div class="panel-kicker">Prediction Audit</div>
             <h2>2026 Forecast vs. Actual Overview</h2>
           </div>
-          <p class="fine-print" id="audit-summary"></p>
+          <div class="audit-head-actions">
+            <p class="fine-print" id="audit-summary"></p>
+            <button class="audit-view-toggle" id="audit-view-toggle" type="button" aria-pressed="false">
+              Show numbers
+            </button>
+          </div>
         </div>
-        <div class="audit-grid">
+        <div class="audit-visual" id="audit-visual"></div>
+        <div class="audit-grid" id="audit-grid" hidden>
           <div class="audit-stat-grid" id="audit-stat-grid"></div>
           <div class="audit-state-list" id="audit-state-list"></div>
         </div>
@@ -202,6 +208,7 @@
       </footer>
     </main>
 
-    <script src="./app.js?v=37" type="module"></script>
+    <script src="./data/matchups-inline.js?v=44"></script>
+    <script src="./app.js?v=44"></script>
   </body>
 </html>
