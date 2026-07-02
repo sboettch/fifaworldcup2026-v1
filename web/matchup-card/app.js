@@ -1,4 +1,4 @@
-const DATA_URL = "./data/matchups-v58-multi-badge-animation.json";
+const DATA_URL = "./data/matchups.json";
 
 const els = {
   matchCount: document.querySelector("#match-count"),
