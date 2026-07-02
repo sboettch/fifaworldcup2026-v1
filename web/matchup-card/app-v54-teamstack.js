@@ -1,4 +1,4 @@
-const DATA_URL = "./data/matchups.json";
+const DATA_URL = "./data/matchups-v54-teamstack.json";
 
 const els = {
   matchCount: document.querySelector("#match-count"),

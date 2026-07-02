@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>World Cup Matchup Archetype Explorer - Compact Filter Fork</title>
+    <title>World Cup Matchup Archetype Explorer</title>
     <meta
       name="description"
       content="A data-backed matchup card for FIFA World Cup 2026 archetypes, probabilities, radar profiles, and similar historical matches."
     >
-    <link rel="stylesheet" href="./styles-section1-fork.css?v=51f">
+    <link rel="stylesheet" href="./styles.css?v=50">
   </head>
   <body>
     <main class="app-shell">
@@ -33,40 +33,25 @@
         </div>
       </header>
 
-      <section class="toolbar compact-toolbar" aria-label="Match filters">
-        <div class="toolbar-topline">
-          <div>
-            <p class="panel-kicker">Section 1</p>
-            <h2>Find a 2026 Matchup</h2>
+      <section class="toolbar" aria-label="Match filters">
+        <div class="filter-guide">
+          <div class="filter-shelf">
+            <div class="filter-shelf-head">
+              <span>Suggested views</span>
+              <strong id="filter-summary">Loading matches...</strong>
+            </div>
+            <div class="filter-chip-row" id="view-chip-row" aria-label="Suggested match views"></div>
           </div>
-          <strong id="filter-summary">Loading matches...</strong>
-        </div>
-
-        <div class="compact-filter-band">
-          <div class="compact-band-head">
-            <span>Forecast view</span>
-            <small>Start with all rows, upcoming forecasts, or past results.</small>
+          <div class="filter-shelf">
+            <div class="filter-shelf-head">
+              <span>Suggested country searches</span>
+            </div>
+            <div class="filter-chip-row country-chip-row" id="country-chip-row" aria-label="Suggested country searches"></div>
           </div>
-          <div class="filter-chip-row compact-view-row" id="view-chip-row" aria-label="Suggested match views"></div>
         </div>
-
-        <div class="active-filter-strip" aria-live="polite">
-          <span id="filter-status-line">Current view loading...</span>
-          <div class="active-filter-row" id="active-filter-row"></div>
-        </div>
-
-        <div class="tournament-context" id="tournament-context" aria-live="polite">
-          <div class="tournament-context-copy">
-            <span>Tournament context</span>
-            <strong id="context-title">Loading tournament context...</strong>
-            <p id="context-copy"></p>
-          </div>
-          <div class="context-pill-row" id="context-pill-row"></div>
-        </div>
-
-        <div class="filter-controls compact-filter-controls">
+        <div class="filter-controls">
           <label class="field">
-            <span>Stage lens</span>
+            <span>Tournament view</span>
             <select id="stage-filter"></select>
           </label>
           <label class="field field-wide">
@@ -82,16 +67,8 @@
           </label>
           <label class="toggle">
             <input id="upset-toggle" type="checkbox">
-            <span>High upset risk</span>
+            <span>Upset risk at least 50%</span>
           </label>
-        </div>
-
-        <div class="compact-country-band">
-          <div class="compact-band-head">
-            <span>Country quick picks</span>
-            <small>The dropdown is the complete country list; shortcuts show group and next loaded matchup.</small>
-          </div>
-          <div class="filter-chip-row country-chip-row" id="country-chip-row" aria-label="Suggested country searches"></div>
         </div>
       </section>
 
@@ -175,10 +152,10 @@
               <span class="team-mark mark-home" id="home-code" aria-label="Home country flag"></span>
               <strong id="home-team">Home</strong>
             </div>
-            <span class="versus">v</span>
+            <span class="versus">vs</span>
             <div class="team-lockup team-lockup-away">
-              <span class="team-mark mark-away" id="away-code" aria-label="Away country flag"></span>
               <strong id="away-team">Away</strong>
+              <span class="team-mark mark-away" id="away-code" aria-label="Away country flag"></span>
             </div>
           </div>
           <div class="match-meta">
@@ -249,6 +226,6 @@
     </main>
 
     <script src="./data/matchups-inline.js?v=50"></script>
-    <script src="./app-section1-fork.js?v=51f"></script>
+    <script src="./app.js?v=50"></script>
   </body>
 </html>

@@ -5,11 +5,6 @@ const els = {
   modelLoss: document.querySelector("#model-loss"),
   validationAcc: document.querySelector("#validation-acc"),
   filterSummary: document.querySelector("#filter-summary"),
-  filterStatusLine: document.querySelector("#filter-status-line"),
-  activeFilterRow: document.querySelector("#active-filter-row"),
-  contextTitle: document.querySelector("#context-title"),
-  contextCopy: document.querySelector("#context-copy"),
-  contextPillRow: document.querySelector("#context-pill-row"),
   viewChipRow: document.querySelector("#view-chip-row"),
   countryChipRow: document.querySelector("#country-chip-row"),
   stageFilter: document.querySelector("#stage-filter"),
@@ -234,11 +229,10 @@ function teamColor(team, fallback) {
 
 function teamNameSize(team) {
   const length = String(team || "").length;
-  if (length >= 26) return "0.96rem";
-  if (length >= 22) return "1.06rem";
-  if (length >= 18) return "1.18rem";
-  if (length >= 14) return "1.36rem";
-  return "clamp(1.3rem, 2vw, 1.85rem)";
+  if (length >= 24) return "1.05rem";
+  if (length >= 19) return "1.2rem";
+  if (length >= 15) return "1.42rem";
+  return "clamp(1.25rem, 2vw, 1.85rem)";
 }
 
 function setTeamName(element, team) {
@@ -316,16 +310,16 @@ function sectionLetter(stage) {
 
 function stageDisplay(stage) {
   const letter = sectionLetter(stage);
-  if (letter) return `Group stage · Group ${letter}`;
-  if (!stage || stage === "Unassigned") return "Group stage · group label missing";
+  if (letter) return `Opening round · Section ${letter}`;
+  if (!stage || stage === "Unassigned") return "Opening round · Section label missing";
   const normalized = String(stage).toLowerCase();
-  if (normalized === "group stage") return "Group stage";
-  if (normalized === "second group stage") return "Second group stage";
+  if (normalized === "group stage") return "Opening round";
+  if (normalized === "second group stage") return "Second opening round";
   if (normalized.includes("third-place")) return "Third-place match";
-  if (/round of 32/i.test(stage)) return "Knockout match · Round of 32";
-  if (/round of 16/i.test(stage)) return "Knockout match · Round of 16";
-  if (/quarter/i.test(stage)) return "Knockout match · Quarterfinal";
-  if (/semi/i.test(stage)) return "Knockout match · Semifinal";
+  if (/round of 32/i.test(stage)) return "First elimination round · 32 countries left";
+  if (/round of 16/i.test(stage)) return "Second elimination round · 16 countries left";
+  if (/quarter/i.test(stage)) return "Quarterfinal · 8 countries left";
+  if (/semi/i.test(stage)) return "Semifinal · 4 countries left";
   if (/final/i.test(stage)) return "Final";
   return String(stage);
 }
@@ -336,16 +330,14 @@ function isOpeningStage(stage) {
 }
 
 function stageFilterDisplay(value) {
-  if (!value || value === "all") return "All phases";
-  if (value === "stage_group:opening") return "Group-stage matches";
-  if (value === "stage_group:knockout") return "Knockout matches";
+  if (!value || value === "all") return "All tournament sections";
+  if (value === "stage_group:opening") return "Opening round";
   return stageDisplay(value);
 }
 
 function stageFilterMatches(match, value) {
   if (!value || value === "all") return true;
   if (value === "stage_group:opening") return isOpeningStage(match.stage);
-  if (value === "stage_group:knockout") return !isOpeningStage(match.stage);
   return match.stage === value;
 }
 
@@ -360,122 +352,6 @@ function stageSortValue(stage) {
   if (/third-place/i.test(stage)) return 250;
   if (/final/i.test(stage)) return 260;
   return 500 + String(stage).localeCompare("zzzz");
-}
-
-function shortDate(match) {
-  if (!match?.date) return "date TBD";
-  const [year, month, day] = String(match.date).split("-").map(Number);
-  if (!year || !month || !day) return match.date;
-  return new Intl.DateTimeFormat("en", { month: "short", day: "numeric" }).format(new Date(year, month - 1, day));
-}
-
-function matchupLabel(match, country = null) {
-  if (!match) return "No loaded matchup";
-  if (country) return `vs ${opponentFor(match, country)} (${shortDate(match)})`;
-  return `${match.home_team} vs ${match.away_team} (${shortDate(match)})`;
-}
-
-function opponentFor(match, country) {
-  if (normalizeTeamKey(match.home_team) === normalizeTeamKey(country)) return match.away_team;
-  if (normalizeTeamKey(match.away_team) === normalizeTeamKey(country)) return match.home_team;
-  return `${match.home_team} / ${match.away_team}`;
-}
-
-function rowsForCountry(country) {
-  return state.matches
-    .filter((match) => normalizeTeamKey(match.home_team) === normalizeTeamKey(country) || normalizeTeamKey(match.away_team) === normalizeTeamKey(country))
-    .sort(chronologySort);
-}
-
-function groupRowsForCountry(country) {
-  return rowsForCountry(country).filter((match) => isOpeningStage(match.stage));
-}
-
-function groupLabelForCountry(country) {
-  const groupStage = groupRowsForCountry(country)[0]?.stage;
-  const letter = sectionLetter(groupStage);
-  return letter ? `Group ${letter}` : "Group not loaded";
-}
-
-function groupOpponentsForCountry(country) {
-  return [
-    ...new Set(
-      groupRowsForCountry(country)
-        .map((match) => opponentFor(match, country))
-        .filter(Boolean),
-    ),
-  ];
-}
-
-function nextMatchForCountry(country) {
-  return rowsForCountry(country).find((match) => !isActualized(match)) || null;
-}
-
-function lastResultForCountry(country) {
-  return rowsForCountry(country)
-    .filter(isActualized)
-    .at(-1) || null;
-}
-
-function countryPathDetail(country) {
-  const group = groupLabelForCountry(country);
-  const next = nextMatchForCountry(country);
-  const last = lastResultForCountry(country);
-  if (next) return `${group} · next ${shortDate(next)}`;
-  if (last) return `${group} · last ${shortDate(last)}`;
-  return group;
-}
-
-function contextPill(label, value) {
-  return `
-    <span class="context-pill">
-      <span>${escapeHtml(label)}</span>
-      <strong>${escapeHtml(value)}</strong>
-    </span>
-  `;
-}
-
-function renderTournamentContext(match = selectedMatch()) {
-  const selectedCountry = els.countryFilter.value || "all";
-  if (!els.contextTitle || !els.contextCopy || !els.contextPillRow) return;
-
-  if (selectedCountry !== "all") {
-    const rows = rowsForCountry(selectedCountry);
-    const group = groupLabelForCountry(selectedCountry);
-    const opponents = groupOpponentsForCountry(selectedCountry);
-    const next = nextMatchForCountry(selectedCountry);
-    const last = lastResultForCountry(selectedCountry);
-    const selectedForCountry =
-      match &&
-      (normalizeTeamKey(match.home_team) === normalizeTeamKey(selectedCountry) ||
-        normalizeTeamKey(match.away_team) === normalizeTeamKey(selectedCountry))
-        ? match
-        : next || last || rows[0];
-
-    els.contextTitle.textContent = `${teamFlag(selectedCountry) ? `${teamFlag(selectedCountry)} ` : ""}${selectedCountry} tournament path`;
-    els.contextCopy.textContent = next
-      ? `${selectedCountry} is loaded in ${group}; the next loaded matchup is against ${opponentFor(next, selectedCountry)} on ${shortDate(next)}.`
-      : `${selectedCountry} is loaded in ${group}; no upcoming fixture is currently loaded for this team.`;
-    els.contextPillRow.innerHTML = [
-      contextPill("Initial group", group),
-      contextPill("Group opponents", opponents.join(", ") || "not loaded"),
-      contextPill("Selected stage", selectedForCountry ? stageDisplay(selectedForCountry.stage) : "no selected stage"),
-      contextPill("Last result", last ? `${matchupLabel(last, selectedCountry)} · ${last.score || "actualized"}` : "none loaded"),
-      contextPill("Next matchup", next ? matchupLabel(next, selectedCountry) : "none loaded"),
-    ].join("");
-    return;
-  }
-
-  const nextGlobal = state.matches.filter((candidate) => !isActualized(candidate)).sort(chronologySort)[0];
-  els.contextTitle.textContent = match ? `${stageDisplay(match.stage)} selected` : "Tournament structure snapshot";
-  els.contextCopy.textContent =
-    "The app starts with forecast status because it is the clearest search mode. Use country search to reveal group placement, selected round, last result, and next loaded matchup.";
-  els.contextPillRow.innerHTML = [
-    contextPill("Group stage", `${filterCount({ stage: "stage_group:opening" })} loaded matches`),
-    contextPill("Knockout rows", `${filterCount({ stage: "stage_group:knockout" })} loaded matchups`),
-    contextPill("Selected match", match ? `${match.home_team} vs ${match.away_team}` : "none"),
-    contextPill("Next loaded", nextGlobal ? matchupLabel(nextGlobal) : "none loaded"),
-  ].join("");
 }
 
 function predictedTeam(match) {
@@ -637,26 +513,10 @@ function matchCountLabel(count) {
   return `${count} match${count === 1 ? "" : "es"}`;
 }
 
-function officialSlotCount(stage) {
-  if (/round of 32/i.test(stage)) return 16;
-  if (/round of 16/i.test(stage)) return 8;
-  if (/quarter/i.test(stage)) return 4;
-  if (/semi/i.test(stage)) return 2;
-  if (/final/i.test(stage)) return 1;
-  return null;
-}
-
-function countLabelForView(value, count) {
-  const officialSlots = officialSlotCount(value);
-  return officialSlots ? `${count}/${officialSlots}` : String(count);
-}
-
 function stageChipDetail(stage, count) {
-  if (stage === "stage_group:opening") return "group-stage matches";
-  if (stage === "stage_group:knockout") return "loaded knockout rows";
-  const officialSlots = officialSlotCount(stage);
-  if (officialSlots && officialSlots !== count) return "loaded / official slots";
-  if (officialSlots) return "official slots loaded";
+  if (stage === "stage_group:opening") return "opening phase";
+  if (/round of 32/i.test(stage)) return "32-country phase";
+  if (/round of 16/i.test(stage)) return "16-country phase";
   if (/quarter/i.test(stage)) return "8-country phase";
   if (/semi/i.test(stage)) return "4-country phase";
   if (/final/i.test(stage)) return "title match";
@@ -684,47 +544,13 @@ function preferredCountrySuggestions(contextCounts, activeCountry = "all") {
     activeCountry === "all" ? null : activeCountry,
     selected?.home_team,
     selected?.away_team,
-    ...featured,
     ...[...contextCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([country]) => country),
+    ...featured,
     ...byFrequency,
   ]
     .filter((country, index, list) => country && state.countryCounts.has(country) && list.indexOf(country) === index)
-    .slice(0, 12);
-}
-
-function updateCountryFilterLabels(contextCounts, currentViewCount) {
-  for (const option of els.countryFilter.options) {
-    if (option.value === "all") {
-      option.textContent = "All countries";
-      continue;
-    }
-    const country = option.value;
-    const flag = teamFlag(country);
-    option.textContent = `${flag ? `${flag} ` : ""}${country} - ${countryPathDetail(country)}`;
-  }
-}
-
-function activeViewName(stageValue, statusValue, upsetActive) {
-  if (stageValue === "all" && statusValue === "all" && !upsetActive) return "All 2026 matches";
-  if (stageValue === "all" && statusValue === "upcoming" && !upsetActive) return "Upcoming forecasts";
-  if (stageValue === "all" && statusValue === "actualized" && !upsetActive) return "Past results";
-  if (stageValue !== "all" && statusValue === "all" && !upsetActive) return stageFilterDisplay(stageValue);
-  if (stageValue === "all" && statusValue === "all" && upsetActive) return "High upset risk";
-  const parts = [];
-  if (stageValue !== "all") parts.push(stageFilterDisplay(stageValue));
-  if (statusValue === "upcoming") parts.push("Upcoming");
-  if (statusValue === "actualized") parts.push("Past results");
-  if (upsetActive) parts.push("High upset risk");
-  return parts.join(" + ");
-}
-
-function activeFilterPill(label, clearFilter) {
-  return `
-    <button class="active-filter-pill" type="button" data-clear-filter="${escapeHtml(clearFilter)}">
-      <span>${escapeHtml(label)}</span>
-      <strong aria-hidden="true">x</strong>
-    </button>
-  `;
+    .filter((country) => contextCounts.has(country) || normalizeTeamKey(country) === normalizeTeamKey(activeCountry))
+    .slice(0, 10);
 }
 
 function renderFilterSuggestions() {
@@ -733,76 +559,108 @@ function renderFilterSuggestions() {
   const statusValue = state.statusFilter;
   const upsetActive = els.upsetToggle.checked;
   const contextCounts = contextualCountryCounts({ stage: stageValue, status: statusValue, upset: upsetActive });
-  const currentViewCount = filterCount({ stage: stageValue, status: statusValue, upset: upsetActive });
-  const upcomingCount = filterCount({ status: "upcoming" });
-  const actualizedCount = filterCount({ status: "actualized" });
+  const statusBase = { stage: stageValue, country: countryValue, upset: upsetActive };
+  const stageBase = { country: countryValue, status: statusValue, upset: upsetActive };
+  const allCountryCount = filterCount({ stage: stageValue, status: statusValue, upset: upsetActive });
+  const upcomingCount = filterCount({ ...statusBase, status: "upcoming" });
+  const actualizedCount = filterCount({ ...statusBase, status: "actualized" });
+  const openingCount = filterCount({ ...stageBase, stage: "stage_group:opening" });
+  const upsetCount = filterCount({ stage: stageValue, country: countryValue, status: statusValue, upset: true });
+  const nonOpeningStages = [...new Set(state.matches.map((match) => match.stage).filter((stage) => stage && !isOpeningStage(stage)))]
+    .sort((a, b) => stageSortValue(a) - stageSortValue(b) || String(a).localeCompare(String(b), undefined, { numeric: true }));
 
   const viewChips = [
     {
       kind: "clear",
       value: "all",
-      label: "All 2026",
-      detail: "reset all filters",
+      label: "All matches",
+      detail: "Reset filters",
       count: state.matches.length,
-      countLabel: String(state.matches.length),
-      active: stageValue === "all" && statusValue === "all" && !upsetActive,
+      countLabel: matchCountLabel(state.matches.length),
+      active: stageValue === "all" && countryValue === "all" && statusValue === "all" && !upsetActive,
     },
     {
       kind: "status",
       value: "upcoming",
-      label: "Upcoming",
-      detail: "no actual yet",
+      label: "Upcoming forecasts",
+      detail: "No actual yet",
       count: upcomingCount,
-      countLabel: String(upcomingCount),
-      active: stageValue === "all" && statusValue === "upcoming" && !upsetActive,
+      countLabel: matchCountLabel(upcomingCount),
+      active: statusValue === "upcoming",
     },
     {
       kind: "status",
       value: "actualized",
       label: "Past results",
-      detail: "actual available",
+      detail: "Actual available",
       count: actualizedCount,
-      countLabel: String(actualizedCount),
-      active: stageValue === "all" && statusValue === "actualized" && !upsetActive,
+      countLabel: matchCountLabel(actualizedCount),
+      active: statusValue === "actualized",
+    },
+    {
+      kind: "stage",
+      value: "stage_group:opening",
+      label: "Opening round",
+      detail: stageChipDetail("stage_group:opening", openingCount),
+      count: openingCount,
+      countLabel: matchCountLabel(openingCount),
+      active: stageValue === "stage_group:opening",
+    },
+    ...nonOpeningStages.map((stage) => {
+      const count = filterCount({ ...stageBase, stage });
+      return {
+        kind: "stage",
+        value: stage,
+        label: stageDisplay(stage).split(" · ")[0],
+        detail: stageChipDetail(stage, count),
+        count,
+        countLabel: matchCountLabel(count),
+        active: stageValue === stage,
+      };
+    }),
+    {
+      kind: "upset",
+      value: "toggle",
+      label: "High upset risk",
+      detail: "50%+ risk",
+      count: upsetCount,
+      countLabel: matchCountLabel(upsetCount),
+      active: upsetActive,
     },
   ];
 
   els.viewChipRow.innerHTML = viewChips.map(chipButton).join("");
-  updateCountryFilterLabels(contextCounts, currentViewCount);
 
   const countryChips = [
     {
       kind: "country",
       value: "all",
       label: "All countries",
-      detail: "clear country",
+      detail: "Clear country",
+      count: allCountryCount,
+      countLabel: matchCountLabel(allCountryCount),
       active: countryValue === "all",
     },
     ...preferredCountrySuggestions(contextCounts, countryValue).map((country) => ({
       kind: "country",
       value: country,
       label: `${teamFlag(country) ? `${teamFlag(country)} ` : ""}${country}`,
-      detail: countryPathDetail(country),
+      detail: contextCounts.has(country) ? "team search" : "no matches here",
+      count: contextCounts.get(country) || 0,
+      countLabel: matchCountLabel(contextCounts.get(country) || 0),
       active: normalizeTeamKey(countryValue) === normalizeTeamKey(country),
     })),
   ];
   els.countryChipRow.innerHTML = countryChips.map(chipButton).join("");
-  requestAnimationFrame(() => {
-    els.viewChipRow.querySelector(".filter-chip-active")?.scrollIntoView({ block: "nearest", inline: "nearest" });
-    els.countryChipRow.querySelector(".filter-chip-active")?.scrollIntoView({ block: "nearest", inline: "nearest" });
-  });
 
-  const activePills = [];
-  if (stageValue !== "all") activePills.push(activeFilterPill(`Phase: ${stageFilterDisplay(stageValue)}`, "stage"));
-  if (statusValue === "upcoming") activePills.push(activeFilterPill("Status: upcoming", "status"));
-  if (statusValue === "actualized") activePills.push(activeFilterPill("Status: past results", "status"));
-  if (countryValue !== "all") activePills.push(activeFilterPill(`Country: ${countryValue}`, "country"));
-  if (upsetActive) activePills.push(activeFilterPill("High upset risk", "upset"));
-  els.activeFilterRow.innerHTML = activePills.length ? activePills.join("") : `<span class="active-filter-none">No filters applied</span>`;
-
-  els.filterSummary.textContent = `${state.filtered.length} match${state.filtered.length === 1 ? "" : "es"} shown`;
-  const countryPrefix = countryValue === "all" ? "all countries" : countryValue;
-  els.filterStatusLine.textContent = `${activeViewName(stageValue, statusValue, upsetActive)} · ${countryPrefix} · ${matchCountLabel(state.filtered.length)} shown`;
+  const activeLabels = [];
+  if (stageValue !== "all") activeLabels.push(stageFilterDisplay(stageValue));
+  if (statusValue === "upcoming") activeLabels.push("upcoming only");
+  if (statusValue === "actualized") activeLabels.push("past results only");
+  if (countryValue !== "all") activeLabels.push(countryValue);
+  if (upsetActive) activeLabels.push("high upset risk");
+  const suffix = activeLabels.length ? ` · ${activeLabels.join(" · ")}` : "";
+  els.filterSummary.textContent = `${state.filtered.length} match${state.filtered.length === 1 ? "" : "es"} shown${suffix}`;
 }
 
 function auditRoleLabel(role) {
@@ -1025,16 +883,19 @@ function clearRadarCanvas() {
 }
 
 function buildStageFilter() {
+  const stages = [...new Set(state.matches.map((match) => match.stage || "Unassigned"))].sort((a, b) => {
+    return stageSortValue(a) - stageSortValue(b) || String(a).localeCompare(String(b), undefined, { numeric: true });
+  });
   const openingCount = filterCount({ stage: "stage_group:opening" });
-  const knockoutCount = filterCount({ stage: "stage_group:knockout" });
+  const nonOpeningStages = stages.filter((stage) => !isOpeningStage(stage));
 
   els.stageFilter.replaceChildren();
-  els.stageFilter.append(new Option(`All phases (${state.matches.length})`, "all"));
+  els.stageFilter.append(new Option(`All tournament sections (${state.matches.length})`, "all"));
   if (openingCount) {
-    els.stageFilter.append(new Option(`Group-stage matches (${openingCount})`, "stage_group:opening"));
+    els.stageFilter.append(new Option(`Opening round · all sections (${openingCount})`, "stage_group:opening"));
   }
-  if (knockoutCount) {
-    els.stageFilter.append(new Option(`Knockout matches (${knockoutCount})`, "stage_group:knockout"));
+  for (const stage of nonOpeningStages) {
+    els.stageFilter.append(new Option(`${stageDisplay(stage)} (${filterCount({ stage })})`, stage));
   }
 }
 
@@ -1306,7 +1167,6 @@ function render() {
 
   state.selectedId = match.match_id;
   els.matchSelect.value = String(match.match_id);
-  renderTournamentContext(match);
 
   const home = teamColor(match.home_team, "home");
   const away = teamColor(match.away_team, "away");
@@ -1339,7 +1199,6 @@ function render() {
 function renderNoMatch() {
   state.selectedId = null;
   els.matchSelect.value = "";
-  renderTournamentContext(null);
   document.documentElement.style.setProperty("--home", "#7fb7ff");
   document.documentElement.style.setProperty("--away", "#a8bad0");
 
@@ -1802,35 +1661,18 @@ async function init() {
     if (!chip) return;
     const kind = chip.dataset.filterKind;
     const value = chip.dataset.filterValue;
-    const isActive = chip.getAttribute("aria-pressed") === "true";
     if (kind === "clear") {
       els.stageFilter.value = "all";
       els.countryFilter.value = "all";
       els.upsetToggle.checked = false;
       state.statusFilter = "all";
     } else if (kind === "status") {
-      els.stageFilter.value = "all";
-      els.upsetToggle.checked = false;
-      state.statusFilter = isActive ? "all" : value;
+      state.statusFilter = state.statusFilter === value ? "all" : value;
     } else if (kind === "stage") {
-      state.statusFilter = "all";
-      els.upsetToggle.checked = false;
-      els.stageFilter.value = isActive ? "all" : value;
+      els.stageFilter.value = els.stageFilter.value === value ? "all" : value;
     } else if (kind === "upset") {
-      els.stageFilter.value = "all";
-      state.statusFilter = "all";
-      els.upsetToggle.checked = !isActive;
+      els.upsetToggle.checked = !els.upsetToggle.checked;
     }
-    applyFilters();
-  });
-  els.activeFilterRow.addEventListener("click", (event) => {
-    const pill = event.target.closest("[data-clear-filter]");
-    if (!pill) return;
-    const filter = pill.dataset.clearFilter;
-    if (filter === "stage") els.stageFilter.value = "all";
-    if (filter === "status") state.statusFilter = "all";
-    if (filter === "country") els.countryFilter.value = "all";
-    if (filter === "upset") els.upsetToggle.checked = false;
     applyFilters();
   });
   els.countryChipRow.addEventListener("click", (event) => {

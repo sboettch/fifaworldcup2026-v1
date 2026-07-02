@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Section 1 Filtering Proposal</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --page: #eef5ff;
+        --ink: #102033;
+        --muted: #64758b;
+        --line: #c9d8ea;
+        --blue: #1f6fd6;
+        --blue-dark: #0c356d;
+        --blue-soft: #dcecff;
+        --green: #128a51;
+        --red: #c43a3a;
+        --amber: #b36d08;
+        --white: #ffffff;
+        --shadow: 0 22px 60px rgba(19, 56, 96, 0.18);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(238, 245, 255, 0.86)),
+          linear-gradient(135deg, #e9f3ff 0%, #f7fbff 48%, #dbeaff 100%);
+      }
+
+      button,
+      select {
+        font: inherit;
+      }
+
+      .mock-page {
+        width: min(1280px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 36px 0 52px;
+      }
+
+      .proposal-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 18px;
+      }
+
+      .proposal-head p {
+        margin: 0 0 6px;
+        color: var(--blue);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .proposal-head h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.6rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .timestamp {
+        display: grid;
+        gap: 4px;
+        min-width: 230px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px 14px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .timestamp strong {
+        color: var(--ink);
+      }
+
+      .section-one {
+        overflow: hidden;
+        border: 1px solid rgba(31, 111, 214, 0.18);
+        border-radius: 14px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .section-banner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 24px;
+        padding: 22px 24px;
+        color: var(--white);
+        background:
+          linear-gradient(90deg, rgba(12, 53, 109, 0.98), rgba(31, 111, 214, 0.92)),
+          #0c356d;
+      }
+
+      .section-banner h2 {
+        margin: 0 0 6px;
+        font-size: clamp(1.45rem, 3vw, 2.35rem);
+        letter-spacing: 0;
+      }
+
+      .section-banner p {
+        max-width: 760px;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .nav-cluster {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-cluster button {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 999px;
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.14);
+        cursor: pointer;
+      }
+
+      .nav-cluster button:hover,
+      .nav-cluster button:focus-visible {
+        background: rgba(255, 255, 255, 0.24);
+        outline: none;
+      }
+
+      .toolbar-body {
+        display: grid;
+        gap: 16px;
+        padding: 18px;
+        background: linear-gradient(180deg, #ffffff, #f5f9ff);
+      }
+
+      .toolbar-row {
+        display: grid;
+        gap: 10px;
+      }
+
+      .row-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .row-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--blue-dark);
+        font-size: 0.78rem;
+        font-weight: 950;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .row-title i {
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--blue);
+        font-style: normal;
+        font-size: 0.73rem;
+      }
+
+      .row-note {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 750;
+        text-align: right;
+      }
+
+      .preset-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .preset-card {
+        min-height: 86px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px;
+        color: var(--ink);
+        background: var(--white);
+        cursor: pointer;
+        text-align: left;
+        box-shadow: 0 8px 22px rgba(28, 79, 129, 0.08);
+      }
+
+      .preset-card:hover,
+      .preset-card:focus-visible {
+        border-color: rgba(31, 111, 214, 0.56);
+        outline: none;
+        transform: translateY(-1px);
+      }
+
+      .preset-card[aria-pressed="true"] {
+        border-color: rgba(31, 111, 214, 0.82);
+        background: linear-gradient(180deg, #ffffff, #e7f1ff);
+        box-shadow: inset 0 0 0 1px rgba(31, 111, 214, 0.18), 0 14px 30px rgba(31, 111, 214, 0.16);
+      }
+
+      .preset-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .preset-top strong {
+        font-size: 0.96rem;
+        line-height: 1.15;
+      }
+
+      .count-pill {
+        flex: 0 0 auto;
+        border-radius: 999px;
+        padding: 5px 8px;
+        color: var(--blue-dark);
+        background: var(--blue-soft);
+        font-size: 0.78rem;
+        font-weight: 950;
+      }
+
+      .preset-card p {
+        margin: 9px 0 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+        line-height: 1.3;
+      }
+
+      .active-view {
+        display: grid;
+        grid-template-columns: minmax(170px, auto) 1fr auto;
+        align-items: center;
+        gap: 14px;
+        border: 1px solid rgba(31, 111, 214, 0.22);
+        border-radius: var(--radius);
+        padding: 14px;
+        background: #eaf4ff;
+      }
+
+      .showing {
+        display: grid;
+        gap: 2px;
+      }
+
+      .showing strong {
+        color: var(--blue-dark);
+        font-size: 1.45rem;
+        line-height: 1;
+      }
+
+      .showing span {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .active-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .active-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 34px;
+        border: 1px solid rgba(31, 111, 214, 0.24);
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: var(--blue-dark);
+        background: rgba(255, 255, 255, 0.72);
+        font-size: 0.83rem;
+        font-weight: 850;
+      }
+
+      .active-pill b {
+        color: var(--ink);
+      }
+
+      .active-pill button {
+        width: 20px;
+        height: 20px;
+        border: 0;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--blue);
+        cursor: pointer;
+      }
+
+      .reset-all {
+        min-height: 38px;
+        border: 1px solid rgba(12, 53, 109, 0.26);
+        border-radius: 999px;
+        padding: 8px 13px;
+        color: var(--blue-dark);
+        background: var(--white);
+        cursor: pointer;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+
+      .refine-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(270px, 0.7fr);
+        gap: 12px;
+      }
+
+      .refine-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.82);
+      }
+
+      .refine-label {
+        margin: 0 0 9px;
+        color: var(--muted);
+        font-size: 0.74rem;
+        font-weight: 950;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .small-chip {
+        min-height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 11px;
+        color: var(--ink);
+        background: var(--white);
+        cursor: pointer;
+        font-weight: 850;
+      }
+
+      .small-chip strong {
+        margin-left: 6px;
+        color: var(--blue);
+      }
+
+      .small-chip[aria-pressed="true"] {
+        border-color: rgba(31, 111, 214, 0.75);
+        color: var(--blue-dark);
+        background: var(--blue-soft);
+      }
+
+      .small-chip[disabled] {
+        color: #98a7b8;
+        background: #f1f5f9;
+        cursor: not-allowed;
+      }
+
+      .country-control {
+        display: grid;
+        gap: 8px;
+      }
+
+      select {
+        width: 100%;
+        min-height: 44px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0 12px;
+        color: var(--ink);
+        background: var(--white);
+      }
+
+      .country-suggestion-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .country-suggestion-row button {
+        border: 1px solid #d2deeb;
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: var(--blue-dark);
+        background: #f8fbff;
+        cursor: pointer;
+        font-size: 0.8rem;
+        font-weight: 850;
+      }
+
+      .country-suggestion-row button.zero {
+        color: #7d8b99;
+        background: #f3f6f9;
+      }
+
+      .empty-panel {
+        display: none;
+        border: 1px solid rgba(196, 58, 58, 0.24);
+        border-radius: var(--radius);
+        padding: 13px;
+        color: #842525;
+        background: #fff4f4;
+      }
+
+      .empty-panel[data-visible="true"] {
+        display: grid;
+        gap: 10px;
+      }
+
+      .empty-panel strong {
+        font-size: 1rem;
+      }
+
+      .empty-panel p {
+        margin: 0;
+        color: #9a4b4b;
+      }
+
+      .empty-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .empty-actions button {
+        min-height: 36px;
+        border: 1px solid rgba(196, 58, 58, 0.26);
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: #842525;
+        background: #ffffff;
+        cursor: pointer;
+        font-weight: 850;
+      }
+
+      .match-preview {
+        display: grid;
+        gap: 10px;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+      }
+
+      .preview-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .preview-head h3 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .preview-head span {
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 850;
+      }
+
+      .match-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .match-card {
+        border: 1px solid var(--line);
+        border-left: 5px solid var(--blue);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: var(--white);
+      }
+
+      .match-card.pending {
+        border-left-color: var(--blue);
+      }
+
+      .match-card.correct {
+        border-left-color: var(--green);
+      }
+
+      .match-card.incorrect {
+        border-left-color: var(--red);
+      }
+
+      .match-card strong {
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      .match-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.83rem;
+        line-height: 1.35;
+      }
+
+      .match-card b {
+        color: var(--ink);
+      }
+
+      @media (max-width: 900px) {
+        .proposal-head,
+        .section-banner,
+        .active-view,
+        .refine-grid,
+        .preview-head {
+          grid-template-columns: 1fr;
+        }
+
+        .proposal-head {
+          align-items: stretch;
+        }
+
+        .preset-grid,
+        .match-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .active-view {
+          align-items: stretch;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .mock-page {
+          width: min(100% - 20px, 1280px);
+          padding-top: 14px;
+        }
+
+        .section-banner,
+        .toolbar-body {
+          padding: 14px;
+        }
+
+        .preset-grid,
+        .match-list {
+          grid-template-columns: 1fr;
+        }
+
+        .row-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .row-note {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="mock-page">
+      <header class="proposal-head">
+        <div>
+          <p>Section 1 proposal</p>
+          <h1>Find a 2026 Matchup</h1>
+        </div>
+        <aside class="timestamp" aria-label="Data status">
+          <strong>Data current as of Jul 2, 2026</strong>
+          <span>93 forecast rows loaded</span>
+        </aside>
+      </header>
+
+      <section class="section-one" aria-label="Section 1 filtering mockup">
+        <div class="section-banner">
+          <div>
+            <h2>2026 Matchup Finder</h2>
+            <p>Use stable view presets first, then refine by status or country. Counts stay honest, and countries never disappear.</p>
+          </div>
+          <div class="nav-cluster" aria-label="Prototype section navigation">
+            <button type="button" title="Overview">01</button>
+            <button type="button" title="Lineup">02</button>
+            <button type="button" title="Selected match">03</button>
+          </div>
+        </div>
+
+        <div class="toolbar-body">
+          <div class="toolbar-row">
+            <div class="row-head">
+              <div class="row-title"><i>1</i>View Presets</div>
+              <div class="row-note">Global counts. These do not shrink just because another filter was selected.</div>
+            </div>
+            <div class="preset-grid" id="preset-grid">
+              <button class="preset-card" type="button" data-state="all" aria-pressed="true">
+                <span class="preset-top"><strong>All 2026 matches</strong><span class="count-pill">93</span></span>
+                <p>Everything loaded into the forecast layer.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="upcoming" aria-pressed="false">
+                <span class="preset-top"><strong>Upcoming forecasts</strong><span class="count-pill">11</span></span>
+                <p>Predicted rows with no actual result yet.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="past" aria-pressed="false">
+                <span class="preset-top"><strong>Past results</strong><span class="count-pill">82</span></span>
+                <p>Actualized games available for audit.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="opening" aria-pressed="false">
+                <span class="preset-top"><strong>Opening round</strong><span class="count-pill">72</span></span>
+                <p>Group-stage style opening phase.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="round32" aria-pressed="false">
+                <span class="preset-top"><strong>Round of 32</strong><span class="count-pill">16/16</span></span>
+                <p>First elimination round, fully loaded.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="round16" aria-pressed="false">
+                <span class="preset-top"><strong>Round of 16</strong><span class="count-pill">5/8</span></span>
+                <p>Five loaded forecasts from eight official slots.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="hosts" aria-pressed="false">
+                <span class="preset-top"><strong>Host countries</strong><span class="count-pill">7</span></span>
+                <p>Canada, Mexico, and United States rows.</p>
+              </button>
+              <button class="preset-card" type="button" data-state="upset" aria-pressed="false">
+                <span class="preset-top"><strong>High upset risk</strong><span class="count-pill">18</span></span>
+                <p>Rows where the model sees a fragile favorite.</p>
+              </button>
+            </div>
+          </div>
+
+          <div class="toolbar-row">
+            <div class="row-head">
+              <div class="row-title"><i>2</i>Active View</div>
+              <div class="row-note">This is the truth strip: it always explains why the visible list changed.</div>
+            </div>
+            <div class="active-view">
+              <div class="showing">
+                <strong id="showing-count">93</strong>
+                <span>matches shown</span>
+              </div>
+              <div class="active-pills" id="active-pills">
+                <span class="active-pill">No filters applied</span>
+              </div>
+              <button class="reset-all" type="button" id="reset-all">Reset all</button>
+            </div>
+          </div>
+
+          <div class="toolbar-row">
+            <div class="row-head">
+              <div class="row-title"><i>3</i>Refine This View</div>
+              <div class="row-note">These chips are contextual. Zero-count chips can be visible but disabled.</div>
+            </div>
+            <div class="refine-grid">
+              <div class="refine-panel">
+                <p class="refine-label">Match status</p>
+                <div class="chip-row" id="refine-row">
+                  <button class="small-chip" type="button" data-refine="all" aria-pressed="true">All in view <strong>93</strong></button>
+                  <button class="small-chip" type="button" data-refine="upcoming" aria-pressed="false">Upcoming <strong>11</strong></button>
+                  <button class="small-chip" type="button" data-refine="past" aria-pressed="false">Past results <strong>82</strong></button>
+                  <button class="small-chip" type="button" data-refine="upset" aria-pressed="false">High upset risk <strong>18</strong></button>
+                </div>
+              </div>
+              <div class="refine-panel">
+                <p class="refine-label">Country search</p>
+                <div class="country-control">
+                  <select id="country-select" aria-label="Country selector">
+                    <option value="all">All countries</option>
+                    <option value="united-states">United States - 1 in this view / 5 total</option>
+                    <option value="brazil">Brazil - 1 in this view / 6 total</option>
+                    <option value="france">France - 1 in this view / 6 total</option>
+                    <option value="south-africa">South Africa - 0 in this view / 3 total</option>
+                  </select>
+                  <div class="country-suggestion-row" aria-label="Suggested countries">
+                    <button type="button" data-country="united-states">United States 1/5</button>
+                    <button type="button" data-country="brazil">Brazil 1/6</button>
+                    <button type="button" data-country="france">France 1/6</button>
+                    <button class="zero" type="button" data-country="south-africa">South Africa 0/3</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="empty-panel" id="empty-panel" aria-live="polite">
+            <strong>No matches match these filters.</strong>
+            <p>That is not a data failure. It means the selected view, status, and country combination returns zero loaded rows.</p>
+            <div class="empty-actions">
+              <button type="button" data-action="clear-country">Clear country</button>
+              <button type="button" data-action="show-country">Show all South Africa matches</button>
+              <button type="button" data-action="reset">Reset all</button>
+            </div>
+          </div>
+
+          <div class="match-preview" id="match-preview">
+            <div class="preview-head">
+              <h3>Example match list below the toolbar</h3>
+              <span id="preview-note">Default: broad scan of the 2026 forecast dataset</span>
+            </div>
+            <div class="match-list" id="match-list">
+              <article class="match-card pending">
+                <strong>United States vs Belgium</strong>
+                <span>Round of 16 - Jul 6 - pending actual</span>
+                <span>Model leans: <b>Belgium</b></span>
+              </article>
+              <article class="match-card pending">
+                <strong>Brazil vs Norway</strong>
+                <span>Round of 16 - Jul 5 - pending actual</span>
+                <span>Model leans: <b>Brazil</b></span>
+              </article>
+              <article class="match-card correct">
+                <strong>France vs Senegal</strong>
+                <span>Round of 32 - actualized</span>
+                <span>Model status: <b>correct</b></span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const states = {
+        all: {
+          count: 93,
+          pills: ["No filters applied"],
+          refine: { all: 93, upcoming: 11, past: 82, upset: 18 },
+          countryText: {
+            "united-states": "United States - 5 in this view / 5 total",
+            brazil: "Brazil - 6 in this view / 6 total",
+            france: "France - 6 in this view / 6 total",
+            "south-africa": "South Africa - 3 in this view / 3 total"
+          },
+          note: "Default: broad scan of the 2026 forecast dataset",
+          matches: [
+            ["United States vs Belgium", "Round of 16 - Jul 6 - pending actual", "Model leans: Belgium", "pending"],
+            ["Brazil vs Norway", "Round of 16 - Jul 5 - pending actual", "Model leans: Brazil", "pending"],
+            ["France vs Senegal", "Round of 32 - actualized", "Model status: correct", "correct"]
+          ]
+        },
+        upcoming: {
+          count: 11,
+          pills: ["Status: Upcoming forecasts"],
+          refine: { all: 11, upcoming: 11, past: 0, upset: 4 },
+          countryText: {
+            "united-states": "United States - 1 in this view / 5 total",
+            brazil: "Brazil - 1 in this view / 6 total",
+            france: "France - 1 in this view / 6 total",
+            "south-africa": "South Africa - 0 in this view / 3 total"
+          },
+          note: "Upcoming forecasts shown first, with no actual result yet",
+          matches: [
+            ["Canada vs Morocco", "Round of 16 - Jul 4 - pending actual", "Model leans: Canada", "pending"],
+            ["Brazil vs Norway", "Round of 16 - Jul 5 - pending actual", "Model leans: Brazil", "pending"],
+            ["United States vs Belgium", "Round of 16 - Jul 6 - pending actual", "Model leans: Belgium", "pending"]
+          ]
+        },
+        past: {
+          count: 82,
+          pills: ["Status: Past results"],
+          refine: { all: 82, upcoming: 0, past: 82, upset: 14 },
+          countryText: {
+            "united-states": "United States - 4 in this view / 5 total",
+            brazil: "Brazil - 5 in this view / 6 total",
+            france: "France - 5 in this view / 6 total",
+            "south-africa": "South Africa - 3 in this view / 3 total"
+          },
+          note: "Past results are audit rows, colored by model evaluation",
+          matches: [
+            ["France vs Senegal", "Round of 32 - actualized", "Model status: correct", "correct"],
+            ["Colombia vs Ghana", "Round of 32 - actualized", "Model status: incorrect", "incorrect"],
+            ["Spain vs Croatia", "Opening round - actualized", "Model status: draw adjusted", "pending"]
+          ]
+        },
+        opening: {
+          count: 72,
+          pills: ["View: Opening round"],
+          refine: { all: 72, upcoming: 0, past: 72, upset: 13 },
+          countryText: {
+            "united-states": "United States - 3 in this view / 5 total",
+            brazil: "Brazil - 3 in this view / 6 total",
+            france: "France - 3 in this view / 6 total",
+            "south-africa": "South Africa - 3 in this view / 3 total"
+          },
+          note: "Opening round view keeps stage math separate from country/status refinements",
+          matches: [
+            ["Mexico vs South Africa", "Opening round - actualized", "Model status: correct", "correct"],
+            ["United States vs Scotland", "Opening round - actualized", "Model status: correct", "correct"],
+            ["Brazil vs Haiti", "Opening round - actualized", "Model status: correct", "correct"]
+          ]
+        },
+        round32: {
+          count: 16,
+          pills: ["View: Round of 32"],
+          refine: { all: 16, upcoming: 6, past: 10, upset: 3 },
+          countryText: {
+            "united-states": "United States - 1 in this view / 5 total",
+            brazil: "Brazil - 1 in this view / 6 total",
+            france: "France - 1 in this view / 6 total",
+            "south-africa": "South Africa - 0 in this view / 3 total"
+          },
+          note: "First elimination round: 16 loaded matchups",
+          matches: [
+            ["Colombia vs Ghana", "Round of 32 - pending actual", "Model leans: Colombia", "pending"],
+            ["France vs Senegal", "Round of 32 - actualized", "Model status: correct", "correct"],
+            ["Argentina vs Japan", "Round of 32 - actualized", "Model status: correct", "correct"]
+          ]
+        },
+        round16: {
+          count: 5,
+          pills: ["View: Round of 16"],
+          refine: { all: 5, upcoming: 5, past: 0, upset: 1 },
+          countryText: {
+            "united-states": "United States - 1 in this view / 5 total",
+            brazil: "Brazil - 1 in this view / 6 total",
+            france: "France - 1 in this view / 6 total",
+            "south-africa": "South Africa - 0 in this view / 3 total"
+          },
+          note: "Round of 16: 5 loaded forecasts from 8 official match slots",
+          matches: [
+            ["Canada vs Morocco", "Round of 16 - Jul 4 - pending actual", "Model leans: Canada", "pending"],
+            ["Brazil vs Norway", "Round of 16 - Jul 5 - pending actual", "Model leans: Brazil", "pending"],
+            ["United States vs Belgium", "Round of 16 - Jul 6 - pending actual", "Model leans: Belgium", "pending"]
+          ]
+        },
+        hosts: {
+          count: 7,
+          pills: ["View: Host country matches"],
+          refine: { all: 7, upcoming: 2, past: 5, upset: 2 },
+          countryText: {
+            "united-states": "United States - 5 in this view / 5 total",
+            brazil: "Brazil - 0 in this view / 6 total",
+            france: "France - 0 in this view / 6 total",
+            "south-africa": "South Africa - 0 in this view / 3 total"
+          },
+          note: "Host country shortcut for Canada, Mexico, and United States",
+          matches: [
+            ["United States vs Belgium", "Round of 16 - pending actual", "Model leans: Belgium", "pending"],
+            ["Mexico vs England", "Round of 16 - pending actual", "Model leans: England", "pending"],
+            ["Canada vs Morocco", "Round of 16 - pending actual", "Model leans: Canada", "pending"]
+          ]
+        },
+        upset: {
+          count: 18,
+          pills: ["View: High upset risk"],
+          refine: { all: 18, upcoming: 4, past: 14, upset: 18 },
+          countryText: {
+            "united-states": "United States - 2 in this view / 5 total",
+            brazil: "Brazil - 1 in this view / 6 total",
+            france: "France - 1 in this view / 6 total",
+            "south-africa": "South Africa - 1 in this view / 3 total"
+          },
+          note: "Upset-risk view groups matchups where the model favorite is fragile",
+          matches: [
+            ["United States vs Belgium", "Round of 16 - pending actual", "High upset-risk profile", "pending"],
+            ["Mexico vs England", "Round of 16 - pending actual", "High upset-risk profile", "pending"],
+            ["Colombia vs Ghana", "Round of 32 - actualized", "Model status: incorrect", "incorrect"]
+          ]
+        }
+      };
+
+      let activeState = "all";
+      let selectedCountry = "all";
+
+      const presetGrid = document.querySelector("#preset-grid");
+      const showingCount = document.querySelector("#showing-count");
+      const activePills = document.querySelector("#active-pills");
+      const refineRow = document.querySelector("#refine-row");
+      const countrySelect = document.querySelector("#country-select");
+      const emptyPanel = document.querySelector("#empty-panel");
+      const previewNote = document.querySelector("#preview-note");
+      const matchList = document.querySelector("#match-list");
+
+      function pillMarkup(label) {
+        if (label === "No filters applied") {
+          return '<span class="active-pill">No filters applied</span>';
+        }
+        return `<span class="active-pill">${label}<button type="button" title="Clear ${label}">x</button></span>`;
+      }
+
+      function render() {
+        const state = states[activeState];
+        const isZeroCountry = selectedCountry === "south-africa" && ["round16", "round32", "hosts"].includes(activeState);
+        const count = isZeroCountry ? 0 : state.count;
+
+        document.querySelectorAll(".preset-card").forEach((card) => {
+          card.setAttribute("aria-pressed", String(card.dataset.state === activeState));
+        });
+
+        showingCount.textContent = count;
+        const pills = [...state.pills];
+        if (selectedCountry !== "all") {
+          const label = countrySelect.options[countrySelect.selectedIndex].text.split(" - ")[0];
+          pills.push(`Country: ${label}`);
+        }
+        activePills.innerHTML = pills.map(pillMarkup).join("");
+
+        refineRow.querySelector('[data-refine="all"] strong').textContent = isZeroCountry ? 0 : state.refine.all;
+        refineRow.querySelector('[data-refine="upcoming"] strong').textContent = isZeroCountry ? 0 : state.refine.upcoming;
+        refineRow.querySelector('[data-refine="past"] strong').textContent = isZeroCountry ? 0 : state.refine.past;
+        refineRow.querySelector('[data-refine="upset"] strong').textContent = isZeroCountry ? 0 : state.refine.upset;
+
+        refineRow.querySelectorAll(".small-chip").forEach((chip) => {
+          const value = Number(chip.querySelector("strong").textContent);
+          chip.disabled = value === 0;
+          chip.setAttribute("aria-pressed", String(chip.dataset.refine === "all" && value > 0));
+        });
+
+        for (const option of countrySelect.options) {
+          if (option.value !== "all") {
+            option.textContent = state.countryText[option.value];
+          }
+        }
+
+        emptyPanel.dataset.visible = String(isZeroCountry);
+        previewNote.textContent = isZeroCountry ? "Zero-result state: preserve the logic and offer helpful escape buttons" : state.note;
+
+        if (isZeroCountry) {
+          matchList.innerHTML = "";
+          return;
+        }
+
+        matchList.innerHTML = state.matches.map(([title, meta, call, status]) => `
+          <article class="match-card ${status}">
+            <strong>${title}</strong>
+            <span>${meta}</span>
+            <span>${call.replace(/: ([^:]+)$/, ": <b>$1</b>")}</span>
+          </article>
+        `).join("");
+      }
+
+      presetGrid.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-state]");
+        if (!button) return;
+        activeState = button.dataset.state;
+        render();
+      });
+
+      countrySelect.addEventListener("change", (event) => {
+        selectedCountry = event.target.value;
+        render();
+      });
+
+      document.querySelector(".country-suggestion-row").addEventListener("click", (event) => {
+        const button = event.target.closest("[data-country]");
+        if (!button) return;
+        selectedCountry = button.dataset.country;
+        countrySelect.value = selectedCountry;
+        render();
+      });
+
+      document.querySelector("#reset-all").addEventListener("click", () => {
+        activeState = "all";
+        selectedCountry = "all";
+        countrySelect.value = "all";
+        render();
+      });
+
+      emptyPanel.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-action]");
+        if (!button) return;
+        if (button.dataset.action === "reset") {
+          activeState = "all";
+          selectedCountry = "all";
+          countrySelect.value = "all";
+        }
+        if (button.dataset.action === "clear-country") {
+          selectedCountry = "all";
+          countrySelect.value = "all";
+        }
+        if (button.dataset.action === "show-country") {
+          activeState = "all";
+        }
+        render();
+      });
+
+      render();
+    </script>
+  </body>
+</html>
