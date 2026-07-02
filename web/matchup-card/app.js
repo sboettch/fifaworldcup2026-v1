@@ -1,4 +1,4 @@
-const DATA_URL = "./data/matchups.json";
+const DATA_URL = document.currentScript ? new URL("./data/matchups.json", document.currentScript.src).href : "./web/matchup-card/data/matchups.json";
 
 const els = {
   matchCount: document.querySelector("#match-count"),

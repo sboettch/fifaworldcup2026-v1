@@ -1,19 +1,258 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=/web/matchup-card/">
-  <link rel="canonical" href="/web/matchup-card/">
-  <title>World Cup 2026 Matchup Tracker</title>
-  <meta name="description" content="FIFA World Cup 2026 matchup archetype explorer — predictions, results, and animated match reads.">
-  <style>
-    body { background: #0d1117; color: #e6edf3; font-family: system-ui, sans-serif;
-           display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-    a { color: #58a6ff; }
-  </style>
-</head>
-<body>
-  <p>Redirecting to <a href="/web/matchup-card/">worldcup26tracker.com/web/matchup-card/</a>…</p>
-  <script>window.location.replace("/web/matchup-card/");</script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>World Cup Matchup Archetype Explorer - v58 Multi-Badge Animation</title>
+    <meta
+      name="description"
+      content="A data-backed matchup card for FIFA World Cup 2026 archetypes, probabilities, radar profiles, and similar historical matches."
+    >
+    <link rel="stylesheet" href="./web/matchup-card/styles.css?v=58multibadge2">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">FIFA World Cup 2026</p>
+          <h1>Matchup Archetype Explorer</h1>
+        </div>
+        <div class="summary-strip" aria-label="Project summary">
+          <div>
+            <span id="match-count">--</span>
+            <small>loaded match rows</small>
+          </div>
+          <div>
+            <span id="model-loss">--</span>
+            <small>RF log-loss</small>
+          </div>
+          <div>
+            <span id="validation-acc">--</span>
+            <small>2026 adjusted score</small>
+          </div>
+        </div>
+      </header>
+
+      <section class="toolbar compact-toolbar" aria-label="Match filters">
+        <div class="toolbar-topline">
+          <div>
+            <p class="panel-kicker">Section 1</p>
+            <h2>Find a 2026 Matchup</h2>
+          </div>
+          <strong id="filter-summary">Loading matches...</strong>
+        </div>
+
+        <div class="compact-filter-band">
+          <div class="compact-band-head">
+            <span>Forecast view</span>
+            <small>Start with all rows, upcoming forecasts, or past results.</small>
+          </div>
+          <div class="filter-chip-row compact-view-row" id="view-chip-row" aria-label="Suggested match views"></div>
+        </div>
+
+        <div class="active-filter-strip" aria-live="polite">
+          <span id="filter-status-line">Current view loading...</span>
+          <div class="active-filter-row" id="active-filter-row"></div>
+        </div>
+
+        <div class="tournament-context" id="tournament-context" aria-live="polite">
+          <div class="tournament-context-copy">
+            <span>Tournament context</span>
+            <strong id="context-title">Loading tournament context...</strong>
+            <p id="context-copy"></p>
+          </div>
+          <div class="context-pill-row" id="context-pill-row"></div>
+        </div>
+
+        <div class="filter-controls compact-filter-controls">
+          <label class="field">
+            <span>Stage lens</span>
+            <select id="stage-filter"></select>
+          </label>
+          <label class="field field-wide">
+            <span>Match lineup</span>
+            <select id="match-select"></select>
+          </label>
+          <label class="field country-filter-field">
+            <span>Country</span>
+            <div class="country-filter-control">
+              <select id="country-filter"></select>
+              <button class="reset-country" id="reset-country" type="button">Reset</button>
+            </div>
+          </label>
+          <label class="toggle">
+            <input id="upset-toggle" type="checkbox">
+            <span>High upset risk</span>
+          </label>
+        </div>
+
+        <div class="compact-country-band">
+          <div class="compact-band-head">
+            <span>Country quick picks</span>
+            <small>The dropdown is the complete country list; shortcuts show group and next loaded matchup.</small>
+          </div>
+          <div class="filter-chip-row country-chip-row" id="country-chip-row" aria-label="Suggested country searches"></div>
+        </div>
+      </section>
+
+      <nav class="section-nav" aria-label="Dashboard sections">
+        <a class="section-nav-link section-nav-active" href="#prediction-audit" data-section-target="prediction-audit">
+          <span>01</span>
+          <strong>Audit</strong>
+        </a>
+        <a class="section-nav-link" href="#event-lineup" data-section-target="event-lineup">
+          <span>02</span>
+          <strong>Lineup</strong>
+        </a>
+        <a class="section-nav-link" href="#match-specific-stats" data-section-target="match-specific-stats">
+          <span>03</span>
+          <strong>Selected Match</strong>
+        </a>
+      </nav>
+
+      <section class="panel audit-panel section-zone section-audit" id="prediction-audit" data-section="01">
+        <div class="chart-head">
+          <div>
+            <div class="panel-kicker">Prediction Audit</div>
+            <h2>2026 Forecast vs. Actual Overview</h2>
+          </div>
+          <div class="audit-head-actions">
+            <p class="fine-print" id="audit-summary"></p>
+            <button class="audit-view-toggle" id="audit-view-toggle" type="button" aria-pressed="false">
+              Show numbers
+            </button>
+          </div>
+        </div>
+        <div class="audit-visual" id="audit-visual"></div>
+        <div class="audit-grid" id="audit-grid" hidden>
+          <div class="audit-stat-grid" id="audit-stat-grid"></div>
+          <div class="audit-state-list" id="audit-state-list"></div>
+        </div>
+        <p class="audit-timestamp" id="audit-timestamp"></p>
+      </section>
+
+      <section class="panel lineup-panel section-zone section-lineup" id="event-lineup" data-section="02">
+        <div class="chart-head">
+          <div>
+            <div class="panel-kicker">2026 Event Lineup</div>
+            <h2>Chronological Match Forecast Board</h2>
+          </div>
+          <div class="lineup-head-actions">
+            <p class="fine-print" id="lineup-status"></p>
+            <button class="lineup-toggle" id="lineup-toggle" type="button" aria-expanded="false" aria-controls="lineup-body">
+              Expand lineup
+            </button>
+          </div>
+        </div>
+        <div class="lineup-body" id="lineup-body" hidden>
+          <div class="lineup-legend" aria-label="Lineup color legend">
+            <span><i class="legend-dot dot-correct"></i>Model correct</span>
+            <span><i class="legend-dot dot-incorrect"></i>Model incorrect</span>
+            <span><i class="legend-dot dot-draw-push"></i>Actual draw / partial credit</span>
+            <span><i class="legend-dot dot-pending"></i>Pending actual</span>
+          </div>
+          <div class="lineup-breakdown" id="lineup-breakdown"></div>
+          <div class="timeline-list" id="timeline-list" aria-label="Chronological 2026 fixture lineup"></div>
+          <div class="lineup-empty" id="lineup-empty">
+            No fixtures match the current filters.
+          </div>
+        </div>
+      </section>
+
+      <section class="section-zone section-match match-section" id="match-specific-stats" data-section="03" aria-live="polite">
+        <div class="chart-head match-section-head">
+          <div>
+            <div class="panel-kicker">Selected Match</div>
+            <h2>Match Specific Stats</h2>
+          </div>
+        </div>
+
+        <div class="main-grid">
+        <article class="panel match-panel">
+          <div class="panel-kicker">Match Card</div>
+          <div class="team-line">
+            <div class="team-lockup">
+              <span class="team-mark mark-home" id="home-code" aria-label="Home country flag"></span>
+              <strong id="home-team">Home</strong>
+            </div>
+            <span class="versus">v</span>
+            <div class="team-lockup team-lockup-away">
+              <span class="team-mark mark-away" id="away-code" aria-label="Away country flag"></span>
+              <strong id="away-team">Away</strong>
+            </div>
+          </div>
+          <div class="match-meta">
+            <span id="match-stage">Stage</span>
+            <span id="match-date">Date</span>
+            <span id="match-score">Score</span>
+          </div>
+          <div class="divider"></div>
+          <h2>Archetype Badges</h2>
+          <div class="badge-list" id="badge-list"></div>
+          <div class="archetype-playbook" aria-label="Animated archetype interpretation">
+            <div class="archetype-pitch" id="archetype-pitch"></div>
+            <div class="archetype-commentary" id="archetype-commentary"></div>
+          </div>
+          <div class="status-note" id="snapshot-note"></div>
+        </article>
+
+        <article class="panel radar-panel">
+          <div class="chart-head">
+            <div>
+              <div class="panel-kicker">Team Profile</div>
+              <h2>Radar Comparison</h2>
+            </div>
+            <div class="legend">
+              <span><i class="legend-dot dot-home"></i><b id="legend-home">Home</b></span>
+              <span><i class="legend-dot dot-away"></i><b id="legend-away">Away</b></span>
+            </div>
+          </div>
+          <canvas id="radar-canvas" width="720" height="430"></canvas>
+        </article>
+
+        <article class="panel probability-panel">
+          <div class="panel-kicker">Probability</div>
+          <div class="prob-bars" id="prob-bars"></div>
+          <div class="prob-table" id="prob-table"></div>
+          <div class="upset-pill" id="upset-pill">Upset risk: --</div>
+          <div class="prediction-call" id="prediction-call"></div>
+          <div class="reasoning-list" id="reasoning-list"></div>
+        </article>
+        </div>
+
+        <div class="detail-grid">
+        <article class="panel wide-panel">
+          <div class="chart-head">
+            <div>
+              <div class="panel-kicker">Historical Context</div>
+              <h2>Similar Historical World Cup Matches</h2>
+            </div>
+            <p class="fine-print">Similarity uses rating gap, home win probability, squad/league gaps, stage type, and shared archetypes.</p>
+          </div>
+          <div class="similar-grid" id="similar-grid"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-kicker">Feature Snapshot</div>
+          <h2>Selected Match Details</h2>
+          <div class="metric-list" id="metric-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-kicker">Model Lens</div>
+          <h2>Top Drivers</h2>
+          <div class="importance-list" id="importance-list"></div>
+        </article>
+        </div>
+      </section>
+
+      <footer class="app-footer">
+        <p id="data-caveat"></p>
+        <p>Generated from the repo's processed prediction, validation, feature, archetype, and cluster outputs.</p>
+      </footer>
+    </main>
+
+    <script src="./web/matchup-card/data/matchups-inline.js?v=58multibadge2"></script>
+    <script src="./web/matchup-card/app.js?v=58multibadge2"></script>
+  </body>
 </html>
