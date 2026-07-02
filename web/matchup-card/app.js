@@ -1,4 +1,4 @@
-const DATA_URL = "./data/matchups.json";
+const DATA_URL = "./data/matchups-v58-multi-badge-animation.json";
 
 const els = {
   matchCount: document.querySelector("#match-count"),
@@ -32,6 +32,8 @@ const els = {
   matchDate: document.querySelector("#match-date"),
   matchScore: document.querySelector("#match-score"),
   badgeList: document.querySelector("#badge-list"),
+  archetypePitch: document.querySelector("#archetype-pitch"),
+  archetypeCommentary: document.querySelector("#archetype-commentary"),
   snapshotNote: document.querySelector("#snapshot-note"),
   legendHome: document.querySelector("#legend-home"),
   legendAway: document.querySelector("#legend-away"),
@@ -64,6 +66,9 @@ const state = {
   auditView: "visual",
   statusFilter: "all",
   lineupExpanded: false,
+  activeArchetypeMode: "default",
+  activeArchetypes: [],
+  activeArchetypeMatchId: null,
 };
 
 const archetypeClass = new Map([
@@ -1306,6 +1311,7 @@ function render() {
 
   state.selectedId = match.match_id;
   els.matchSelect.value = String(match.match_id);
+  syncActiveArchetypes(match);
   renderTournamentContext(match);
 
   const home = teamColor(match.home_team, "home");
@@ -1326,6 +1332,7 @@ function render() {
   els.matchScore.textContent = match.score ? `Actual: ${match.score}` : "Actual: pending; forecast shown";
 
   renderBadges(match);
+  renderArchetypePlaybook(match);
   renderProbabilities(match);
   renderPrediction(match);
   renderReasoning(match);
@@ -1338,6 +1345,9 @@ function render() {
 
 function renderNoMatch() {
   state.selectedId = null;
+  state.activeArchetypeMode = "default";
+  state.activeArchetypes = [];
+  state.activeArchetypeMatchId = null;
   els.matchSelect.value = "";
   renderTournamentContext(null);
   document.documentElement.style.setProperty("--home", "#7fb7ff");
@@ -1360,6 +1370,11 @@ function renderNoMatch() {
   els.matchScore.textContent = "Relax one filter to restore match details";
 
   els.badgeList.innerHTML = `<span class="badge badge-tactical_contrast">No Matching Matchup</span>`;
+  els.archetypePitch.innerHTML = `<div class="pitch-empty">No animated read available.</div>`;
+  els.archetypeCommentary.innerHTML = `
+    <strong>No matchup selected</strong>
+    <p>Relax one filter to restore the archetype animation and commentary.</p>
+  `;
   els.snapshotNote.textContent = `The current filters use AND logic, so a match must satisfy every selected filter. ${activeFilterLabel()} returns 0 rows.`;
   els.probBars.innerHTML = `<div class="panel-empty-note">No probability bars available for this filter combination.</div>`;
   els.probTable.innerHTML = "";
@@ -1399,10 +1414,32 @@ function updateLineupSelection() {
 
 function renderBadges(match) {
   els.badgeList.replaceChildren();
-  const labels = match.archetypes && match.archetypes.length ? match.archetypes : ["No Active Archetype"];
+  const { labels, selected, isDefault } = syncActiveArchetypes(match);
+  const defaultBadge = document.createElement("button");
+  defaultBadge.type = "button";
+  defaultBadge.className = "badge archetype-badge-button archetype-default-button";
+  defaultBadge.dataset.archetypeDefault = "true";
+  defaultBadge.setAttribute("aria-pressed", String(isDefault));
+  defaultBadge.title = "Show all model-assigned archetype overlays";
+  defaultBadge.textContent = "Model badges";
+  els.badgeList.append(defaultBadge);
+
+  const noOverlayBadge = document.createElement("button");
+  noOverlayBadge.type = "button";
+  noOverlayBadge.className = "badge archetype-badge-button archetype-none-button";
+  noOverlayBadge.dataset.archetypeNone = "true";
+  noOverlayBadge.setAttribute("aria-pressed", String(!isDefault && selected.length === 0));
+  noOverlayBadge.title = "Hide archetype overlays without changing the prediction";
+  noOverlayBadge.textContent = "No overlay";
+  els.badgeList.append(noOverlayBadge);
+
   for (const label of labels) {
-    const badge = document.createElement("span");
-    badge.className = `badge badge-${archetypeClass.get(label) || "tactical_contrast"}`;
+    const badge = document.createElement("button");
+    badge.type = "button";
+    badge.className = `badge archetype-badge-button badge-${archetypeClass.get(label) || "tactical_contrast"}`;
+    badge.dataset.archetype = label;
+    badge.setAttribute("aria-pressed", String(selected.includes(label)));
+    badge.title = `${selected.includes(label) ? "Remove" : "Add"} ${label} lens`;
     badge.textContent = label;
     els.badgeList.append(badge);
   }
@@ -1417,6 +1454,214 @@ function renderBadges(match) {
   const actual = match.score ? `${match.result_label}, ${match.score}` : "actual result pending";
   const imputed = match.is_imputed_prediction ? " The displayed outcome is forecast-only until the actual result is ingested." : "";
   els.snapshotNote.textContent = `Prediction saved at ${match.predicted_at_utc}. This row is a ${snapshotType}; actual result: ${actual}.${imputed}`;
+}
+
+function matchArchetypeLabels(match) {
+  return match.archetypes && match.archetypes.length ? match.archetypes : ["No Active Archetype"];
+}
+
+function syncActiveArchetypes(match) {
+  const labels = matchArchetypeLabels(match);
+  const matchId = String(match.match_id);
+  if (state.activeArchetypeMatchId !== matchId) {
+    state.activeArchetypeMode = "default";
+    state.activeArchetypes = labels.slice();
+    state.activeArchetypeMatchId = matchId;
+  }
+
+  if (state.activeArchetypeMode === "default") {
+    state.activeArchetypes = labels.slice();
+  } else {
+    state.activeArchetypes = state.activeArchetypes.filter((label) => labels.includes(label));
+  }
+
+  return {
+    labels,
+    selected: state.activeArchetypeMode === "default" ? labels.slice() : state.activeArchetypes.slice(),
+    isDefault: state.activeArchetypeMode === "default",
+  };
+}
+
+function renderArchetypePlaybook(match) {
+  const lens = archetypeLens(match);
+  const pattern = lens.pattern;
+  const intensity = archetypeIntensity(match);
+  const predicted = predictedSide(match);
+  const motion = matchAnimationMotion(match, lens, intensity, predicted);
+  const homeColor = teamColor(match.home_team, "home");
+  const awayColor = teamColor(match.away_team, "away");
+  const homeInitials = match.home_code || teamInitials(match.home_team) || "H";
+  const awayInitials = match.away_code || teamInitials(match.away_team) || "A";
+
+  els.archetypePitch.innerHTML = `
+    <div class="match-animation-shell" data-pattern="${escapeHtml(pattern)}" data-intensity="${escapeHtml(intensity)}" data-predicted="${escapeHtml(predicted)}" style="--anim-home:${homeColor}; --anim-away:${awayColor};">
+      <div class="match-pitch match-pitch-${escapeHtml(motion)}" aria-hidden="true">
+        <svg viewBox="0 0 240 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated soccer pitch summary">
+          <rect width="240" height="156" fill="#183d24"></rect>
+          <rect x="0" y="0" width="30" height="156" fill="#1f4a2d" opacity=".72"></rect>
+          <rect x="60" y="0" width="30" height="156" fill="#1f4a2d" opacity=".72"></rect>
+          <rect x="120" y="0" width="30" height="156" fill="#1f4a2d" opacity=".72"></rect>
+          <rect x="180" y="0" width="30" height="156" fill="#1f4a2d" opacity=".72"></rect>
+          <rect x="6" y="6" width="228" height="144" fill="none" stroke="rgba(255,255,255,.68)" stroke-width="1"></rect>
+          <line x1="120" y1="6" x2="120" y2="150" stroke="rgba(255,255,255,.68)" stroke-width="1"></line>
+          <circle cx="120" cy="78" r="21" fill="none" stroke="rgba(255,255,255,.68)" stroke-width="1"></circle>
+          <circle cx="120" cy="78" r="1.8" fill="rgba(255,255,255,.72)"></circle>
+          <rect x="6" y="44" width="34" height="68" fill="none" stroke="rgba(255,255,255,.52)" stroke-width=".8"></rect>
+          <rect x="200" y="44" width="34" height="68" fill="none" stroke="rgba(255,255,255,.52)" stroke-width=".8"></rect>
+          <rect x="1" y="64" width="5" height="28" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.82)" stroke-width="1"></rect>
+          <rect x="234" y="64" width="5" height="28" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.82)" stroke-width="1"></rect>
+          <circle cx="28" cy="78" r="1.5" fill="rgba(255,255,255,.45)"></circle>
+          <circle cx="212" cy="78" r="1.5" fill="rgba(255,255,255,.45)"></circle>
+          <circle class="anim-dot anim-dot-home" cx="22" cy="78" r="5.5" fill="var(--anim-home)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-home" cx="68" cy="50" r="5.5" fill="var(--anim-home)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-home" cx="68" cy="106" r="5.5" fill="var(--anim-home)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-home" cx="94" cy="78" r="5.5" fill="var(--anim-home)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-away" cx="218" cy="78" r="5.5" fill="var(--anim-away)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-away" cx="172" cy="50" r="5.5" fill="var(--anim-away)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-away" cx="172" cy="106" r="5.5" fill="var(--anim-away)" opacity=".95"></circle>
+          <circle class="anim-dot anim-dot-away" cx="146" cy="78" r="5.5" fill="var(--anim-away)" opacity=".95"></circle>
+          <defs><filter id="match-animation-drop"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.42"></feDropShadow></filter></defs>
+          <text class="match-ball" x="120" y="78" text-anchor="middle" dominant-baseline="central" font-size="14" filter="url(#match-animation-drop)">⚽</text>
+        </svg>
+      </div>
+      <div class="match-animation-labels">
+        <span style="color:${homeColor}">${escapeHtml(homeInitials)}</span>
+        <span>${escapeHtml(animationNote(match, motion, lens))}</span>
+        <span style="color:${awayColor}">${escapeHtml(awayInitials)}</span>
+      </div>
+    </div>
+  `;
+
+  els.archetypeCommentary.innerHTML = `
+    <strong>${escapeHtml(lens.title)} read</strong>
+    <p>${escapeHtml(archetypeNarrative(match, lens, intensity, motion))}</p>
+  `;
+}
+
+function primaryArchetype(match) {
+  return match.archetypes?.length ? match.archetypes[0] : "Baseline matchup";
+}
+
+function archetypeLens(match) {
+  const { selected, isDefault } = syncActiveArchetypes(match);
+  const patterns = selected.map((label) => archetypePattern(label));
+  const pattern = selected.length === 0 ? "none" : selected.length === 1 ? patterns[0] : "mix";
+  const title =
+    selected.length === 0
+      ? "No overlay"
+      : isDefault
+        ? "Model badges"
+        : selected.join(" + ");
+  return { isDefault, labels: selected, patterns, pattern, title };
+}
+
+function archetypePattern(label) {
+  if (label === "Host Pressure") return "host";
+  if (label === "Knockout Volatility") return "knockout";
+  if (label === "Favorite Vs Underdog") return "favorite";
+  if (label === "Heavyweight Clash") return "heavyweight";
+  if (label === "Generational Transition") return "transition";
+  if (label === "Club Power Mismatch") return "mismatch";
+  if (label === "Tactical Contrast") return "tactical";
+  if (label === "Upset Realized") return "upset";
+  return "balanced";
+}
+
+function archetypeIntensity(match) {
+  const risk = Number(match.upset_risk);
+  const confidence = Number(predictionProbability(match));
+  if (Number.isFinite(risk) && risk >= 0.45) return "high";
+  if (Number.isFinite(confidence) && confidence >= 0.62) return "high";
+  if (Number.isFinite(risk) && risk >= 0.28) return "medium";
+  return "calm";
+}
+
+function matchAnimationMotion(match, lens, intensity, predicted) {
+  const pattern = lens.pattern;
+  const patterns = lens.patterns || [];
+  if (!lens.labels.length) return "none";
+  if (pattern === "mix") {
+    if (patterns.includes("knockout") || patterns.includes("upset")) return "upset";
+    if (patterns.includes("host") && patterns.includes("favorite")) return predicted === "away" ? "favorite-away" : "favorite-home";
+    if (patterns.includes("host")) return "host";
+    if (patterns.includes("tactical")) return "mix";
+    return "mix";
+  }
+  if (pattern === "host") return "host";
+  if (pattern === "favorite") return predicted === "away" ? "favorite-away" : "favorite-home";
+  if (pattern === "tactical") return "tactical";
+  if (pattern === "heavyweight") return "heavyweight";
+  if (pattern === "transition") return "transition";
+  if (pattern === "mismatch") return "mismatch";
+  if (pattern === "upset") return "upset";
+  if (pattern === "knockout" || intensity === "high") return "chaotic";
+  if (Number(match.upset_risk) >= 0.34) return "chaotic";
+  return "stable";
+}
+
+function animationNote(match, motion, lens) {
+  const pattern = lens.pattern;
+  if (lens.labels.length === 0) return "No archetype overlay · prediction unchanged";
+  if (lens.isDefault) return "Model-assigned badges · overlay on";
+  if (lens.labels.length > 1) return `${lens.labels.length} lenses · blended read`;
+  if (motion === "host") return "Host pressure · home-side surge";
+  if (motion === "favorite-home" || motion === "favorite-away") return "Forecast edge · favorite tilt";
+  if (motion === "tactical") return "Shape vs shape · midfield probing";
+  if (motion === "heavyweight") return "Midfield duel · pressure tradeoff";
+  if (motion === "transition") return "Tempo shift · fresh legs";
+  if (motion === "mismatch") return "Quality gap · overload pressure";
+  if (motion === "upset") return "Upset lens · broken rhythm";
+  if (motion === "chaotic") {
+    if (pattern === "knockout") return "Knockout pressure · transition swings";
+    return "High pressure · transitions everywhere";
+  }
+  if (pattern === "host") return "Host pressure · controlled build-up";
+  if (pattern === "favorite") return "Forecast edge · stable tempo";
+  if (pattern === "heavyweight") return "Midfield exchange · measured tempo";
+  return "Possession build-up · stable tempo";
+}
+
+function archetypeNarrative(match, lens, intensity, motion) {
+  const predicted = predictedTeam(match);
+  const probability = pct(predictionProbability(match));
+  const drawPressure = pct(match.probabilities?.draw);
+  const upsetRisk = pct(match.upset_risk);
+  const pattern = lens.pattern;
+  const actual =
+    isActualized(match)
+      ? `Actual loaded: ${match.score}, so this forecast can be audited against the result.`
+      : "Actual pending, so this remains a forecast-only read.";
+  const patternLine = {
+    none: "No archetype overlay is active; the field intentionally removes the archetype animation layer.",
+    mix: `The route blends ${lens.labels.join(", ")} rather than isolating a single archetype.`,
+    host: "The route starts from host-side pressure and pushes into the attacking half.",
+    knockout: "The end-to-end route signals volatility around late swings, mistakes, and penalties.",
+    favorite: "The tilted route follows the forecast edge toward the expected winner while leaving room for upset pressure.",
+    heavyweight: "The central exchange shows two high-profile profiles trading pressure through midfield.",
+    transition: "The diagonal route shows tempo changing as squad profile and lineup age become part of the read.",
+    mismatch: "The overload route shows one side trying to turn a quality gap into territorial pressure.",
+    tactical: "The central probing route shows shape-vs-shape tension before either side commits forward.",
+    upset: "The broken route shows the match from an upset lens, where rhythm and game state become unstable.",
+    balanced: "The balanced route stays closer to midfield because no single archetype dominates the read.",
+  }[pattern];
+  const intensityLine =
+    lens.labels.length === 0
+      ? "This is not an ablated model baseline; the prediction is unchanged."
+      : lens.isDefault
+        ? "Model badges: all loaded archetype overlays are included."
+      : motion === "chaotic" || motion === "upset"
+      ? "Chaotic motion: the model read is more exposed to transition or upset pressure."
+      : motion === "host"
+        ? "Host motion: crowd and venue context are being treated as part of the matchup pressure."
+      : motion === "tactical"
+        ? "Tactical motion: the ball stays central because the archetype is more about structure than raw chaos."
+      : intensity === "high"
+        ? "Fast model signal: high confidence even though the field motion stays structured."
+      : intensity === "medium"
+        ? "Moderate pulse: readable edge, not settled outcome."
+        : "Calm pulse: lower-volatility model read.";
+
+  return `${stageDisplay(match.stage)}: ${predicted} carries the headline forecast at ${probability}, with draw pressure ${drawPressure} and upset risk ${upsetRisk}. ${patternLine} ${intensityLine} ${actual} The animation is a model-read summary, not live play-by-play tracking.`;
 }
 
 function renderProbabilities(match) {
@@ -1796,6 +2041,31 @@ async function init() {
     }
     const detail = els.auditVisual.querySelector("#audit-viz-detail");
     if (detail) detail.textContent = node.dataset.auditDetail || "";
+  });
+  els.badgeList.addEventListener("click", (event) => {
+    const reset = event.target.closest("[data-archetype-default]");
+    const noOverlay = event.target.closest("[data-archetype-none]");
+    const badge = event.target.closest("[data-archetype]");
+    if (!reset && !noOverlay && !badge) return;
+    const match = selectedMatch();
+    if (!match) return;
+    const labels = matchArchetypeLabels(match);
+    if (reset) {
+      state.activeArchetypeMode = "default";
+      state.activeArchetypes = labels.slice();
+    } else if (noOverlay) {
+      state.activeArchetypeMode = "custom";
+      state.activeArchetypes = [];
+    } else {
+      const label = badge.dataset.archetype;
+      const current = state.activeArchetypeMode === "default" ? labels.slice() : state.activeArchetypes.slice();
+      const next = current.includes(label) ? current.filter((item) => item !== label) : [...current, label];
+      state.activeArchetypeMode = next.length === labels.length ? "default" : "custom";
+      state.activeArchetypes = state.activeArchetypeMode === "default" ? labels.slice() : next;
+    }
+    state.activeArchetypeMatchId = String(match.match_id);
+    renderBadges(match);
+    renderArchetypePlaybook(match);
   });
   els.viewChipRow.addEventListener("click", (event) => {
     const chip = event.target.closest("[data-filter-kind]");
