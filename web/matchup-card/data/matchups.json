@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-03T01:54:52.583885+00:00",
+  "generated_at_utc": "2026-07-03T02:11:21.542399+00:00",
   "source_files": [
     "data/processed/predictions_2026.csv",
     "data/processed/predictions_2026_scheduled.csv",
@@ -46,9 +46,9 @@
   },
   "schedule_summary": {
     "as_of_date": "2026-07-02",
-    "as_of_local": "2026-07-02T18:54:24-07:00",
-    "as_of_utc": "2026-07-03T01:54:24Z",
-    "generated_at_utc": "2026-07-03T01:54:24Z",
+    "as_of_local": "2026-07-02T19:10:05-07:00",
+    "as_of_utc": "2026-07-03T02:10:05Z",
+    "generated_at_utc": "2026-07-03T02:10:07Z",
     "rows": 104,
     "modeled_rows": 73,
     "unmodeled_rows": 31,
@@ -61,32 +61,32 @@
     "status_counts": {
       "modeled_result_available": 73,
       "result_available_not_modeled": 11,
-      "placeholder_fixture_not_model_ready": 11,
-      "upcoming_fixture_not_model_ready": 8,
+      "placeholder_fixture_not_model_ready": 10,
+      "upcoming_fixture_not_model_ready": 9,
       "today_fixture_not_modeled": 1
     },
     "source_files": [
       "data/raw/international_matches.csv",
-      "data/raw/2026_live/2026-07-03/run-20260703T010231Z/wikipedia/2026_FIFA_World_Cup.html",
+      "data/raw/2026_live/2026-07-03/run-20260703T020958Z/wikipedia/2026_FIFA_World_Cup.html",
       "data/processed/2026_live_matches.csv",
       "data/processed/predictions_2026.csv",
       "data/processed/validation_2026.csv"
     ]
   },
   "viz_summary": {
-    "generated_at_utc": "2026-07-03T01:54:30Z",
+    "generated_at_utc": "2026-07-03T02:10:16Z",
     "as_of_date": "2026-07-02",
-    "as_of_local": "2026-07-02T18:54:24-07:00",
-    "as_of_utc": "2026-07-03T01:54:24Z",
+    "as_of_local": "2026-07-02T19:10:05-07:00",
+    "as_of_utc": "2026-07-03T02:10:05Z",
     "rows": 104,
-    "prediction_available_rows": 93,
+    "prediction_available_rows": 94,
     "actual_available_rows": 84,
     "not_yet_actualized_rows": 20,
-    "imputed_prediction_rows": 9,
+    "imputed_prediction_rows": 10,
     "prediction_layer_counts": {
       "main_model_validation": 73,
-      "scheduled_fixture_forecast": 20,
-      "none": 11
+      "scheduled_fixture_forecast": 21,
+      "none": 10
     },
     "actualization_status_counts": {
       "actualized": 84,
@@ -95,8 +95,8 @@
     "prediction_actual_status_counts": {
       "actualized_prediction_correct": 51,
       "actualized_prediction_missed": 33,
-      "announced_pending_prediction_and_actual": 11,
-      "prediction_pending_actual": 9
+      "prediction_pending_actual": 10,
+      "announced_pending_prediction_and_actual": 10
     },
     "prediction_grade_counts": {
       "exact_correct": 51,
@@ -106,20 +106,20 @@
     },
     "prediction_timing_counts": {
       "retrospective": 84,
-      "unknown": 11,
-      "pre_match": 9
+      "pre_match": 10,
+      "unknown": 10
     },
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
       "scheduled_actualized_validation": 11,
-      "announced_fixture_pending_actual": 11,
-      "live_pre_match_forecast_pending_actual": 9
+      "live_pre_match_forecast_pending_actual": 10,
+      "announced_fixture_pending_actual": 10
     },
     "fixture_status_counts": {
       "modeled_result_available": 73,
       "result_available_not_modeled": 11,
-      "placeholder_fixture_not_model_ready": 11,
-      "upcoming_fixture_not_model_ready": 8,
+      "placeholder_fixture_not_model_ready": 10,
+      "upcoming_fixture_not_model_ready": 9,
       "today_fixture_not_modeled": 1
     },
     "strict_exact_accuracy": 0.6071,
@@ -155,12 +155,12 @@
       "brier_score": 0.187
     },
     "focus_year": 2026,
-    "focus_rows_in_feature_table": 93,
+    "focus_rows_in_feature_table": 94,
     "focus_rows": 104,
-    "prediction_available_rows": 93,
+    "prediction_available_rows": 94,
     "actual_available_rows": 84,
     "pending_actual_rows": 20,
-    "imputed_prediction_rows": 9,
+    "imputed_prediction_rows": 10,
     "evaluated_rows": 84,
     "correct_rows": 51,
     "draw_push_rows": 22,
@@ -169,16 +169,16 @@
     "strict_exact_accuracy": 0.6071,
     "draw_adjusted_score": 0.7381,
     "accuracy": 0.7381,
-    "true_pre_match_rows": 9,
+    "true_pre_match_rows": 10,
     "predicted_at_min_utc": "2026-07-01T17:13:53.011982Z",
-    "predicted_at_max_utc": "2026-07-03T01:54:29.431019Z",
-    "as_of_local": "2026-07-02T18:54:24-07:00",
-    "as_of_utc": "2026-07-03T01:54:24Z",
+    "predicted_at_max_utc": "2026-07-03T02:10:15.669351Z",
+    "as_of_local": "2026-07-02T19:10:05-07:00",
+    "as_of_utc": "2026-07-03T02:10:05Z",
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
       "scheduled_actualized_validation": 11,
-      "announced_fixture_pending_actual": 11,
-      "live_pre_match_forecast_pending_actual": 9
+      "live_pre_match_forecast_pending_actual": 10,
+      "announced_fixture_pending_actual": 10
     },
     "prediction_grade_counts": {
       "exact_correct": 51,
@@ -188,13 +188,13 @@
     },
     "prediction_timing_counts": {
       "retrospective": 84,
-      "unknown": 11,
-      "pre_match": 9
+      "pre_match": 10,
+      "unknown": 10
     },
     "prediction_layer_counts": {
       "main_model_validation": 73,
-      "scheduled_fixture_forecast": 20,
-      "none": 11
+      "scheduled_fixture_forecast": 21,
+      "none": 10
     }
   },
   "feature_importance": [
@@ -14706,13 +14706,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4884,
-        "draw": 0.2245,
-        "away": 0.2871
+        "home": 0.4902,
+        "draw": 0.2258,
+        "away": 0.2841
       },
-      "upset_risk": 0.5116,
+      "upset_risk": 0.5098,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -14901,13 +14901,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4887,
-        "draw": 0.2559,
-        "away": 0.2554
+        "home": 0.4866,
+        "draw": 0.2582,
+        "away": 0.2552
       },
-      "upset_risk": 0.5113,
+      "upset_risk": 0.5134,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15103,13 +15103,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4143,
-        "draw": 0.3261,
-        "away": 0.2595
+        "home": 0.4128,
+        "draw": 0.3242,
+        "away": 0.2631
       },
-      "upset_risk": 0.5857,
+      "upset_risk": 0.5872,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15302,13 +15302,13 @@
       "predicted_result": "D",
       "predicted_label": "Draw",
       "probabilities": {
-        "home": 0.2731,
-        "draw": 0.3749,
-        "away": 0.352
+        "home": 0.2728,
+        "draw": 0.3747,
+        "away": 0.3525
       },
-      "upset_risk": 0.6251,
+      "upset_risk": 0.6253,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15498,13 +15498,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7896,
-        "draw": 0.1168,
-        "away": 0.0936
+        "home": 0.7934,
+        "draw": 0.1149,
+        "away": 0.0917
       },
-      "upset_risk": 0.2104,
+      "upset_risk": 0.2066,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15697,13 +15697,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5611,
-        "draw": 0.2523,
-        "away": 0.1865
+        "home": 0.5582,
+        "draw": 0.2542,
+        "away": 0.1876
       },
-      "upset_risk": 0.4389,
+      "upset_risk": 0.4418,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15902,13 +15902,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8066,
-        "draw": 0.1082,
-        "away": 0.0852
+        "home": 0.8103,
+        "draw": 0.1072,
+        "away": 0.0825
       },
-      "upset_risk": 0.1934,
+      "upset_risk": 0.1897,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16104,13 +16104,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.47,
-        "draw": 0.3126,
-        "away": 0.2174
+        "home": 0.4688,
+        "draw": 0.3137,
+        "away": 0.2175
       },
-      "upset_risk": 0.53,
+      "upset_risk": 0.5312,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16304,13 +16304,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8797,
-        "draw": 0.0723,
-        "away": 0.048
+        "home": 0.8809,
+        "draw": 0.0704,
+        "away": 0.0488
       },
-      "upset_risk": 0.1203,
+      "upset_risk": 0.1191,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16503,13 +16503,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7865,
-        "draw": 0.116,
-        "away": 0.0975
+        "home": 0.7904,
+        "draw": 0.1146,
+        "away": 0.095
       },
-      "upset_risk": 0.2135,
+      "upset_risk": 0.2096,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16705,13 +16705,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4819,
-        "draw": 0.2661,
-        "away": 0.2521
+        "home": 0.4813,
+        "draw": 0.2651,
+        "away": 0.2536
       },
-      "upset_risk": 0.5181,
+      "upset_risk": 0.5187,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16908,13 +16908,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5543,
-        "draw": 0.2304,
-        "away": 0.2153
+        "home": 0.5523,
+        "draw": 0.2339,
+        "away": 0.2137
       },
-      "upset_risk": 0.4457,
+      "upset_risk": 0.4477,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "today_fixture_not_modeled",
@@ -17099,13 +17099,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.51,
-        "draw": 0.2337,
-        "away": 0.2563
+        "home": 0.5054,
+        "draw": 0.2389,
+        "away": 0.2557
       },
-      "upset_risk": 0.49,
+      "upset_risk": 0.4946,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -17303,13 +17303,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8452,
+        "home": 0.8456,
         "draw": 0.0899,
-        "away": 0.0649
+        "away": 0.0645
       },
-      "upset_risk": 0.1548,
+      "upset_risk": 0.1544,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -17500,13 +17500,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8583,
-        "draw": 0.0774,
-        "away": 0.0643
+        "home": 0.8604,
+        "draw": 0.0769,
+        "away": 0.0628
       },
-      "upset_risk": 0.1417,
+      "upset_risk": 0.1396,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -17696,13 +17696,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.266,
-        "draw": 0.3529,
-        "away": 0.3811
+        "home": 0.265,
+        "draw": 0.3524,
+        "away": 0.3826
       },
-      "upset_risk": 0.6189,
+      "upset_risk": 0.6174,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -17897,13 +17897,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2041,
-        "draw": 0.1249,
-        "away": 0.671
+        "home": 0.2054,
+        "draw": 0.1274,
+        "away": 0.6672
       },
-      "upset_risk": 0.329,
+      "upset_risk": 0.3328,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -18098,13 +18098,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5009,
-        "draw": 0.2526,
+        "home": 0.5,
+        "draw": 0.2535,
         "away": 0.2465
       },
-      "upset_risk": 0.4991,
+      "upset_risk": 0.5,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -18298,13 +18298,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2219,
-        "draw": 0.201,
-        "away": 0.5771
+        "home": 0.2223,
+        "draw": 0.2009,
+        "away": 0.5768
       },
-      "upset_risk": 0.4229,
+      "upset_risk": 0.4232,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -18492,13 +18492,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2337,
-        "draw": 0.2166,
-        "away": 0.5497
+        "home": 0.2339,
+        "draw": 0.2184,
+        "away": 0.5477
       },
-      "upset_risk": 0.4503,
+      "upset_risk": 0.4523,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-03T01:54:29.431019+00:00",
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -18658,6 +18658,208 @@
           "similarity": 0.824
         }
       ]
+    },
+    {
+      "match_id": 980005,
+      "date": "2026-07-06",
+      "kickoff_time_local": "2:00 p.m. UTC\u22125",
+      "kickoff_utc_offset": "UTC-05:00",
+      "kickoff_at_utc": "2026-07-06T19:00:00Z",
+      "stage": "Round of 16",
+      "home_team": "Portugal",
+      "away_team": "Spain",
+      "venue": "AT&T Stadium, Arlington",
+      "host_country": null,
+      "home_code": "POR",
+      "away_code": "ESP",
+      "result": null,
+      "result_label": "Unknown",
+      "score": null,
+      "actual_upset": null,
+      "fixture_id": "2026-80005",
+      "actual_available": false,
+      "actualization_status": "not_yet_actualized",
+      "actual_score": null,
+      "prediction_layer": "scheduled_fixture_forecast",
+      "prediction_actual_status": "prediction_pending_actual",
+      "prediction_correct": null,
+      "prediction_exact_correct": null,
+      "prediction_grade": "pending_actual",
+      "prediction_grade_label": "Actual result pending",
+      "prediction_credit": null,
+      "is_imputed_prediction": true,
+      "display_result_source": "prediction_imputed",
+      "prediction_timing": "pre_match",
+      "training_split_name": "historical_world_cups_pre_2026",
+      "training_match_count": 964,
+      "training_cutoff_date": "2022-12-18",
+      "evaluation_split_name": "world_cup_2026_focus",
+      "audit_role": "live_pre_match_forecast_pending_actual",
+      "predicted_result": "A",
+      "predicted_label": "Away win",
+      "probabilities": {
+        "home": 0.207,
+        "draw": 0.1905,
+        "away": 0.6024
+      },
+      "upset_risk": 0.3976,
+      "pre_match_snapshot": true,
+      "predicted_at_utc": "2026-07-03T02:10:15.669351+00:00",
+      "prediction_source": "scheduled_fixture_forecast",
+      "prediction_scope": "pre_match_forecast",
+      "fixture_status": "upcoming_fixture_not_model_ready",
+      "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
+      "archetypes": [
+        "Heavyweight Clash",
+        "Favorite Vs Underdog",
+        "Tactical Contrast"
+      ],
+      "raw_archetypes": [
+        "heavyweight_clash",
+        "favorite_vs_underdog",
+        "tactical_contrast"
+      ],
+      "cluster": {
+        "kmeans_k5": null,
+        "gmm_k10": null,
+        "hier_k4": null,
+        "hdbscan": null,
+        "nmf_dominant": null
+      },
+      "features": {
+        "elo_home_pre": 2078.45,
+        "elo_away_pre": 2288.95,
+        "elo_gap_abs": 210.5,
+        "win_prob_home": 0.2294,
+        "age_mean_gap": 1.3462,
+        "top5_share_gap": 0.0,
+        "league_div_gap": 0.6444
+      },
+      "radar": {
+        "axes": [
+          "Rating",
+          "Squad Age",
+          "Experience",
+          "League Diversity",
+          "Home Advantage",
+          "Club Power"
+        ],
+        "home": [
+          0.7414,
+          0.6538,
+          0.7081,
+          0.8241,
+          0.48,
+          0.0
+        ],
+        "away": [
+          0.9419,
+          0.5192,
+          0.7813,
+          0.687,
+          0.48,
+          0.0
+        ],
+        "raw": {
+          "home_rating": 2078.45,
+          "away_rating": 2288.95,
+          "home_age": 27.5385,
+          "away_age": 26.1923,
+          "home_league_diversity": 3.8731,
+          "away_league_diversity": 3.2287,
+          "home_top5_share": 0.0,
+          "away_top5_share": 0.0
+        }
+      },
+      "similar": [
+        {
+          "match_id": 45774,
+          "date": "2022-12-09",
+          "year": 2022,
+          "home_team": "Croatia",
+          "away_team": "Brazil",
+          "home_code": "CRO",
+          "away_code": "BRA",
+          "stage": "quarter-finals",
+          "score": "1-1",
+          "result": "Draw",
+          "archetypes": [
+            "Heavyweight Clash",
+            "Favorite Vs Underdog",
+            "Tactical Contrast"
+          ],
+          "similarity": 0.909
+        },
+        {
+          "match_id": 19825,
+          "date": "1994-07-10",
+          "year": 1994,
+          "home_team": "Bulgaria",
+          "away_team": "Germany",
+          "home_code": "BUL",
+          "away_code": "GER",
+          "stage": "quarter-finals",
+          "score": "2-1",
+          "result": "Home win",
+          "archetypes": [
+            "Heavyweight Clash",
+            "Favorite Vs Underdog",
+            "Upset Realized"
+          ],
+          "similarity": 0.801
+        },
+        {
+          "match_id": 33935,
+          "date": "2010-07-06",
+          "year": 2010,
+          "home_team": "Uruguay",
+          "away_team": "Netherlands",
+          "home_code": "URU",
+          "away_code": "NED",
+          "stage": "semi-finals",
+          "score": "2-3",
+          "result": "Away win",
+          "archetypes": [
+            "Heavyweight Clash",
+            "Favorite Vs Underdog",
+            "Tactical Contrast"
+          ],
+          "similarity": 0.726
+        },
+        {
+          "match_id": 17371,
+          "date": "1990-07-01",
+          "year": 1990,
+          "home_team": "Cameroon",
+          "away_team": "England",
+          "home_code": "CAM",
+          "away_code": "ENG",
+          "stage": "quarter-finals",
+          "score": "2-3",
+          "result": "Away win",
+          "archetypes": [
+            "Heavyweight Clash"
+          ],
+          "similarity": 0.598
+        },
+        {
+          "match_id": 45772,
+          "date": "2022-12-06",
+          "year": 2022,
+          "home_team": "Morocco",
+          "away_team": "Spain",
+          "home_code": "MAR",
+          "away_code": "ESP",
+          "stage": "round of 16",
+          "score": "0-0",
+          "result": "Draw",
+          "archetypes": [
+            "Heavyweight Clash",
+            "Tactical Contrast"
+          ],
+          "similarity": 0.557
+        }
+      ]
     }
   ],
   "upcoming_fixtures": [
@@ -18679,11 +18881,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -3,
-      "minutes_from_as_of": -4854,
+      "minutes_from_as_of": -4870,
       "probabilities": {
-        "home": 0.4884,
-        "draw": 0.2245,
-        "away": 0.2871
+        "home": 0.4902,
+        "draw": 0.2258,
+        "away": 0.2841
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18711,11 +18913,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -3,
-      "minutes_from_as_of": -4644,
+      "minutes_from_as_of": -4660,
       "probabilities": {
-        "home": 0.4887,
-        "draw": 0.2559,
-        "away": 0.2554
+        "home": 0.4866,
+        "draw": 0.2582,
+        "away": 0.2552
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18743,11 +18945,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -3,
-      "minutes_from_as_of": -4374,
+      "minutes_from_as_of": -4390,
       "probabilities": {
-        "home": 0.4143,
-        "draw": 0.3261,
-        "away": 0.2595
+        "home": 0.4128,
+        "draw": 0.3242,
+        "away": 0.2631
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18775,11 +18977,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -2,
-      "minutes_from_as_of": -3174,
+      "minutes_from_as_of": -3190,
       "probabilities": {
-        "home": 0.7896,
-        "draw": 0.1168,
-        "away": 0.0936
+        "home": 0.7934,
+        "draw": 0.1149,
+        "away": 0.0917
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18807,11 +19009,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -2,
-      "minutes_from_as_of": -3414,
+      "minutes_from_as_of": -3430,
       "probabilities": {
-        "home": 0.2731,
-        "draw": 0.3749,
-        "away": 0.352
+        "home": 0.2728,
+        "draw": 0.3747,
+        "away": 0.3525
       },
       "predicted_result": "D",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18839,11 +19041,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -2,
-      "minutes_from_as_of": -2874,
+      "minutes_from_as_of": -2890,
       "probabilities": {
-        "home": 0.5611,
-        "draw": 0.2523,
-        "away": 0.1865
+        "home": 0.5582,
+        "draw": 0.2542,
+        "away": 0.1876
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18871,11 +19073,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -1,
-      "minutes_from_as_of": -1794,
+      "minutes_from_as_of": -1810,
       "probabilities": {
-        "home": 0.47,
-        "draw": 0.3126,
-        "away": 0.2174
+        "home": 0.4688,
+        "draw": 0.3137,
+        "away": 0.2175
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18903,11 +19105,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -1,
-      "minutes_from_as_of": -2034,
+      "minutes_from_as_of": -2050,
       "probabilities": {
-        "home": 0.8066,
-        "draw": 0.1082,
-        "away": 0.0852
+        "home": 0.8103,
+        "draw": 0.1072,
+        "away": 0.0825
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18935,11 +19137,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -1,
-      "minutes_from_as_of": -1554,
+      "minutes_from_as_of": -1570,
       "probabilities": {
-        "home": 0.8797,
-        "draw": 0.0723,
-        "away": 0.048
+        "home": 0.8809,
+        "draw": 0.0704,
+        "away": 0.0488
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18967,11 +19169,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": -174,
+      "minutes_from_as_of": -190,
       "probabilities": {
-        "home": 0.4819,
-        "draw": 0.2661,
-        "away": 0.2521
+        "home": 0.4813,
+        "draw": 0.2651,
+        "away": 0.2536
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -18999,11 +19201,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": -414,
+      "minutes_from_as_of": -430,
       "probabilities": {
-        "home": 0.7865,
-        "draw": 0.116,
-        "away": 0.0975
+        "home": 0.7904,
+        "draw": 0.1146,
+        "away": 0.095
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19031,11 +19233,11 @@
       "fixture_status": "today_fixture_not_modeled",
       "status_label": "Scheduled later today; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": 66,
+      "minutes_from_as_of": 50,
       "probabilities": {
-        "home": 0.5543,
-        "draw": 0.2304,
-        "away": 0.2153
+        "home": 0.5523,
+        "draw": 0.2339,
+        "away": 0.2137
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19063,11 +19265,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 1,
-      "minutes_from_as_of": 1206,
+      "minutes_from_as_of": 1190,
       "probabilities": {
-        "home": 0.8452,
+        "home": 0.8456,
         "draw": 0.0899,
-        "away": 0.0649
+        "away": 0.0645
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19095,11 +19297,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 1,
-      "minutes_from_as_of": 966,
+      "minutes_from_as_of": 950,
       "probabilities": {
-        "home": 0.51,
-        "draw": 0.2337,
-        "away": 0.2563
+        "home": 0.5054,
+        "draw": 0.2389,
+        "away": 0.2557
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19127,11 +19329,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 1,
-      "minutes_from_as_of": 1416,
+      "minutes_from_as_of": 1400,
       "probabilities": {
-        "home": 0.8583,
-        "draw": 0.0774,
-        "away": 0.0643
+        "home": 0.8604,
+        "draw": 0.0769,
+        "away": 0.0628
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19159,11 +19361,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 2,
-      "minutes_from_as_of": 2346,
+      "minutes_from_as_of": 2330,
       "probabilities": {
-        "home": 0.266,
-        "draw": 0.3529,
-        "away": 0.3811
+        "home": 0.265,
+        "draw": 0.3524,
+        "away": 0.3826
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19191,11 +19393,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 2,
-      "minutes_from_as_of": 2586,
+      "minutes_from_as_of": 2570,
       "probabilities": {
-        "home": 0.2041,
-        "draw": 0.1249,
-        "away": 0.671
+        "home": 0.2054,
+        "draw": 0.1274,
+        "away": 0.6672
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19223,10 +19425,10 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 3,
-      "minutes_from_as_of": 3966,
+      "minutes_from_as_of": 3950,
       "probabilities": {
-        "home": 0.5009,
-        "draw": 0.2526,
+        "home": 0.5,
+        "draw": 0.2535,
         "away": 0.2465
       },
       "predicted_result": "H",
@@ -19255,11 +19457,43 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 3,
-      "minutes_from_as_of": 4206,
+      "minutes_from_as_of": 4190,
       "probabilities": {
-        "home": 0.2219,
-        "draw": 0.201,
-        "away": 0.5771
+        "home": 0.2223,
+        "draw": 0.2009,
+        "away": 0.5768
+      },
+      "predicted_result": "A",
+      "prediction_source": "scheduled_fixture_forecast",
+      "prediction_scope": "pre_match_forecast",
+      "actualization_status": "not_yet_actualized",
+      "prediction_actual_status": "prediction_pending_actual",
+      "is_imputed_prediction": true,
+      "model_status": "Forecast row from 2026_matchup_viz.csv; actual result pending."
+    },
+    {
+      "fixture_id": "2026-80005",
+      "date": "2026-07-06",
+      "kickoff_time_local": "2:00 p.m. UTC\u22125",
+      "kickoff_utc_offset": "UTC-05:00",
+      "kickoff_at_utc": "2026-07-06T19:00:00Z",
+      "stage": "Round of 16",
+      "home_team": "Portugal",
+      "away_team": "Spain",
+      "score": null,
+      "home_code": "POR",
+      "away_code": "ESP",
+      "venue": "AT&T Stadium, Arlington",
+      "host_country": null,
+      "neutral": true,
+      "fixture_status": "upcoming_fixture_not_model_ready",
+      "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
+      "days_from_as_of": 4,
+      "minutes_from_as_of": 5330,
+      "probabilities": {
+        "home": 0.207,
+        "draw": 0.1905,
+        "away": 0.6024
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19287,11 +19521,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 4,
-      "minutes_from_as_of": 5646,
+      "minutes_from_as_of": 5630,
       "probabilities": {
-        "home": 0.2337,
-        "draw": 0.2166,
-        "away": 0.5497
+        "home": 0.2339,
+        "draw": 0.2184,
+        "away": 0.5477
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -19300,34 +19534,6 @@
       "prediction_actual_status": "prediction_pending_actual",
       "is_imputed_prediction": true,
       "model_status": "Forecast row from 2026_matchup_viz.csv; actual result pending."
-    },
-    {
-      "fixture_id": "2026-80005",
-      "date": "2026-07-06",
-      "kickoff_time_local": "2:00 p.m. UTC\u22125",
-      "kickoff_utc_offset": "UTC-05:00",
-      "kickoff_at_utc": "2026-07-06T19:00:00Z",
-      "stage": "Round of 16",
-      "home_team": "Winner Match 83",
-      "away_team": "Spain",
-      "score": null,
-      "home_code": "WIN",
-      "away_code": "ESP",
-      "venue": "AT&T Stadium, Arlington",
-      "host_country": null,
-      "neutral": true,
-      "fixture_status": "placeholder_fixture_not_model_ready",
-      "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
-      "days_from_as_of": 4,
-      "minutes_from_as_of": 5346,
-      "probabilities": null,
-      "predicted_result": null,
-      "prediction_source": null,
-      "prediction_scope": null,
-      "actualization_status": "not_yet_actualized",
-      "prediction_actual_status": "announced_pending_prediction_and_actual",
-      "is_imputed_prediction": false,
-      "model_status": "Forecast row from 2026_matchup_viz.csv with an actual result available."
     },
     {
       "fixture_id": "2026-80006",
@@ -19347,7 +19553,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 5,
-      "minutes_from_as_of": 6846,
+      "minutes_from_as_of": 6830,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19375,7 +19581,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 5,
-      "minutes_from_as_of": 6606,
+      "minutes_from_as_of": 6590,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19403,7 +19609,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 7,
-      "minutes_from_as_of": 9726,
+      "minutes_from_as_of": 9710,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19431,7 +19637,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 8,
-      "minutes_from_as_of": 11106,
+      "minutes_from_as_of": 11090,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19459,7 +19665,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 9,
-      "minutes_from_as_of": 12666,
+      "minutes_from_as_of": 12650,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19487,7 +19693,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 9,
-      "minutes_from_as_of": 12906,
+      "minutes_from_as_of": 12890,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19515,7 +19721,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 12,
-      "minutes_from_as_of": 16866,
+      "minutes_from_as_of": 16850,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19543,7 +19749,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 13,
-      "minutes_from_as_of": 18306,
+      "minutes_from_as_of": 18290,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19571,7 +19777,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 16,
-      "minutes_from_as_of": 22746,
+      "minutes_from_as_of": 22730,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -19599,7 +19805,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 17,
-      "minutes_from_as_of": 24066,
+      "minutes_from_as_of": 24050,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
