@@ -202,8 +202,10 @@ async function loadMatchupData() {
   }
 
   try {
-    const response = await fetch(DATA_URL, { cache: "no-store" });
+    const cacheBust = `?t=${Math.floor(Date.now() / 60000)}`; // new value every 60s
+    const response = await fetch(DATA_URL + cacheBust, { cache: "no-store" });
     if (!response.ok) throw new Error(`Unable to load ${DATA_URL}`);
+
     return await response.json();
   } catch (error) {
     if (window.MATCHUP_DATA) return window.MATCHUP_DATA;
