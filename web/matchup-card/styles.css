@@ -760,6 +760,63 @@ select:focus {
   background: rgba(255, 255, 255, 0.045);
 }
 
+/* Stage breakdown table */
+.audit-stage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.audit-stage-table thead th {
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  padding: 0 6px 6px 0;
+  text-align: right;
+}
+
+.audit-stage-table thead th:first-child {
+  text-align: left;
+}
+
+.audit-stage-table td {
+  padding: 5px 6px 5px 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.audit-stage-table td:first-child {
+  text-align: left;
+}
+
+.audit-stage-overall td {
+  font-weight: 800;
+  color: var(--text);
+  border-top: none;
+  padding-bottom: 7px;
+}
+
+.audit-stage-overall .audit-stage-pct,
+.audit-stage-overall .audit-stage-dadj {
+  color: var(--correct-strong);
+}
+
+.audit-stage-row td {
+  color: var(--muted);
+}
+
+.audit-stage-row .audit-stage-pct {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.audit-stage-row .audit-stage-dadj {
+  color: var(--muted);
+}
+
 .audit-viz-kicker {
   margin-bottom: 12px;
   color: var(--muted);

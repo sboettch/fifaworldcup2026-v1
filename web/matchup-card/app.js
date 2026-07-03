@@ -1,4 +1,4 @@
-const DATA_URL = document.currentScript ? new URL("./data/matchups.json", document.currentScript.src).href : "./web/matchup-card/data/matchups.json";
+const DATA_URL = "./data/matchups.json";
 
 const els = {
   matchCount: document.querySelector("#match-count"),
@@ -931,6 +931,53 @@ function renderAuditVisual(audit) {
   ];
   const defaultDetail = `${adjustedLabel} draw-adjusted score across ${counts.evaluated} actualized audit rows; exact strict accuracy is ${exactLabel}.`;
 
+  // Build stage breakdown live from match data
+  const stageOrder = ["Group stage", "R32", "QF", "SF", "3rd", "Final"];
+  const stageMap = new Map();
+  for (const m of (state.matches || [])) {
+    if (!m.actual_available) continue;
+    const rawStage = m.stage || "";
+    const label = rawStage.includes("Group") ? "Group stage"
+      : rawStage.includes("Round of 32") || rawStage.includes("R32") ? "R32"
+      : rawStage.includes("Quarter") ? "QF"
+      : rawStage.includes("Semi") ? "SF"
+      : rawStage.includes("Third") || rawStage.includes("3rd") ? "3rd"
+      : rawStage.includes("Final") ? "Final"
+      : rawStage;
+    if (!stageMap.has(label)) stageMap.set(label, { correct: 0, total: 0, credit: 0 });
+    const s = stageMap.get(label);
+    s.total++;
+    s.correct += m.prediction_correct ? 1 : 0;
+    s.credit += Number(m.prediction_credit || 0);
+  }
+  const stageRows = stageOrder
+    .filter(l => stageMap.has(l))
+    .map(l => ({ label: l, ...stageMap.get(l) }));
+
+  // Compute overall totals for the summary row
+  const allActualized = (state.matches || []).filter(m => m.actual_available);
+  const overallCorrect = allActualized.filter(m => m.prediction_correct).length;
+  const overallTotal = allActualized.length;
+  const overallCredit = allActualized.reduce((s, m) => s + Number(m.prediction_credit || 0), 0);
+
+  function fmtPct(n, d) { return d ? (n / d * 100).toFixed(1) + "%" : "—"; }
+
+  const overallRowHtml = `
+    <tr class="audit-stage-overall">
+      <td class="audit-stage-label">Overall</td>
+      <td class="audit-stage-counts">${overallCorrect}/${overallTotal}</td>
+      <td class="audit-stage-pct">${fmtPct(overallCorrect, overallTotal)}</td>
+      <td class="audit-stage-dadj">${fmtPct(overallCredit, overallTotal)}</td>
+    </tr>`;
+
+  const stageRowsHtml = stageRows.map(s => `
+    <tr class="audit-stage-row">
+      <td class="audit-stage-label">${escapeHtml(s.label)}</td>
+      <td class="audit-stage-counts">${s.correct}/${s.total}</td>
+      <td class="audit-stage-pct">${fmtPct(s.correct, s.total)}</td>
+      <td class="audit-stage-dadj">${fmtPct(s.credit, s.total)}</td>
+    </tr>`).join("");
+
   els.auditVisual.innerHTML = `
     <div class="audit-visual-grid">
       <article class="audit-viz-card audit-gauge-card">
@@ -945,6 +992,24 @@ function renderAuditVisual(audit) {
           <span>${adjustedLabel}</span>
         </button>
         <p>Strict exact result accuracy: <strong>${exactLabel}</strong></p>
+      </article>
+
+      <article class="audit-viz-card audit-stage-card">
+        <div class="audit-viz-kicker">Accuracy by stage</div>
+        <table class="audit-stage-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Correct</th>
+              <th>Exact %</th>
+              <th>Draw-adj</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${overallRowHtml}
+            ${stageRowsHtml}
+          </tbody>
+        </table>
       </article>
 
       <article class="audit-viz-card audit-stack-card">
@@ -969,6 +1034,7 @@ function renderAuditVisual(audit) {
           ${segments.slice(0, 3).map((segment) => auditBarButton(segment, evaluatedMax)).join("")}
         </div>
       </article>
+
 
       <article class="audit-viz-card audit-readiness-card">
         <div class="audit-viz-kicker">Data readiness</div>
