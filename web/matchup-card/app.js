@@ -934,13 +934,14 @@ function renderAuditVisual(audit) {
   const defaultDetail = `${adjustedLabel} draw-adjusted score across ${counts.evaluated} actualized audit rows; exact strict accuracy is ${exactLabel}.`;
 
   // Build stage breakdown live from match data
-  const stageOrder = ["Group stage", "R32", "QF", "SF", "3rd", "Final"];
+  const stageOrder = ["Group stage", "R32", "R16", "QF", "SF", "3rd", "Final"];
   const stageMap = new Map();
   for (const m of (state.matches || [])) {
     if (!m.actual_available) continue;
     const rawStage = m.stage || "";
     const label = rawStage.includes("Group") ? "Group stage"
       : rawStage.includes("Round of 32") || rawStage.includes("R32") ? "R32"
+      : rawStage.includes("Round of 16") || rawStage.includes("R16") ? "R16"
       : rawStage.includes("Quarter") ? "QF"
       : rawStage.includes("Semi") ? "SF"
       : rawStage.includes("Third") || rawStage.includes("3rd") ? "3rd"
