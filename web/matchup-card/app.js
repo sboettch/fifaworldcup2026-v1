@@ -1057,6 +1057,12 @@ function renderAuditVisual(audit) {
           <i><b style="--progress: ${(pendingShare * 100).toFixed(1)}%;"></b></i>
         </div>
       </article>
+
+      <article class="audit-viz-card audit-sim-card" id="audit-sim-card">
+        <div class="audit-viz-kicker">Tournament simulator <span id="sim-status" class="sim-status-inline"></span></div>
+        <div id="sim-table"></div>
+        <p class="sim-footer" id="sim-footer"></p>
+      </article>
     </div>
     <p class="audit-viz-detail" id="audit-viz-detail">${escapeHtml(defaultDetail)}</p>
   `;
@@ -1165,6 +1171,184 @@ function renderSummary() {
   els.modelLoss.textContent = modelSummary.best_log_loss_B ? Number(modelSummary.best_log_loss_B).toFixed(4) : "--";
   els.validationAcc.textContent = audit.draw_adjusted_score ? pct(audit.draw_adjusted_score, 1) : audit.accuracy ? pct(audit.accuracy, 1) : validation.accuracy ? pct(validation.accuracy, 1) : "--";
   els.dataCaveat.textContent = state.data.caveat || "";
+}
+
+function renderSimulator() {
+  const simTable = document.querySelector("#sim-table");
+  const simStatus = document.querySelector("#sim-status");
+  const simFooter = document.querySelector("#sim-footer");
+  if (!simTable) return;
+  const matches = state.matches || [];
+
+  // KO stages in bracket order
+  const koStages = ["Quarterfinal", "Semifinal", "Third-place match", "Final"];
+
+  // Pending KO matches with known teams + probabilities
+  const pending = matches.filter(m => {
+    if (m.actual_available) return false;
+    const stage = m.stage || "";
+    if (!koStages.some(s => stage.includes(s))) return false;
+    const h = m.home_team || "", a = m.away_team || "";
+    if (h.includes("Winner") || h.includes("Loser") || h.includes("Match") || a.includes("Winner")) return false;
+    return m.probabilities && (m.probabilities.home || m.probabilities.away);
+  });
+
+  // All remaining teams (pending + those with actuals in KO rounds)
+  const allKoTeams = new Set();
+  pending.forEach(m => { allKoTeams.add(m.home_team); allKoTeams.add(m.away_team); });
+
+  if (pending.length === 0) {
+    simTable.innerHTML = `<p class="sim-empty">No upcoming knockout fixtures with model predictions yet.</p>`;
+    simStatus.textContent = "";
+    simFooter.textContent = "";
+    return;
+  }
+
+  // In KO rounds, draws resolved by pens (50/50 split)
+  function koWinProbs(m) {
+    const p = m.probabilities || {};
+    const ph = (p.home || 0) + (p.draw || 0) / 2;
+    const pa = (p.away || 0) + (p.draw || 0) / 2;
+    return { [m.home_team]: ph, [m.away_team]: pa };
+  }
+
+  // Enumerate all 2^N outcomes of pending matches
+  const n = pending.length;
+  const teamWinProb = {};
+  const teamFinalProb = {};
+  allKoTeams.forEach(t => { teamWinProb[t] = 0; teamFinalProb[t] = 0; });
+
+  // Build bracket structure: QFs → SFs → Final
+  // Group by stage
+  const qfs = pending.filter(m => (m.stage || "").includes("Quarterfinal"));
+  const sfs = pending.filter(m => (m.stage || "").includes("Semifinal"));
+  const fin = pending.filter(m => (m.stage || "").includes("Final") && !(m.stage || "").includes("Third"));
+
+  function relProb(p1, p2) { return p1 / Math.max(p1 + p2, 0.0001); }
+
+  // Enumerate all QF outcomes
+  const qfCombos = 1 << qfs.length;
+  for (let mask = 0; mask < qfCombos; mask++) {
+    let pathProb = 1;
+    const qfWinners = [];
+    const qfWinnerStrengths = [];
+    qfs.forEach((m, i) => {
+      const wp = koWinProbs(m);
+      const homeWins = !!(mask & (1 << i));
+      const winner = homeWins ? m.home_team : m.away_team;
+      const loser = homeWins ? m.away_team : m.home_team;
+      pathProb *= wp[winner];
+      qfWinners.push({ winner, loser, strength: wp[winner] });
+      qfWinnerStrengths.push(wp[winner]);
+    });
+
+    if (pathProb < 1e-9) continue;
+
+    // If no SF data yet, simulate SFs from QF winners using relative strength
+    // Bracket: QF1 winner vs QF2 winner, QF3 winner vs QF4 winner
+    if (qfs.length >= 2 && sfs.length === 0) {
+      // Pair QF winners into SFs
+      const sfPairs = [];
+      for (let i = 0; i < qfWinners.length; i += 2) {
+        const a = qfWinners[i], b = qfWinners[i + 1];
+        if (a && b) sfPairs.push([a, b]);
+        else if (a) sfPairs.push([a]);
+      }
+
+      const sfCombos = 1 << sfPairs.length;
+      for (let sfMask = 0; sfMask < sfCombos; sfMask++) {
+        let sfPathProb = pathProb;
+        const sfWinners = [];
+        sfPairs.forEach((pair, i) => {
+          if (pair.length === 1) { sfWinners.push(pair[0]); return; }
+          const [a, b] = pair;
+          const pA = relProb(a.strength, b.strength);
+          const homeWins = !!(sfMask & (1 << i));
+          const winner = homeWins ? a : b;
+          const loser = homeWins ? b : a;
+          sfPathProb *= homeWins ? pA : 1 - pA;
+          sfWinners.push(winner);
+          // 3rd place: loser still reaches final in terms of finalist count
+        });
+
+        if (sfPathProb < 1e-9) continue;
+
+        // Final
+        if (sfWinners.length >= 2) {
+          const [f1, f2] = sfWinners;
+          const pF1 = relProb(f1.strength, f2.strength);
+          teamFinalProb[f1.winner] = (teamFinalProb[f1.winner] || 0) + sfPathProb;
+          teamFinalProb[f2.winner] = (teamFinalProb[f2.winner] || 0) + sfPathProb;
+          teamWinProb[f1.winner] = (teamWinProb[f1.winner] || 0) + sfPathProb * pF1;
+          teamWinProb[f2.winner] = (teamWinProb[f2.winner] || 0) + sfPathProb * (1 - pF1);
+        } else if (sfWinners.length === 1) {
+          teamFinalProb[sfWinners[0].winner] = (teamFinalProb[sfWinners[0].winner] || 0) + sfPathProb;
+          teamWinProb[sfWinners[0].winner] = (teamWinProb[sfWinners[0].winner] || 0) + sfPathProb;
+        }
+      }
+    } else {
+      // Fewer QFs or SFs already known — just accumulate QF winners directly
+      qfWinners.forEach(w => {
+        teamWinProb[w.winner] = (teamWinProb[w.winner] || 0) + pathProb * w.strength;
+        teamFinalProb[w.winner] = (teamFinalProb[w.winner] || 0) + pathProb;
+      });
+    }
+  }
+
+  // Rank by win probability
+  const ranked = Object.entries(teamWinProb)
+    .filter(([, p]) => p > 0.0001)
+    .sort((a, b) => b[1] - a[1]);
+
+  const maxWin = ranked[0]?.[1] || 1;
+  const maxFinal = Math.max(...ranked.map(([t]) => teamFinalProb[t] || 0));
+
+  const rows = ranked.map(([team, winP], i) => {
+    const finalP = teamFinalProb[team] || 0;
+    const flag = teamFlag(team) || "";
+    const winW = (winP / maxWin * 100).toFixed(1);
+    const finalW = (finalP / maxFinal * 100).toFixed(1);
+    return `
+      <div class="sim-row ${i === 0 ? 'sim-row-top' : ''}">
+        <span class="sim-rank">${i + 1}</span>
+        <span class="sim-flag">${flag}</span>
+        <span class="sim-team">${escapeHtml(team)}</span>
+        <span class="sim-win-pct">${(winP * 100).toFixed(1)}%</span>
+        <span class="sim-bars">
+          <i class="sim-bar-wrap">
+            <b class="sim-bar sim-bar-win" style="width:${winW}%"></b>
+          </i>
+          <i class="sim-bar-wrap sim-bar-wrap-final">
+            <b class="sim-bar sim-bar-final" style="width:${finalW}%"></b>
+          </i>
+        </span>
+        <span class="sim-final-pct">${(finalP * 100).toFixed(1)}%</span>
+      </div>`;
+  }).join("");
+
+  // Most likely final
+  let likelyFinal = "";
+  if (ranked.length >= 2) {
+    const [t1, p1] = ranked[0];
+    const [t2, p2] = ranked[1];
+    const f1 = teamFinalProb[t1] || 0;
+    const f2 = teamFinalProb[t2] || 0;
+    // Rough joint prob (simplified)
+    const jointProb = (f1 * f2 * 2).toFixed(0); // rough
+    likelyFinal = `Most likely final: ${teamFlag(t1) || ""} ${t1} vs ${teamFlag(t2) || ""} ${t2}`;
+  }
+
+  simTable.innerHTML = `
+    <div class="sim-header-row">
+      <span></span><span></span><span></span>
+      <span class="sim-col-label">Win %</span>
+      <span class="sim-col-bars"><span>win prob</span><span>reach final</span></span>
+      <span class="sim-col-label">Final %</span>
+    </div>
+    ${rows}
+  `;
+  simStatus.textContent = `Computed from ${pending.length} upcoming KO fixture${pending.length !== 1 ? "s" : ""} · ${pending.length <= 4 ? `${1 << pending.length} bracket paths` : "Monte Carlo paths"}`;
+  simFooter.textContent = likelyFinal;
 }
 
 function renderAuditOverview() {
@@ -2095,6 +2279,7 @@ async function init() {
   buildCountryFilter();
   renderSummary();
   renderAuditOverview();
+  renderSimulator();
   buildStageFilter();
   applyFilters();
   setupSectionNav();

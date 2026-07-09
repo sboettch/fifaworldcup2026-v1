@@ -752,6 +752,19 @@ select:focus {
   align-items: stretch;
 }
 
+.audit-sim-card {
+  grid-column: 2 / -1;
+}
+
+.sim-status-inline {
+  font-size: 0.62rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .audit-viz-card {
   min-width: 0;
   border: 1px solid var(--line);
@@ -1211,6 +1224,146 @@ select:focus {
 
 .lineup-panel-collapsed .chart-head {
   margin-bottom: 0;
+}
+
+/* ── Tournament Simulator ───────────────────────────────── */
+.sim-panel {
+  margin-bottom: 18px;
+  padding: 20px 20px 18px 28px;
+}
+
+.sim-body {
+  margin-top: 16px;
+}
+
+.sim-header-row {
+  display: grid;
+  grid-template-columns: 1.4rem 1.8rem 1fr 3.4rem 1fr 3.4rem;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.sim-col-bars {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.sim-col-label {
+  text-align: right;
+}
+
+.sim-row {
+  display: grid;
+  grid-template-columns: 1.4rem 1.8rem 1fr 3.4rem 1fr 3.4rem;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.15s;
+}
+
+.sim-row:hover {
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+}
+
+.sim-row-top .sim-team {
+  color: var(--correct-strong);
+  font-weight: 800;
+}
+
+.sim-row-top .sim-win-pct {
+  color: var(--correct-strong);
+  font-weight: 800;
+}
+
+.sim-rank {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-flag {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.sim-team {
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sim-win-pct,
+.sim-final-pct {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.sim-final-pct {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.sim-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.sim-bar-wrap {
+  display: block;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+.sim-bar-wrap-final {
+  opacity: 0.6;
+}
+
+.sim-bar {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sim-bar-win {
+  background: var(--correct-strong);
+}
+
+.sim-bar-final {
+  background: var(--accent, #58a6ff);
+}
+
+.sim-footer {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.sim-empty {
+  color: var(--muted);
+  font-size: 0.82rem;
+  padding: 12px 0;
 }
 
 .lineup-head-actions {
