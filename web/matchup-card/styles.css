@@ -1332,6 +1332,7 @@ select:focus {
   border-radius: 3px;
   background: rgba(255,255,255,0.07);
   overflow: hidden;
+  position: relative;
 }
 
 .sim-bar-wrap-final {
@@ -1343,6 +1344,18 @@ select:focus {
   height: 100%;
   border-radius: 3px;
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.sim-bar-ci {
+  background: var(--correct-strong);
+  opacity: 0.22;
+}
+
+.sim-bar-ci-final {
+  background: var(--accent, #58a6ff);
+  opacity: 0.22;
 }
 
 .sim-bar-win {

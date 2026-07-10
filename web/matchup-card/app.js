@@ -1183,7 +1183,215 @@ function renderSimulator() {
     if (card) card.hidden = true;
     return;
   }
+
   const matches = state.matches || [];
+  // Hypothetical matchup predictions from pipeline (keyed "Home vs Away")
+  const hypProbs = state.data.hypothetical_matchups || {};
+  const hasHypProbs = Object.keys(hypProbs).length > 0;
+
+  // KO prob helper: draws → pens (50/50)
+  function koProb(p, side) { return (p[side] || 0) + (p.draw || 0) / 2; }
+
+  // Determine actual winner from "H-A" score string
+  function scoreWinner(m) {
+    if (!m.actual_score) return null;
+    const parts = m.actual_score.split("-").map(Number);
+    if (parts.length !== 2) return null;
+    if (parts[0] > parts[1]) return m.home_team;
+    if (parts[1] > parts[0]) return m.away_team;
+    return null;
+  }
+
+  // Fallback: relative strength when hypothetical probs not available
+  function relProb(s1, s2) { return s1 / Math.max(s1 + s2, 1e-6); }
+
+  // Look up model probability for a hypothetical matchup (ko-adjusted)
+  // Returns P(home wins KO match) using real model predictions if available,
+  // falls back to relative strength heuristic
+  function matchupWinProb(homeTeam, awayTeam, homeStrength, awayStrength) {
+    const key = `${homeTeam} vs ${awayTeam}`;
+    const keyRev = `${awayTeam} vs ${homeTeam}`;
+    if (hypProbs[key]) {
+      const p = hypProbs[key];
+      return koProb(p, "home"); // P(home wins after pens if draw)
+    }
+    if (hypProbs[keyRev]) {
+      const p = hypProbs[keyRev];
+      return koProb(p, "away"); // same match, home/away swapped
+    }
+    // Fallback to heuristic
+    return relProb(homeStrength, awayStrength);
+  }
+
+  // Collect all QF matches with resolved (non-placeholder) teams
+  const qfMatches = matches
+    .filter(m => {
+      if (!(m.stage || "").includes("Quarterfinal")) return false;
+      const h = m.home_team || "", a = m.away_team || "";
+      return !h.includes("Winner") && !h.includes("Match") && !h.includes("Loser") &&
+             !a.includes("Winner") && !a.includes("Match") && !a.includes("Loser");
+    })
+    .sort((a, b) => String(a.match_id || a.date || "").localeCompare(String(b.match_id || b.date || "")));
+
+  if (qfMatches.length === 0) {
+    simTable.innerHTML = `<p class="sim-empty">Knockout matchups not yet determined.</p>`;
+    if (simStatus) simStatus.textContent = "";
+    if (simFooter) simFooter.textContent = "";
+    return;
+  }
+
+  // For each QF slot: confirmed winner (prob=1) or two candidates
+  const qfOutcomes = qfMatches.map(m => {
+    const p = m.probabilities || {};
+    if (m.actual_available) {
+      const winner = scoreWinner(m);
+      if (winner) {
+        const isHome = winner === m.home_team;
+        const strength = Math.max(isHome ? koProb(p, "home") : koProb(p, "away"), 0.1);
+        return [{ team: winner, prob: 1.0, strength }];
+      }
+    }
+    const ph = koProb(p, "home"), pa = koProb(p, "away");
+    return [
+      { team: m.home_team, prob: ph, strength: ph },
+      { team: m.away_team, prob: pa, strength: pa },
+    ];
+  });
+
+  // --- Hybrid Monte Carlo ---
+  // Phase 1: Enumerate QF outcomes exactly (real model probs, small search space)
+  // Phase 2: For each QF result, Monte Carlo sample SF + Final using real
+  //          hypothetical matchup predictions → captures uncertainty as CI
+  const N_SAMPLES = 2000;
+  const winCounts = {}, finalCounts = {};
+
+  // Build all exact QF paths with their joint probabilities
+  const qfPaths = []; // [{teams: [{team, strength}], prob}]
+  function buildQFPaths(idx, path, prob) {
+    if (prob < 1e-9) return;
+    if (idx === qfOutcomes.length) { qfPaths.push({ teams: path, prob }); return; }
+    for (const o of qfOutcomes[idx]) {
+      buildQFPaths(idx + 1, [...path, { team: o.team, strength: o.strength }], prob * o.prob);
+    }
+  }
+  buildQFPaths(0, [], 1.0);
+
+  // Weighted sample: pick a QF path proportional to its probability
+  function sampleQFPath() {
+    let r = Math.random(), cumul = 0;
+    for (const p of qfPaths) { cumul += p.prob; if (r <= cumul) return p.teams; }
+    return qfPaths[qfPaths.length - 1].teams;
+  }
+
+  for (let s = 0; s < N_SAMPLES; s++) {
+    const sfTeams = sampleQFPath(); // 4 teams in bracket order
+
+    // SF1: sfTeams[0] vs sfTeams[1], SF2: sfTeams[2] vs sfTeams[3]
+    const sfResults = [];
+    for (let i = 0; i < sfTeams.length; i += 2) {
+      const a = sfTeams[i], b = sfTeams[i + 1];
+      if (!a || !b) { if (a) sfResults.push(a); continue; }
+      const pA = matchupWinProb(a.team, b.team, a.strength, b.strength);
+      sfResults.push(Math.random() < pA ? a : b);
+    }
+
+    if (sfResults.length < 2) {
+      if (sfResults[0]) { winCounts[sfResults[0].team] = (winCounts[sfResults[0].team] || 0) + 1; }
+      continue;
+    }
+
+    // Final
+    const [f1, f2] = sfResults;
+    finalCounts[f1.team] = (finalCounts[f1.team] || 0) + 1;
+    finalCounts[f2.team] = (finalCounts[f2.team] || 0) + 1;
+    const pF1 = matchupWinProb(f1.team, f2.team, f1.strength, f2.strength);
+    const winner = Math.random() < pF1 ? f1.team : f2.team;
+    winCounts[winner] = (winCounts[winner] || 0) + 1;
+  }
+
+  // Convert counts → probabilities + 95% CI
+  // CI: Wilson interval approximation — more robust than normal approx at extremes
+  function wilsonCI(count, n, z = 1.96) {
+    const p = count / n;
+    const denom = 1 + z * z / n;
+    const centre = (p + z * z / (2 * n)) / denom;
+    const margin = (z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))) / denom;
+    return { p, lo: Math.max(0, centre - margin), hi: Math.min(1, centre + margin) };
+  }
+
+  const allTeams = new Set([...Object.keys(winCounts), ...Object.keys(finalCounts)]);
+  const ranked = [...allTeams]
+    .map(team => {
+      const win = wilsonCI(winCounts[team] || 0, N_SAMPLES);
+      const fin = wilsonCI(finalCounts[team] || 0, N_SAMPLES);
+      return { team, ...win, winLo: win.lo, winHi: win.hi, finP: fin.p, finLo: fin.lo, finHi: fin.hi };
+    })
+    .filter(t => t.p > 0.001)
+    .sort((a, b) => b.p - a.p);
+
+  if (ranked.length === 0) {
+    simTable.innerHTML = `<p class="sim-empty">No simulation data available yet.</p>`;
+    return;
+  }
+
+  const maxWin = ranked[0].p || 1;
+  const maxFin = Math.max(...ranked.map(t => t.finP || 0)) || 1;
+  const confirmedTeams = new Set(
+    qfMatches.filter(m => m.actual_available).map(m => scoreWinner(m)).filter(Boolean)
+  );
+  const pendingCount = qfMatches.filter(m => !m.actual_available).length;
+  const confirmedCount = qfMatches.length - pendingCount;
+
+  const rows = ranked.map(({ team, p, winLo, winHi, finP, finLo, finHi }, i) => {
+    const flag = teamFlag(team) || "";
+    const isSFConfirmed = confirmedTeams.has(team);
+    const winRange = `${(winLo * 100).toFixed(0)}–${(winHi * 100).toFixed(0)}%`;
+    const finRange = `${(finLo * 100).toFixed(0)}–${(finHi * 100).toFixed(0)}%`;
+    const winBarSolid = (p / maxWin * 100).toFixed(1);
+    const winBarHi = (winHi / maxWin * 100).toFixed(1);
+    const finBarSolid = (finP / maxFin * 100).toFixed(1);
+    const finBarHi = (finHi / maxFin * 100).toFixed(1);
+    return `
+      <div class="sim-row ${i === 0 ? "sim-row-top" : ""}${isSFConfirmed ? " sim-row-confirmed" : ""}">
+        <span class="sim-rank">${i + 1}</span>
+        <span class="sim-flag">${flag}</span>
+        <span class="sim-team">${escapeHtml(team)}${isSFConfirmed ? `<span class="sim-confirmed-badge">SF ✓</span>` : ""}</span>
+        <span class="sim-win-pct">${winRange}</span>
+        <span class="sim-bars">
+          <i class="sim-bar-wrap">
+            <b class="sim-bar sim-bar-ci" style="width:${winBarHi}%"></b>
+            <b class="sim-bar sim-bar-win" style="width:${winBarSolid}%"></b>
+          </i>
+          <i class="sim-bar-wrap sim-bar-wrap-final">
+            <b class="sim-bar sim-bar-ci sim-bar-ci-final" style="width:${finBarHi}%"></b>
+            <b class="sim-bar sim-bar-final" style="width:${finBarSolid}%"></b>
+          </i>
+        </span>
+        <span class="sim-final-pct">${finRange}</span>
+      </div>`;
+  }).join("");
+
+  const likelyFinal = ranked.length >= 2
+    ? `Most likely final: ${teamFlag(ranked[0].team) || ""} ${ranked[0].team} vs ${teamFlag(ranked[1].team) || ""} ${ranked[1].team}`
+    : "";
+
+  simTable.innerHTML = `
+    <div class="sim-header-row">
+      <span></span><span></span><span></span>
+      <span class="sim-col-label">Win %</span>
+      <span class="sim-col-bars"><span>win prob</span><span>makes final</span></span>
+      <span class="sim-col-label">Makes Final</span>
+    </div>${rows}`;
+
+  const method = hasHypProbs ? `model predictions · N=${N_SAMPLES}` : `strength heuristic · N=${N_SAMPLES}`;
+  const statusParts = [];
+  if (confirmedCount > 0) statusParts.push(`${confirmedCount} confirmed`);
+  if (pendingCount > 0) statusParts.push(`${pendingCount} pending`);
+  statusParts.push(method);
+  if (simStatus) simStatus.textContent = statusParts.join(" · ");
+  if (simFooter) simFooter.textContent = likelyFinal;
+}
+
 
   // KO prob: draws → pens (50/50 split)
   function koProb(p, side) { return (p[side] || 0) + (p.draw || 0) / 2; }

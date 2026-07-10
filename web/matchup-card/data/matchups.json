@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-10T01:00:26.866556+00:00",
+  "generated_at_utc": "2026-07-10T02:58:20.742307+00:00",
   "source_files": [
     "data/processed/predictions_2026.csv",
     "data/processed/predictions_2026_scheduled.csv",
@@ -16,7 +16,8 @@
     "data/processed/cluster_assignments.csv",
     "data/processed/feature_importance.csv",
     "data/processed/model_results.csv",
-    "data/processed/model_cv_folds.csv"
+    "data/processed/model_cv_folds.csv",
+    "data/processed/hypothetical_matchups.json"
   ],
   "caveat": "Rows are true pre-match forecasts when pre_match_snapshot is true. Rows without actual_available are forecast/imputed for display until the actual result is ingested.",
   "model_summary": {
@@ -46,9 +47,9 @@
   },
   "schedule_summary": {
     "as_of_date": "2026-07-09",
-    "as_of_local": "2026-07-09T17:59:32-07:00",
-    "as_of_utc": "2026-07-10T00:59:32Z",
-    "generated_at_utc": "2026-07-10T00:59:33Z",
+    "as_of_local": "2026-07-09T19:57:45-07:00",
+    "as_of_utc": "2026-07-10T02:57:45Z",
+    "generated_at_utc": "2026-07-10T02:57:45Z",
     "rows": 104,
     "modeled_rows": 73,
     "unmodeled_rows": 31,
@@ -73,10 +74,10 @@
     ]
   },
   "viz_summary": {
-    "generated_at_utc": "2026-07-10T00:59:41Z",
+    "generated_at_utc": "2026-07-10T02:57:55Z",
     "as_of_date": "2026-07-09",
-    "as_of_local": "2026-07-09T17:59:32-07:00",
-    "as_of_utc": "2026-07-10T00:59:32Z",
+    "as_of_local": "2026-07-09T19:57:45-07:00",
+    "as_of_utc": "2026-07-10T02:57:45Z",
     "rows": 104,
     "prediction_available_rows": 100,
     "actual_available_rows": 97,
@@ -169,9 +170,9 @@
     "accuracy": 0.7526,
     "true_pre_match_rows": 3,
     "predicted_at_min_utc": "2026-07-01T17:13:53.011982Z",
-    "predicted_at_max_utc": "2026-07-10T00:59:40.721512Z",
-    "as_of_local": "2026-07-09T17:59:32-07:00",
-    "as_of_utc": "2026-07-10T00:59:32Z",
+    "predicted_at_max_utc": "2026-07-10T02:57:50.470811Z",
+    "as_of_local": "2026-07-09T19:57:45-07:00",
+    "as_of_utc": "2026-07-10T02:57:45Z",
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
       "scheduled_actualized_validation": 24,
@@ -14704,13 +14705,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4902,
-        "draw": 0.2258,
-        "away": 0.2841
+        "home": 0.4884,
+        "draw": 0.2245,
+        "away": 0.2871
       },
-      "upset_risk": 0.5098,
+      "upset_risk": 0.5116,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -14899,13 +14900,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4866,
-        "draw": 0.2582,
-        "away": 0.2552
+        "home": 0.4887,
+        "draw": 0.2559,
+        "away": 0.2554
       },
-      "upset_risk": 0.5134,
+      "upset_risk": 0.5113,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15101,13 +15102,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4128,
-        "draw": 0.3242,
-        "away": 0.2631
+        "home": 0.4143,
+        "draw": 0.3261,
+        "away": 0.2595
       },
-      "upset_risk": 0.5872,
+      "upset_risk": 0.5857,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15300,13 +15301,13 @@
       "predicted_result": "D",
       "predicted_label": "Draw",
       "probabilities": {
-        "home": 0.2728,
-        "draw": 0.3747,
-        "away": 0.3525
+        "home": 0.2731,
+        "draw": 0.3749,
+        "away": 0.352
       },
-      "upset_risk": 0.6253,
+      "upset_risk": 0.6251,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15496,13 +15497,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7934,
-        "draw": 0.1149,
-        "away": 0.0917
+        "home": 0.7896,
+        "draw": 0.1168,
+        "away": 0.0936
       },
-      "upset_risk": 0.2066,
+      "upset_risk": 0.2104,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15695,13 +15696,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5582,
-        "draw": 0.2542,
-        "away": 0.1876
+        "home": 0.5611,
+        "draw": 0.2523,
+        "away": 0.1865
       },
-      "upset_risk": 0.4418,
+      "upset_risk": 0.4389,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15900,13 +15901,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8103,
-        "draw": 0.1072,
-        "away": 0.0825
+        "home": 0.8066,
+        "draw": 0.1082,
+        "away": 0.0852
       },
-      "upset_risk": 0.1897,
+      "upset_risk": 0.1934,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16102,13 +16103,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4688,
-        "draw": 0.3137,
-        "away": 0.2175
+        "home": 0.47,
+        "draw": 0.3126,
+        "away": 0.2174
       },
-      "upset_risk": 0.5312,
+      "upset_risk": 0.53,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16302,13 +16303,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8809,
-        "draw": 0.0704,
-        "away": 0.0488
+        "home": 0.8797,
+        "draw": 0.0723,
+        "away": 0.048
       },
-      "upset_risk": 0.1191,
+      "upset_risk": 0.1203,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16501,13 +16502,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7904,
-        "draw": 0.1146,
-        "away": 0.095
+        "home": 0.7865,
+        "draw": 0.116,
+        "away": 0.0975
       },
-      "upset_risk": 0.2096,
+      "upset_risk": 0.2135,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16703,13 +16704,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.4813,
-        "draw": 0.2651,
-        "away": 0.2536
+        "home": 0.4819,
+        "draw": 0.2661,
+        "away": 0.2521
       },
-      "upset_risk": 0.5187,
+      "upset_risk": 0.5181,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16906,13 +16907,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5523,
-        "draw": 0.2339,
-        "away": 0.2137
+        "home": 0.5543,
+        "draw": 0.2304,
+        "away": 0.2153
       },
-      "upset_risk": 0.4477,
+      "upset_risk": 0.4457,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17097,13 +17098,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5054,
-        "draw": 0.2389,
-        "away": 0.2557
+        "home": 0.51,
+        "draw": 0.2337,
+        "away": 0.2563
       },
-      "upset_risk": 0.4946,
+      "upset_risk": 0.49,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17301,13 +17302,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8456,
+        "home": 0.8452,
         "draw": 0.0899,
-        "away": 0.0645
+        "away": 0.0649
       },
-      "upset_risk": 0.1544,
+      "upset_risk": 0.1548,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17498,13 +17499,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.8604,
-        "draw": 0.0769,
-        "away": 0.0628
+        "home": 0.8583,
+        "draw": 0.0774,
+        "away": 0.0643
       },
-      "upset_risk": 0.1396,
+      "upset_risk": 0.1417,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17694,13 +17695,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.265,
-        "draw": 0.3524,
-        "away": 0.3826
+        "home": 0.266,
+        "draw": 0.3529,
+        "away": 0.3811
       },
-      "upset_risk": 0.6174,
+      "upset_risk": 0.6189,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17895,13 +17896,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2054,
-        "draw": 0.1274,
-        "away": 0.6672
+        "home": 0.2041,
+        "draw": 0.1249,
+        "away": 0.671
       },
-      "upset_risk": 0.3328,
+      "upset_risk": 0.329,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18096,13 +18097,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.5,
-        "draw": 0.2535,
+        "home": 0.5009,
+        "draw": 0.2526,
         "away": 0.2465
       },
-      "upset_risk": 0.5,
+      "upset_risk": 0.4991,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18300,13 +18301,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2223,
-        "draw": 0.2009,
-        "away": 0.5768
+        "home": 0.2219,
+        "draw": 0.201,
+        "away": 0.5771
       },
-      "upset_risk": 0.4232,
+      "upset_risk": 0.4229,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18494,13 +18495,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2339,
-        "draw": 0.2184,
-        "away": 0.5477
+        "home": 0.2337,
+        "draw": 0.2166,
+        "away": 0.5497
       },
-      "upset_risk": 0.4523,
+      "upset_risk": 0.4503,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18700,13 +18701,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.207,
-        "draw": 0.1905,
-        "away": 0.6024
+        "home": 0.2082,
+        "draw": 0.1899,
+        "away": 0.6019
       },
-      "upset_risk": 0.3976,
+      "upset_risk": 0.3981,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18902,13 +18903,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7916,
-        "draw": 0.114,
-        "away": 0.0944
+        "home": 0.7882,
+        "draw": 0.1148,
+        "away": 0.0969
       },
-      "upset_risk": 0.2084,
+      "upset_risk": 0.2118,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19099,13 +19100,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2442,
-        "draw": 0.2425,
-        "away": 0.5133
+        "home": 0.2432,
+        "draw": 0.2436,
+        "away": 0.5132
       },
-      "upset_risk": 0.4867,
+      "upset_risk": 0.4868,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19302,13 +19303,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.676,
-        "draw": 0.1757,
-        "away": 0.1483
+        "home": 0.6717,
+        "draw": 0.1787,
+        "away": 0.1496
       },
-      "upset_risk": 0.324,
+      "upset_risk": 0.3283,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19504,13 +19505,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.7548,
-        "draw": 0.1392,
-        "away": 0.106
+        "home": 0.7504,
+        "draw": 0.1409,
+        "away": 0.1086
       },
-      "upset_risk": 0.2452,
+      "upset_risk": 0.2496,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -19705,13 +19706,13 @@
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
-        "home": 0.6825,
-        "draw": 0.1579,
-        "away": 0.1596
+        "home": 0.6784,
+        "draw": 0.1612,
+        "away": 0.1604
       },
-      "upset_risk": 0.3175,
+      "upset_risk": 0.3216,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -19907,13 +19908,13 @@
       "predicted_result": "A",
       "predicted_label": "Away win",
       "probabilities": {
-        "home": 0.2614,
-        "draw": 0.3465,
-        "away": 0.392
+        "home": 0.262,
+        "draw": 0.3483,
+        "away": 0.3897
       },
-      "upset_risk": 0.608,
+      "upset_risk": 0.6103,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-10T00:59:40.721512+00:00",
+      "predicted_at_utc": "2026-07-10T02:57:50.470811+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "upcoming_fixture_not_model_ready",
@@ -20083,11 +20084,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -10,
-      "minutes_from_as_of": -14880,
+      "minutes_from_as_of": -14998,
       "probabilities": {
-        "home": 0.4902,
-        "draw": 0.2258,
-        "away": 0.2841
+        "home": 0.4884,
+        "draw": 0.2245,
+        "away": 0.2871
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20115,11 +20116,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -10,
-      "minutes_from_as_of": -14670,
+      "minutes_from_as_of": -14788,
       "probabilities": {
-        "home": 0.4866,
-        "draw": 0.2582,
-        "away": 0.2552
+        "home": 0.4887,
+        "draw": 0.2559,
+        "away": 0.2554
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20147,11 +20148,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -10,
-      "minutes_from_as_of": -14400,
+      "minutes_from_as_of": -14518,
       "probabilities": {
-        "home": 0.4128,
-        "draw": 0.3242,
-        "away": 0.2631
+        "home": 0.4143,
+        "draw": 0.3261,
+        "away": 0.2595
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20179,11 +20180,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -9,
-      "minutes_from_as_of": -13200,
+      "minutes_from_as_of": -13318,
       "probabilities": {
-        "home": 0.7934,
-        "draw": 0.1149,
-        "away": 0.0917
+        "home": 0.7896,
+        "draw": 0.1168,
+        "away": 0.0936
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20211,11 +20212,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -9,
-      "minutes_from_as_of": -13440,
+      "minutes_from_as_of": -13558,
       "probabilities": {
-        "home": 0.2728,
-        "draw": 0.3747,
-        "away": 0.3525
+        "home": 0.2731,
+        "draw": 0.3749,
+        "away": 0.352
       },
       "predicted_result": "D",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20243,11 +20244,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -9,
-      "minutes_from_as_of": -12900,
+      "minutes_from_as_of": -13018,
       "probabilities": {
-        "home": 0.5582,
-        "draw": 0.2542,
-        "away": 0.1876
+        "home": 0.5611,
+        "draw": 0.2523,
+        "away": 0.1865
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20275,11 +20276,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -11820,
+      "minutes_from_as_of": -11938,
       "probabilities": {
-        "home": 0.4688,
-        "draw": 0.3137,
-        "away": 0.2175
+        "home": 0.47,
+        "draw": 0.3126,
+        "away": 0.2174
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20307,11 +20308,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -12060,
+      "minutes_from_as_of": -12178,
       "probabilities": {
-        "home": 0.8103,
-        "draw": 0.1072,
-        "away": 0.0825
+        "home": 0.8066,
+        "draw": 0.1082,
+        "away": 0.0852
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20339,11 +20340,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -11580,
+      "minutes_from_as_of": -11698,
       "probabilities": {
-        "home": 0.8809,
-        "draw": 0.0704,
-        "away": 0.0488
+        "home": 0.8797,
+        "draw": 0.0723,
+        "away": 0.048
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20371,11 +20372,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -7,
-      "minutes_from_as_of": -10200,
+      "minutes_from_as_of": -10318,
       "probabilities": {
-        "home": 0.4813,
-        "draw": 0.2651,
-        "away": 0.2536
+        "home": 0.4819,
+        "draw": 0.2661,
+        "away": 0.2521
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20403,11 +20404,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -7,
-      "minutes_from_as_of": -10440,
+      "minutes_from_as_of": -10558,
       "probabilities": {
-        "home": 0.7904,
-        "draw": 0.1146,
-        "away": 0.095
+        "home": 0.7865,
+        "draw": 0.116,
+        "away": 0.0975
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20435,11 +20436,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -7,
-      "minutes_from_as_of": -9960,
+      "minutes_from_as_of": -10078,
       "probabilities": {
-        "home": 0.5523,
-        "draw": 0.2339,
-        "away": 0.2137
+        "home": 0.5543,
+        "draw": 0.2304,
+        "away": 0.2153
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20467,11 +20468,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -6,
-      "minutes_from_as_of": -8820,
+      "minutes_from_as_of": -8938,
       "probabilities": {
-        "home": 0.8456,
+        "home": 0.8452,
         "draw": 0.0899,
-        "away": 0.0645
+        "away": 0.0649
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20499,11 +20500,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -6,
-      "minutes_from_as_of": -9060,
+      "minutes_from_as_of": -9178,
       "probabilities": {
-        "home": 0.5054,
-        "draw": 0.2389,
-        "away": 0.2557
+        "home": 0.51,
+        "draw": 0.2337,
+        "away": 0.2563
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20531,11 +20532,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -6,
-      "minutes_from_as_of": -8610,
+      "minutes_from_as_of": -8728,
       "probabilities": {
-        "home": 0.8604,
-        "draw": 0.0769,
-        "away": 0.0628
+        "home": 0.8583,
+        "draw": 0.0774,
+        "away": 0.0643
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20563,11 +20564,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -5,
-      "minutes_from_as_of": -7680,
+      "minutes_from_as_of": -7798,
       "probabilities": {
-        "home": 0.265,
-        "draw": 0.3524,
-        "away": 0.3826
+        "home": 0.266,
+        "draw": 0.3529,
+        "away": 0.3811
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20595,11 +20596,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -5,
-      "minutes_from_as_of": -7440,
+      "minutes_from_as_of": -7558,
       "probabilities": {
-        "home": 0.2054,
-        "draw": 0.1274,
-        "away": 0.6672
+        "home": 0.2041,
+        "draw": 0.1249,
+        "away": 0.671
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20627,10 +20628,10 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -4,
-      "minutes_from_as_of": -6060,
+      "minutes_from_as_of": -6178,
       "probabilities": {
-        "home": 0.5,
-        "draw": 0.2535,
+        "home": 0.5009,
+        "draw": 0.2526,
         "away": 0.2465
       },
       "predicted_result": "H",
@@ -20659,11 +20660,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -4,
-      "minutes_from_as_of": -5760,
+      "minutes_from_as_of": -5878,
       "probabilities": {
-        "home": 0.2223,
-        "draw": 0.2009,
-        "away": 0.5768
+        "home": 0.2219,
+        "draw": 0.201,
+        "away": 0.5771
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20691,11 +20692,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -3,
-      "minutes_from_as_of": -4680,
+      "minutes_from_as_of": -4798,
       "probabilities": {
-        "home": 0.207,
-        "draw": 0.1905,
-        "away": 0.6024
+        "home": 0.2082,
+        "draw": 0.1899,
+        "away": 0.6019
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20723,11 +20724,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -3,
-      "minutes_from_as_of": -4380,
+      "minutes_from_as_of": -4498,
       "probabilities": {
-        "home": 0.2339,
-        "draw": 0.2184,
-        "away": 0.5477
+        "home": 0.2337,
+        "draw": 0.2166,
+        "away": 0.5497
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20755,11 +20756,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -2,
-      "minutes_from_as_of": -3420,
+      "minutes_from_as_of": -3538,
       "probabilities": {
-        "home": 0.7916,
-        "draw": 0.114,
-        "away": 0.0944
+        "home": 0.7882,
+        "draw": 0.1148,
+        "away": 0.0969
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20787,11 +20788,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -2,
-      "minutes_from_as_of": -3180,
+      "minutes_from_as_of": -3298,
       "probabilities": {
-        "home": 0.2442,
-        "draw": 0.2425,
-        "away": 0.5133
+        "home": 0.2432,
+        "draw": 0.2436,
+        "away": 0.5132
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20819,11 +20820,11 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": -300,
+      "minutes_from_as_of": -418,
       "probabilities": {
-        "home": 0.676,
-        "draw": 0.1757,
-        "away": 0.1483
+        "home": 0.6717,
+        "draw": 0.1787,
+        "away": 0.1496
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20851,11 +20852,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 1,
-      "minutes_from_as_of": 1080,
+      "minutes_from_as_of": 962,
       "probabilities": {
-        "home": 0.7548,
-        "draw": 0.1392,
-        "away": 0.106
+        "home": 0.7504,
+        "draw": 0.1409,
+        "away": 0.1086
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20883,11 +20884,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 2,
-      "minutes_from_as_of": 2880,
+      "minutes_from_as_of": 2762,
       "probabilities": {
-        "home": 0.6825,
-        "draw": 0.1579,
-        "away": 0.1596
+        "home": 0.6784,
+        "draw": 0.1612,
+        "away": 0.1604
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20915,11 +20916,11 @@
       "fixture_status": "upcoming_fixture_not_model_ready",
       "status_label": "Upcoming scheduled fixture; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 2,
-      "minutes_from_as_of": 2640,
+      "minutes_from_as_of": 2522,
       "probabilities": {
-        "home": 0.2614,
-        "draw": 0.3465,
-        "away": 0.392
+        "home": 0.262,
+        "draw": 0.3483,
+        "away": 0.3897
       },
       "predicted_result": "A",
       "prediction_source": "scheduled_fixture_forecast",
@@ -20947,7 +20948,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 5,
-      "minutes_from_as_of": 6840,
+      "minutes_from_as_of": 6722,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -20975,7 +20976,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 6,
-      "minutes_from_as_of": 8280,
+      "minutes_from_as_of": 8162,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -21003,7 +21004,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 9,
-      "minutes_from_as_of": 12720,
+      "minutes_from_as_of": 12602,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -21031,7 +21032,7 @@
       "fixture_status": "placeholder_fixture_not_model_ready",
       "status_label": "Fixture slot is announced, but one or both teams are not known yet.",
       "days_from_as_of": 10,
-      "minutes_from_as_of": 14040,
+      "minutes_from_as_of": 13922,
       "probabilities": null,
       "predicted_result": null,
       "prediction_source": null,
@@ -21041,5 +21042,167 @@
       "is_imputed_prediction": false,
       "model_status": "Forecast row from 2026_matchup_viz.csv with an actual result available."
     }
-  ]
+  ],
+  "hypothetical_matchups": {
+    "Belgium vs Switzerland": {
+      "home": 0.3368,
+      "draw": 0.2664,
+      "away": 0.3968
+    },
+    "Switzerland vs Belgium": {
+      "home": 0.4114,
+      "draw": 0.3472,
+      "away": 0.2414
+    },
+    "Belgium vs Norway": {
+      "home": 0.252,
+      "draw": 0.2515,
+      "away": 0.4965
+    },
+    "Norway vs Belgium": {
+      "home": 0.5084,
+      "draw": 0.258,
+      "away": 0.2336
+    },
+    "France vs England": {
+      "home": 0.4863,
+      "draw": 0.226,
+      "away": 0.2877
+    },
+    "England vs France": {
+      "home": 0.2361,
+      "draw": 0.2195,
+      "away": 0.5444
+    },
+    "Morocco vs England": {
+      "home": 0.2325,
+      "draw": 0.2233,
+      "away": 0.5442
+    },
+    "England vs Morocco": {
+      "home": 0.4734,
+      "draw": 0.2237,
+      "away": 0.3029
+    },
+    "Belgium vs England": {
+      "home": 0.2482,
+      "draw": 0.3305,
+      "away": 0.4212
+    },
+    "England vs Belgium": {
+      "home": 0.7281,
+      "draw": 0.1387,
+      "away": 0.1332
+    },
+    "Spain vs Argentina": {
+      "home": 0.4828,
+      "draw": 0.2587,
+      "away": 0.2585
+    },
+    "Argentina vs Spain": {
+      "home": 0.2471,
+      "draw": 0.2547,
+      "away": 0.4981
+    },
+    "Morocco vs Argentina": {
+      "home": 0.2752,
+      "draw": 0.3872,
+      "away": 0.3376
+    },
+    "Argentina vs Morocco": {
+      "home": 0.7228,
+      "draw": 0.1407,
+      "away": 0.1365
+    },
+    "France vs Argentina": {
+      "home": 0.4571,
+      "draw": 0.3158,
+      "away": 0.227
+    },
+    "Argentina vs France": {
+      "home": 0.3509,
+      "draw": 0.3278,
+      "away": 0.3213
+    },
+    "Morocco vs Norway": {
+      "home": 0.4268,
+      "draw": 0.3336,
+      "away": 0.2396
+    },
+    "Norway vs Morocco": {
+      "home": 0.3481,
+      "draw": 0.3377,
+      "away": 0.3142
+    },
+    "Spain vs Switzerland": {
+      "home": 0.7756,
+      "draw": 0.1254,
+      "away": 0.099
+    },
+    "Switzerland vs Spain": {
+      "home": 0.197,
+      "draw": 0.1263,
+      "away": 0.6767
+    },
+    "Spain vs Norway": {
+      "home": 0.789,
+      "draw": 0.1133,
+      "away": 0.0977
+    },
+    "Norway vs Spain": {
+      "home": 0.1972,
+      "draw": 0.1309,
+      "away": 0.6719
+    },
+    "Belgium vs Argentina": {
+      "home": 0.1952,
+      "draw": 0.1246,
+      "away": 0.6801
+    },
+    "Argentina vs Belgium": {
+      "home": 0.7861,
+      "draw": 0.1131,
+      "away": 0.1008
+    },
+    "Morocco vs Switzerland": {
+      "home": 0.4181,
+      "draw": 0.3492,
+      "away": 0.2327
+    },
+    "Switzerland vs Morocco": {
+      "home": 0.3574,
+      "draw": 0.275,
+      "away": 0.3675
+    },
+    "France vs Switzerland": {
+      "home": 0.7612,
+      "draw": 0.116,
+      "away": 0.1228
+    },
+    "Switzerland vs France": {
+      "home": 0.2083,
+      "draw": 0.1897,
+      "away": 0.602
+    },
+    "France vs Norway": {
+      "home": 0.7547,
+      "draw": 0.124,
+      "away": 0.1213
+    },
+    "Norway vs France": {
+      "home": 0.2149,
+      "draw": 0.2122,
+      "away": 0.5729
+    },
+    "Spain vs England": {
+      "home": 0.6585,
+      "draw": 0.1826,
+      "away": 0.1589
+    },
+    "England vs Spain": {
+      "home": 0.2843,
+      "draw": 0.3609,
+      "away": 0.3548
+    }
+  }
 }
