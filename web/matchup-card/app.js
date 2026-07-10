@@ -1186,7 +1186,7 @@ function renderSimulator() {
 
   const matches = state.matches || [];
   // Hypothetical matchup predictions from pipeline (keyed "Home vs Away")
-  const hypProbs = state.data.hypothetical_matchups || {};
+  const hypProbs = (state.data && state.data.hypothetical_matchups) || {};
   const hasHypProbs = Object.keys(hypProbs).length > 0;
 
   // KO prob helper: draws → pens (50/50)
