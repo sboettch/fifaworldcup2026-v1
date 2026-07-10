@@ -1366,6 +1366,21 @@ select:focus {
   padding: 12px 0;
 }
 
+.sim-confirmed-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--correct-strong);
+  border: 1px solid var(--correct-strong);
+  border-radius: 3px;
+  padding: 1px 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
 .lineup-head-actions {
   display: grid;
   justify-items: end;
