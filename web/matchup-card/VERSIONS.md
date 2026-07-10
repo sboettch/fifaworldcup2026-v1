@@ -2,7 +2,7 @@
 
 | Version | File | Status | Notes |
 |---------|------|--------|-------|
-| v58 multi-badge-animation | `index.html` (current) | ✅ **LIVE** | Multi-badge layout, match animation, no overlay |
+| v58 multi-badge-animation | `index.html` (current) | ✅ **LIVE** | Multi-badge layout, match animation, no overlay. 2026-07-10 render repair removed a duplicated simulator block that made the dashboard blank. |
 | v51f section1-fork | `index-v51f-section1-fork.html` | 🗄 Archived | Section 1 compact filter toolbar |
 | v44 | `index-v44.html` | 🗄 Archived | Previous baseline |
 | v54 teamstack | `index-v54-teamstack.html` | 🗄 Archived | Frozen teamstack experiment |

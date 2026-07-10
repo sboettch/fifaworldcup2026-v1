@@ -14,6 +14,17 @@ are forecast rows awaiting an actual result. Selecting any card updates the
 match card, probability panel, radar comparison, archetypes, timing, upset risk,
 and feature details.
 
+## Current Published App
+
+The public static site entry point is `index.html`, which loads `app.js`,
+`styles.css`, and `data/matchups.json`. This is the v58 multi-badge animation
+build: users can compare model-assigned archetype badges, toggle individual
+badge overlays, or choose `No overlay` without changing the underlying
+prediction probabilities or audit scoring.
+
+On 2026-07-10, the published app script was repaired after a duplicated
+simulator block made the browser render a blank dashboard.
+
 ## Regenerate Data
 
 ```bash
