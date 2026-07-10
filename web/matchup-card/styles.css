@@ -2333,6 +2333,11 @@ select:focus {
     grid-template-columns: 1fr 1fr;
   }
 
+  /* simulator spans full width at tablet */
+  .audit-sim-card {
+    grid-column: 1 / -1;
+  }
+
   .audit-stat-grid,
   .lineup-breakdown,
   .timeline-day-grid {
@@ -2373,6 +2378,34 @@ select:focus {
   .main-grid,
   .detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* simulator full width + compact rows on mobile */
+  .audit-sim-card {
+    grid-column: 1 / -1;
+  }
+
+  .sim-header-row,
+  .sim-row {
+    grid-template-columns: 1.2rem 1.6rem 1fr 3rem 1fr 3rem;
+    gap: 5px;
+  }
+
+  .sim-team {
+    font-size: 0.76rem;
+  }
+
+  .sim-win-pct,
+  .sim-final-pct {
+    font-size: 0.68rem;
+  }
+
+  .sim-bar-wrap {
+    height: 4px;
+  }
+
+  .sim-footer {
+    font-size: 0.68rem;
   }
 
   .audit-head-actions {

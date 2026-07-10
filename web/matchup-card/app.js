@@ -1178,6 +1178,11 @@ function renderSimulator() {
   const simStatus = document.querySelector("#sim-status");
   const simFooter = document.querySelector("#sim-footer");
   if (!simTable) return;
+  // Feature flag — set window.SIM_ENABLED = false in the page to hide
+  if (window.SIM_ENABLED === false) {
+    simTable.closest(".audit-sim-card").hidden = true;
+    return;
+  }
   const matches = state.matches || [];
 
   // KO stages in bracket order
