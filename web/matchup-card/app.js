@@ -1378,9 +1378,9 @@ function renderSimulator() {
   simTable.innerHTML = `
     <div class="sim-header-row">
       <span></span><span></span><span></span>
-      <span class="sim-col-label">Win %</span>
-      <span class="sim-col-bars"><span>win prob</span><span>makes final</span></span>
-      <span class="sim-col-label">Makes Final</span>
+      <span class="sim-col-label">WINS</span>
+      <span class="sim-col-bars"><span></span><span></span></span>
+      <span class="sim-col-label">TO FINAL</span>
     </div>${rows}`;
 
   const method = hasHypProbs ? `model predictions · N=${N_SAMPLES}` : `strength heuristic · N=${N_SAMPLES}`;
@@ -1529,9 +1529,9 @@ function renderSimulator() {
   simTable.innerHTML = `
     <div class="sim-header-row">
       <span></span><span></span><span></span>
-      <span class="sim-col-label">Win %</span>
-      <span class="sim-col-bars"><span>win prob</span><span>makes final</span></span>
-      <span class="sim-col-label">Makes Final</span>
+      <span class="sim-col-label">WINS</span>
+      <span class="sim-col-bars"><span></span><span></span></span>
+      <span class="sim-col-label">TO FINAL</span>
     </div>${rows}`;
 
   const statusParts = [];
