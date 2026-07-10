@@ -1322,8 +1322,8 @@ function renderSimulator() {
     <div class="sim-header-row">
       <span></span><span></span><span></span>
       <span class="sim-col-label">Win %</span>
-      <span class="sim-col-bars"><span>win prob</span><span>reach final</span></span>
-      <span class="sim-col-label">Final %</span>
+      <span class="sim-col-bars"><span>win prob</span><span>makes final</span></span>
+      <span class="sim-col-label">Makes Final</span>
     </div>${rows}`;
 
   const statusParts = [];
