@@ -8,7 +8,7 @@
       name="description"
       content="A data-backed matchup card for FIFA World Cup 2026 archetypes, probabilities, radar profiles, and similar historical matches."
     >
-    <link rel="stylesheet" href="./styles.css?v=60b">
+    <link rel="stylesheet" href="./styles-v59-uncertainty-callout.css?v=59a">
   </head>
   <body>
     <main class="app-shell">
@@ -215,6 +215,7 @@
           <div class="prob-bars" id="prob-bars"></div>
           <div class="prob-table" id="prob-table"></div>
           <div class="upset-pill" id="upset-pill">Upset risk: --</div>
+          <div class="uncertainty-callout" id="uncertainty-callout" hidden></div>
           <div class="prediction-call" id="prediction-call"></div>
           <div class="reasoning-list" id="reasoning-list"></div>
         </article>
@@ -254,6 +255,6 @@
 
     <script>window.SIM_ENABLED = true;</script>
     <script src="./data/matchups-inline.js?v=60b"></script>
-    <script src="./app.js?v=60b"></script>
+    <script src="./app-v59-uncertainty-callout.js?v=59a"></script>
   </body>
 </html>
