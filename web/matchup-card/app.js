@@ -1372,9 +1372,23 @@ function renderSimulator() {
       </div>`;
   }).join("");
 
-  const likelyFinal = ranked.length >= 2
-    ? `Most likely final: ${teamFlag(ranked[0].team) || ""} ${ranked[0].team} vs ${teamFlag(ranked[1].team) || ""} ${ranked[1].team}`
-    : "";
+  // Bracket-aware most likely final: pick top team from each SF half separately
+  // SF1 side = QF1+QF2 winners, SF2 side = QF3+QF4 winners
+  const sf1Pool = new Set([
+    ...(qfOutcomes[0] || []).map(o => o.team),
+    ...(qfOutcomes[1] || []).map(o => o.team),
+  ]);
+  const sf2Pool = new Set([
+    ...(qfOutcomes[2] || []).map(o => o.team),
+    ...(qfOutcomes[3] || []).map(o => o.team),
+  ]);
+  const sf1Pick = ranked.find(t => sf1Pool.has(t.team));
+  const sf2Pick = ranked.find(t => sf2Pool.has(t.team));
+  const likelyFinal = sf1Pick && sf2Pick
+    ? `Most likely final: ${teamFlag(sf1Pick.team) || ""} ${sf1Pick.team} vs ${teamFlag(sf2Pick.team) || ""} ${sf2Pick.team}`
+    : ranked.length >= 2
+      ? `Most likely final: ${teamFlag(ranked[0].team) || ""} ${ranked[0].team} vs ${teamFlag(ranked[1].team) || ""} ${ranked[1].team}`
+      : "";
 
   simTable.innerHTML = `
     <div class="sim-header-row">
