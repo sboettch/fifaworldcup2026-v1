@@ -1284,7 +1284,21 @@ function renderSimulator() {
     return qfPaths[qfPaths.length - 1].teams;
   }
 
-  for (let s = 0; s < N_SAMPLES; s++) {
+  // ── Confirmed SF results: if a semi-final already has a score, lock in
+  // the winner so eliminated teams (e.g. France after losing SF1) never
+  // appear as finalists in the simulation.
+  const confirmedSFWinner = {}; // team → 'winner' | 'loser'
+  matches
+    .filter(m => (m.stage || "").includes("Semifinal") && m.actual_available)
+    .forEach(sf => {
+      const winner = scoreWinner(sf);
+      if (!winner) return;
+      confirmedSFWinner[winner] = "winner";
+      const loser = winner === sf.home_team ? sf.away_team : sf.home_team;
+      confirmedSFWinner[loser] = "loser";
+    });
+
+
     const sfTeams = sampleQFPath(); // 4 teams in bracket order
 
     // SF1: sfTeams[0] vs sfTeams[1], SF2: sfTeams[2] vs sfTeams[3]
@@ -1292,6 +1306,9 @@ function renderSimulator() {
     for (let i = 0; i < sfTeams.length; i += 2) {
       const a = sfTeams[i], b = sfTeams[i + 1];
       if (!a || !b) { if (a) sfResults.push(a); continue; }
+      // Use actual SF result if confirmed — eliminates already-played semis
+      if (confirmedSFWinner[a.team] === "winner") { sfResults.push(a); continue; }
+      if (confirmedSFWinner[b.team] === "winner") { sfResults.push(b); continue; }
       const pA = matchupWinProb(a.team, b.team, a.strength, b.strength);
       sfResults.push(Math.random() < pA ? a : b);
     }
