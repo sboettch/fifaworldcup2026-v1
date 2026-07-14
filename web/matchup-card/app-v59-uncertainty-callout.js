@@ -1063,6 +1063,7 @@ function renderAuditVisual(audit) {
         <div class="audit-viz-kicker">Tournament simulator <span id="sim-status" class="sim-status-inline"></span></div>
         <div id="sim-table"></div>
         <p class="sim-footer" id="sim-footer"></p>
+        <div class="sim-note" id="sim-note"></div>
       </article>
     </div>
     <p class="audit-viz-detail" id="audit-viz-detail">${escapeHtml(defaultDetail)}</p>
@@ -1178,6 +1179,7 @@ function renderSimulator() {
   const simTable = document.querySelector("#sim-table");
   const simStatus = document.querySelector("#sim-status");
   const simFooter = document.querySelector("#sim-footer");
+  const simNote = document.querySelector("#sim-note");
   if (!simTable) return;
   if (window.SIM_ENABLED === false) {
     const card = simTable.closest(".audit-sim-card");
@@ -1422,7 +1424,40 @@ function renderSimulator() {
   statusParts.push(method);
   if (simStatus) simStatus.textContent = statusParts.join(" · ");
   if (simFooter) simFooter.textContent = likelyFinal;
-}
+
+  // ── Plain-English provenance note for viewers ────────────────────────────
+  if (simNote) {
+    const confirmedFinalists = Object.entries(confirmedSFWinner)
+      .filter(([, v]) => v === "winner").map(([t]) => t);
+    const eliminated = Object.entries(confirmedSFWinner)
+      .filter(([, v]) => v === "loser").map(([t]) => t);
+    const pendingSFs = matches.filter(m =>
+      (m.stage || "").includes("Semifinal") && !m.actual_available &&
+      !(m.home_team || "").includes("Winner") && !(m.home_team || "").includes("Match")
+    );
+
+    const lines = [];
+
+    lines.push("Shows who can still win the 2026 World Cup from this point in the tournament. Eliminated teams do not appear.");
+
+    if (confirmedFinalists.length > 0) {
+      const flags = confirmedFinalists.map(t => `${teamFlag(t) || ""} ${t}`).join(" and ");
+      lines.push(`${flags} ${confirmedFinalists.length === 1 ? "is" : "are"} confirmed finalist${confirmedFinalists.length > 1 ? "s" : ""} — their semifinal result is already decided.`);
+    }
+    if (eliminated.length > 0) {
+      const flags = eliminated.map(t => `${teamFlag(t) || ""} ${t}`).join(", ");
+      lines.push(`${flags} ${eliminated.length === 1 ? "has" : "have"} been eliminated and no longer appear in the table.`);
+    }
+    if (pendingSFs.length > 0) {
+      const matchups = pendingSFs.map(m => `${teamFlag(m.home_team) || ""} ${m.home_team} vs ${teamFlag(m.away_team) || ""} ${m.away_team}`).join("; ");
+      lines.push(`Pending: ${matchups}. The model's win probabilities for this match are used to weight the simulations until the result is confirmed.`);
+    }
+
+    lines.push(`Each bar shows the range across ${N_SAMPLES.toLocaleString()} simulated tournaments. The shaded region is the 95% confidence interval — wider bars mean more uncertainty.`);
+
+    simNote.innerHTML = lines.map(l => `<span>${l}</span>`).join("");
+  }
+
 
 function renderAuditOverview() {
   const audit = state.data.prediction_audit || {};
