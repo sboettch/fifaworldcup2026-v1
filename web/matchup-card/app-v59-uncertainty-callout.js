@@ -1301,6 +1301,7 @@ function renderSimulator() {
     });
 
 
+  for (let s = 0; s < N_SAMPLES; s++) {
     const sfTeams = sampleQFPath(); // 4 teams in bracket order
 
     // SF1: sfTeams[0] vs sfTeams[1], SF2: sfTeams[2] vs sfTeams[3]
