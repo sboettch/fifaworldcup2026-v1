@@ -1457,7 +1457,7 @@ function renderSimulator() {
 
     simNote.innerHTML = lines.map(l => `<span>${l}</span>`).join("");
   }
-
+} // end renderSimulator
 
 function renderAuditOverview() {
   const audit = state.data.prediction_audit || {};
