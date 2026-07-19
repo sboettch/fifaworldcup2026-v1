@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-07-19T15:37:36.910528+00:00",
+  "generated_at_utc": "2026-07-19T18:36:48.589754+00:00",
   "source_files": [
     "data/processed/predictions_2026.csv",
     "data/processed/predictions_2026_scheduled.csv",
@@ -47,9 +47,9 @@
   },
   "schedule_summary": {
     "as_of_date": "2026-07-19",
-    "as_of_local": "2026-07-19T08:36:02-07:00",
-    "as_of_utc": "2026-07-19T15:36:02Z",
-    "generated_at_utc": "2026-07-19T15:36:04Z",
+    "as_of_local": "2026-07-19T11:35:49-07:00",
+    "as_of_utc": "2026-07-19T18:35:49Z",
+    "generated_at_utc": "2026-07-19T18:35:49Z",
     "rows": 104,
     "modeled_rows": 73,
     "unmodeled_rows": 31,
@@ -66,17 +66,17 @@
     },
     "source_files": [
       "data/raw/international_matches.csv",
-      "data/raw/2026_live/2026-07-19/run-20260719T153554Z/wikipedia/2026_FIFA_World_Cup.html",
+      "data/raw/2026_live/2026-07-19/run-20260719T183543Z/wikipedia/2026_FIFA_World_Cup.html",
       "data/processed/2026_live_matches.csv",
       "data/processed/predictions_2026.csv",
       "data/processed/validation_2026.csv"
     ]
   },
   "viz_summary": {
-    "generated_at_utc": "2026-07-19T15:36:21Z",
+    "generated_at_utc": "2026-07-19T18:36:04Z",
     "as_of_date": "2026-07-19",
-    "as_of_local": "2026-07-19T08:36:02-07:00",
-    "as_of_utc": "2026-07-19T15:36:02Z",
+    "as_of_local": "2026-07-19T11:35:49-07:00",
+    "as_of_utc": "2026-07-19T18:35:49Z",
     "rows": 104,
     "prediction_available_rows": 104,
     "actual_available_rows": 103,
@@ -164,9 +164,9 @@
     "accuracy": 0.7573,
     "true_pre_match_rows": 1,
     "predicted_at_min_utc": "2026-07-01T17:13:53.011982Z",
-    "predicted_at_max_utc": "2026-07-19T15:36:12.814147Z",
-    "as_of_local": "2026-07-19T08:36:02-07:00",
-    "as_of_utc": "2026-07-19T15:36:02Z",
+    "predicted_at_max_utc": "2026-07-19T18:35:57.078139Z",
+    "as_of_local": "2026-07-19T11:35:49-07:00",
+    "as_of_utc": "2026-07-19T18:35:49Z",
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
       "scheduled_actualized_validation": 30,
@@ -14702,7 +14702,7 @@
       },
       "upset_risk": 0.5098,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -14897,7 +14897,7 @@
       },
       "upset_risk": 0.5134,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15099,7 +15099,7 @@
       },
       "upset_risk": 0.5872,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15298,7 +15298,7 @@
       },
       "upset_risk": 0.6253,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15494,7 +15494,7 @@
       },
       "upset_risk": 0.2066,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15693,7 +15693,7 @@
       },
       "upset_risk": 0.4418,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15898,7 +15898,7 @@
       },
       "upset_risk": 0.1897,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16100,7 +16100,7 @@
       },
       "upset_risk": 0.5312,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16300,7 +16300,7 @@
       },
       "upset_risk": 0.1191,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16499,7 +16499,7 @@
       },
       "upset_risk": 0.2096,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16701,7 +16701,7 @@
       },
       "upset_risk": 0.5187,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16904,7 +16904,7 @@
       },
       "upset_risk": 0.4477,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17095,7 +17095,7 @@
       },
       "upset_risk": 0.4946,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17299,7 +17299,7 @@
       },
       "upset_risk": 0.1544,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17496,7 +17496,7 @@
       },
       "upset_risk": 0.1396,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17692,7 +17692,7 @@
       },
       "upset_risk": 0.6174,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17893,7 +17893,7 @@
       },
       "upset_risk": 0.3328,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18094,7 +18094,7 @@
       },
       "upset_risk": 0.5,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18298,7 +18298,7 @@
       },
       "upset_risk": 0.4232,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18492,7 +18492,7 @@
       },
       "upset_risk": 0.4523,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18698,7 +18698,7 @@
       },
       "upset_risk": 0.3976,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18900,7 +18900,7 @@
       },
       "upset_risk": 0.2084,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19097,7 +19097,7 @@
       },
       "upset_risk": 0.4867,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19300,7 +19300,7 @@
       },
       "upset_risk": 0.324,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19502,7 +19502,7 @@
       },
       "upset_risk": 0.2452,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19703,7 +19703,7 @@
       },
       "upset_risk": 0.3175,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19905,7 +19905,7 @@
       },
       "upset_risk": 0.608,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20100,7 +20100,7 @@
       },
       "upset_risk": 0.6083,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20299,7 +20299,7 @@
       },
       "upset_risk": 0.4721,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20491,7 +20491,7 @@
       },
       "upset_risk": 0.5791,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20689,7 +20689,7 @@
       },
       "upset_risk": 0.5223,
       "pre_match_snapshot": true,
-      "predicted_at_utc": "2026-07-19T15:36:12.814147+00:00",
+      "predicted_at_utc": "2026-07-19T18:35:57.078139+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "pre_match_forecast",
       "fixture_status": "today_fixture_not_modeled",
@@ -20863,7 +20863,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -28716,
+      "minutes_from_as_of": -28896,
       "probabilities": {
         "home": 0.4902,
         "draw": 0.2258,
@@ -20895,7 +20895,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -28506,
+      "minutes_from_as_of": -28686,
       "probabilities": {
         "home": 0.4866,
         "draw": 0.2582,
@@ -20927,7 +20927,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -28236,
+      "minutes_from_as_of": -28416,
       "probabilities": {
         "home": 0.4128,
         "draw": 0.3242,
@@ -20959,7 +20959,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -27036,
+      "minutes_from_as_of": -27216,
       "probabilities": {
         "home": 0.7934,
         "draw": 0.1149,
@@ -20991,7 +20991,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -27276,
+      "minutes_from_as_of": -27456,
       "probabilities": {
         "home": 0.2728,
         "draw": 0.3747,
@@ -21023,7 +21023,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -26736,
+      "minutes_from_as_of": -26916,
       "probabilities": {
         "home": 0.5582,
         "draw": 0.2542,
@@ -21055,7 +21055,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -25656,
+      "minutes_from_as_of": -25836,
       "probabilities": {
         "home": 0.4688,
         "draw": 0.3137,
@@ -21087,7 +21087,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -25896,
+      "minutes_from_as_of": -26076,
       "probabilities": {
         "home": 0.8103,
         "draw": 0.1072,
@@ -21119,7 +21119,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -25416,
+      "minutes_from_as_of": -25596,
       "probabilities": {
         "home": 0.8809,
         "draw": 0.0704,
@@ -21151,7 +21151,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -24036,
+      "minutes_from_as_of": -24216,
       "probabilities": {
         "home": 0.4813,
         "draw": 0.2651,
@@ -21183,7 +21183,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -24276,
+      "minutes_from_as_of": -24456,
       "probabilities": {
         "home": 0.7904,
         "draw": 0.1146,
@@ -21215,7 +21215,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -23796,
+      "minutes_from_as_of": -23976,
       "probabilities": {
         "home": 0.5523,
         "draw": 0.2339,
@@ -21247,7 +21247,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -22656,
+      "minutes_from_as_of": -22836,
       "probabilities": {
         "home": 0.8456,
         "draw": 0.0899,
@@ -21279,7 +21279,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -22896,
+      "minutes_from_as_of": -23076,
       "probabilities": {
         "home": 0.5054,
         "draw": 0.2389,
@@ -21311,7 +21311,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -22446,
+      "minutes_from_as_of": -22626,
       "probabilities": {
         "home": 0.8604,
         "draw": 0.0769,
@@ -21343,7 +21343,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -15,
-      "minutes_from_as_of": -21516,
+      "minutes_from_as_of": -21696,
       "probabilities": {
         "home": 0.265,
         "draw": 0.3524,
@@ -21375,7 +21375,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -15,
-      "minutes_from_as_of": -21276,
+      "minutes_from_as_of": -21456,
       "probabilities": {
         "home": 0.2054,
         "draw": 0.1274,
@@ -21407,7 +21407,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -14,
-      "minutes_from_as_of": -19896,
+      "minutes_from_as_of": -20076,
       "probabilities": {
         "home": 0.5,
         "draw": 0.2535,
@@ -21439,7 +21439,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -14,
-      "minutes_from_as_of": -19596,
+      "minutes_from_as_of": -19776,
       "probabilities": {
         "home": 0.2223,
         "draw": 0.2009,
@@ -21471,7 +21471,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -13,
-      "minutes_from_as_of": -18516,
+      "minutes_from_as_of": -18696,
       "probabilities": {
         "home": 0.207,
         "draw": 0.1905,
@@ -21503,7 +21503,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -13,
-      "minutes_from_as_of": -18216,
+      "minutes_from_as_of": -18396,
       "probabilities": {
         "home": 0.2339,
         "draw": 0.2184,
@@ -21535,7 +21535,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -12,
-      "minutes_from_as_of": -17256,
+      "minutes_from_as_of": -17436,
       "probabilities": {
         "home": 0.7916,
         "draw": 0.114,
@@ -21567,7 +21567,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -12,
-      "minutes_from_as_of": -17016,
+      "minutes_from_as_of": -17196,
       "probabilities": {
         "home": 0.2442,
         "draw": 0.2425,
@@ -21599,7 +21599,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -10,
-      "minutes_from_as_of": -14136,
+      "minutes_from_as_of": -14316,
       "probabilities": {
         "home": 0.676,
         "draw": 0.1757,
@@ -21631,7 +21631,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -9,
-      "minutes_from_as_of": -12756,
+      "minutes_from_as_of": -12936,
       "probabilities": {
         "home": 0.7548,
         "draw": 0.1392,
@@ -21663,7 +21663,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -10956,
+      "minutes_from_as_of": -11136,
       "probabilities": {
         "home": 0.6825,
         "draw": 0.1579,
@@ -21695,7 +21695,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -11196,
+      "minutes_from_as_of": -11376,
       "probabilities": {
         "home": 0.2614,
         "draw": 0.3465,
@@ -21727,7 +21727,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -5,
-      "minutes_from_as_of": -6996,
+      "minutes_from_as_of": -7176,
       "probabilities": {
         "home": 0.3496,
         "draw": 0.2587,
@@ -21759,7 +21759,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -4,
-      "minutes_from_as_of": -5556,
+      "minutes_from_as_of": -5736,
       "probabilities": {
         "home": 0.2384,
         "draw": 0.2338,
@@ -21791,7 +21791,7 @@
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -1,
-      "minutes_from_as_of": -1116,
+      "minutes_from_as_of": -1296,
       "probabilities": {
         "home": 0.4209,
         "draw": 0.2174,
@@ -21823,7 +21823,7 @@
       "fixture_status": "today_fixture_not_modeled",
       "status_label": "Scheduled later today; not yet harmonized into the model-ready prediction layer.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": 204,
+      "minutes_from_as_of": 24,
       "probabilities": {
         "home": 0.4777,
         "draw": 0.2634,
@@ -21839,45 +21839,15 @@
     }
   ],
   "hypothetical_matchups": {
-    "Belgium vs Switzerland": {
-      "home": 0.3365,
-      "draw": 0.2642,
-      "away": 0.3993
+    "France vs Switzerland": {
+      "home": 0.7622,
+      "draw": 0.1157,
+      "away": 0.1221
     },
-    "Switzerland vs Belgium": {
-      "home": 0.4122,
-      "draw": 0.347,
-      "away": 0.2408
-    },
-    "Belgium vs England": {
-      "home": 0.2467,
-      "draw": 0.331,
-      "away": 0.4223
-    },
-    "England vs Belgium": {
-      "home": 0.7295,
-      "draw": 0.1379,
-      "away": 0.1326
-    },
-    "France vs Argentina": {
-      "home": 0.4578,
-      "draw": 0.3146,
-      "away": 0.2275
-    },
-    "Argentina vs France": {
-      "home": 0.3527,
-      "draw": 0.3262,
-      "away": 0.3211
-    },
-    "France vs Norway": {
-      "home": 0.7555,
-      "draw": 0.1233,
-      "away": 0.1212
-    },
-    "Norway vs France": {
-      "home": 0.2141,
-      "draw": 0.2128,
-      "away": 0.573
+    "Switzerland vs France": {
+      "home": 0.2072,
+      "draw": 0.1903,
+      "away": 0.6025
     },
     "Morocco vs Norway": {
       "home": 0.4268,
@@ -21899,15 +21869,15 @@
       "draw": 0.133,
       "away": 0.6693
     },
-    "Belgium vs Argentina": {
-      "home": 0.1957,
-      "draw": 0.1261,
-      "away": 0.6781
+    "France vs Argentina": {
+      "home": 0.4578,
+      "draw": 0.3146,
+      "away": 0.2275
     },
-    "Argentina vs Belgium": {
-      "home": 0.7866,
-      "draw": 0.1139,
-      "away": 0.0995
+    "Argentina vs France": {
+      "home": 0.3527,
+      "draw": 0.3262,
+      "away": 0.3211
     },
     "Belgium vs Norway": {
       "home": 0.2517,
@@ -21919,36 +21889,6 @@
       "draw": 0.2594,
       "away": 0.2331
     },
-    "Morocco vs Argentina": {
-      "home": 0.2722,
-      "draw": 0.3881,
-      "away": 0.3396
-    },
-    "Argentina vs Morocco": {
-      "home": 0.7214,
-      "draw": 0.1412,
-      "away": 0.1375
-    },
-    "Spain vs Argentina": {
-      "home": 0.482,
-      "draw": 0.2593,
-      "away": 0.2587
-    },
-    "Argentina vs Spain": {
-      "home": 0.2464,
-      "draw": 0.2542,
-      "away": 0.4995
-    },
-    "Morocco vs England": {
-      "home": 0.233,
-      "draw": 0.2238,
-      "away": 0.5432
-    },
-    "England vs Morocco": {
-      "home": 0.4744,
-      "draw": 0.2249,
-      "away": 0.3007
-    },
     "France vs England": {
       "home": 0.4881,
       "draw": 0.2273,
@@ -21958,26 +21898,6 @@
       "home": 0.2373,
       "draw": 0.2196,
       "away": 0.5431
-    },
-    "Spain vs England": {
-      "home": 0.6585,
-      "draw": 0.1824,
-      "away": 0.159
-    },
-    "England vs Spain": {
-      "home": 0.2828,
-      "draw": 0.3607,
-      "away": 0.3565
-    },
-    "France vs Switzerland": {
-      "home": 0.7622,
-      "draw": 0.1157,
-      "away": 0.1221
-    },
-    "Switzerland vs France": {
-      "home": 0.2072,
-      "draw": 0.1903,
-      "away": 0.6025
     },
     "Morocco vs Switzerland": {
       "home": 0.4195,
@@ -21998,6 +21918,86 @@
       "home": 0.1975,
       "draw": 0.1284,
       "away": 0.6741
+    },
+    "Morocco vs Argentina": {
+      "home": 0.2722,
+      "draw": 0.3881,
+      "away": 0.3396
+    },
+    "Argentina vs Morocco": {
+      "home": 0.7214,
+      "draw": 0.1412,
+      "away": 0.1375
+    },
+    "France vs Norway": {
+      "home": 0.7555,
+      "draw": 0.1233,
+      "away": 0.1212
+    },
+    "Norway vs France": {
+      "home": 0.2141,
+      "draw": 0.2128,
+      "away": 0.573
+    },
+    "Spain vs Argentina": {
+      "home": 0.482,
+      "draw": 0.2593,
+      "away": 0.2587
+    },
+    "Argentina vs Spain": {
+      "home": 0.2464,
+      "draw": 0.2542,
+      "away": 0.4995
+    },
+    "Belgium vs Switzerland": {
+      "home": 0.3365,
+      "draw": 0.2642,
+      "away": 0.3993
+    },
+    "Switzerland vs Belgium": {
+      "home": 0.4122,
+      "draw": 0.347,
+      "away": 0.2408
+    },
+    "Morocco vs England": {
+      "home": 0.233,
+      "draw": 0.2238,
+      "away": 0.5432
+    },
+    "England vs Morocco": {
+      "home": 0.4744,
+      "draw": 0.2249,
+      "away": 0.3007
+    },
+    "Belgium vs Argentina": {
+      "home": 0.1957,
+      "draw": 0.1261,
+      "away": 0.6781
+    },
+    "Argentina vs Belgium": {
+      "home": 0.7866,
+      "draw": 0.1139,
+      "away": 0.0995
+    },
+    "Spain vs England": {
+      "home": 0.6585,
+      "draw": 0.1824,
+      "away": 0.159
+    },
+    "England vs Spain": {
+      "home": 0.2828,
+      "draw": 0.3607,
+      "away": 0.3565
+    },
+    "Belgium vs England": {
+      "home": 0.2467,
+      "draw": 0.331,
+      "away": 0.4223
+    },
+    "England vs Belgium": {
+      "home": 0.7295,
+      "draw": 0.1379,
+      "away": 0.1326
     }
   }
 }
