@@ -1,5 +1,5 @@
 window.MATCHUP_DATA = {
-  "generated_at_utc": "2026-07-19T21:35:56.000597+00:00",
+  "generated_at_utc": "2026-07-20T00:08:39.202915+00:00",
   "source_files": [
     "data/processed/predictions_2026.csv",
     "data/processed/predictions_2026_scheduled.csv",
@@ -47,13 +47,13 @@ window.MATCHUP_DATA = {
   },
   "schedule_summary": {
     "as_of_date": "2026-07-19",
-    "as_of_local": "2026-07-19T14:34:22-07:00",
-    "as_of_utc": "2026-07-19T21:34:22Z",
-    "generated_at_utc": "2026-07-19T21:34:23Z",
+    "as_of_local": "2026-07-19T17:07:05-07:00",
+    "as_of_utc": "2026-07-20T00:07:05Z",
+    "generated_at_utc": "2026-07-20T00:07:06Z",
     "rows": 104,
     "modeled_rows": 73,
     "unmodeled_rows": 31,
-    "completed_rows": 103,
+    "completed_rows": 104,
     "rows_with_kickoff_utc": 32,
     "modeled_min_date": "2026-06-11",
     "modeled_max_date": "2026-06-28",
@@ -61,62 +61,55 @@ window.MATCHUP_DATA = {
     "schedule_max_date": "2026-07-19",
     "status_counts": {
       "modeled_result_available": 73,
-      "result_available_not_modeled": 30,
-      "past_kickoff_missing_model_result": 1
+      "result_available_not_modeled": 31
     },
     "source_files": [
       "data/raw/international_matches.csv",
-      "data/raw/2026_live/2026-07-19/run-20260719T213414Z/wikipedia/2026_FIFA_World_Cup.html",
+      "data/raw/2026_live/2026-07-20/run-20260720T000656Z/wikipedia/2026_FIFA_World_Cup.html",
       "data/processed/2026_live_matches.csv",
       "data/processed/predictions_2026.csv",
       "data/processed/validation_2026.csv"
     ]
   },
   "viz_summary": {
-    "generated_at_utc": "2026-07-19T21:34:41Z",
+    "generated_at_utc": "2026-07-20T00:07:24Z",
     "as_of_date": "2026-07-19",
-    "as_of_local": "2026-07-19T14:34:22-07:00",
-    "as_of_utc": "2026-07-19T21:34:22Z",
+    "as_of_local": "2026-07-19T17:07:05-07:00",
+    "as_of_utc": "2026-07-20T00:07:05Z",
     "rows": 104,
     "prediction_available_rows": 104,
-    "actual_available_rows": 103,
-    "not_yet_actualized_rows": 1,
-    "imputed_prediction_rows": 1,
+    "actual_available_rows": 104,
+    "not_yet_actualized_rows": 0,
+    "imputed_prediction_rows": 0,
     "prediction_layer_counts": {
       "main_model_validation": 73,
       "scheduled_fixture_forecast": 31
     },
     "actualization_status_counts": {
-      "actualized": 103,
-      "not_yet_actualized": 1
+      "actualized": 104
     },
     "prediction_actual_status_counts": {
-      "actualized_prediction_correct": 66,
-      "actualized_prediction_missed": 37,
-      "post_kickoff_prediction_pending_actual": 1
+      "actualized_prediction_correct": 67,
+      "actualized_prediction_missed": 37
     },
     "prediction_grade_counts": {
-      "exact_correct": 66,
+      "exact_correct": 67,
       "draw_push": 24,
-      "incorrect": 13,
-      "pending_actual": 1
+      "incorrect": 13
     },
     "prediction_timing_counts": {
-      "retrospective": 103,
-      "post_kickoff_pending_result": 1
+      "retrospective": 104
     },
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
-      "scheduled_actualized_validation": 30,
-      "post_kickoff_forecast_pending_actual": 1
+      "scheduled_actualized_validation": 31
     },
     "fixture_status_counts": {
       "modeled_result_available": 73,
-      "result_available_not_modeled": 30,
-      "past_kickoff_missing_model_result": 1
+      "result_available_not_modeled": 31
     },
-    "strict_exact_accuracy": 0.6408,
-    "draw_adjusted_score": 0.7573,
+    "strict_exact_accuracy": 0.6442,
+    "draw_adjusted_score": 0.7596,
     "training": {
       "training_split_name": "historical_world_cups_pre_2026",
       "training_match_count": 964,
@@ -151,36 +144,33 @@ window.MATCHUP_DATA = {
     "focus_rows_in_feature_table": 104,
     "focus_rows": 104,
     "prediction_available_rows": 104,
-    "actual_available_rows": 103,
-    "pending_actual_rows": 1,
-    "imputed_prediction_rows": 1,
-    "evaluated_rows": 103,
-    "correct_rows": 66,
+    "actual_available_rows": 104,
+    "pending_actual_rows": 0,
+    "imputed_prediction_rows": 0,
+    "evaluated_rows": 104,
+    "correct_rows": 67,
     "draw_push_rows": 24,
     "incorrect_rows": 13,
-    "exact_accuracy": 0.6408,
-    "strict_exact_accuracy": 0.6408,
-    "draw_adjusted_score": 0.7573,
-    "accuracy": 0.7573,
+    "exact_accuracy": 0.6442,
+    "strict_exact_accuracy": 0.6442,
+    "draw_adjusted_score": 0.7596,
+    "accuracy": 0.7596,
     "true_pre_match_rows": 0,
     "predicted_at_min_utc": "2026-07-01T17:13:53.011982Z",
-    "predicted_at_max_utc": "2026-07-19T21:34:32.673031Z",
-    "as_of_local": "2026-07-19T14:34:22-07:00",
-    "as_of_utc": "2026-07-19T21:34:22Z",
+    "predicted_at_max_utc": "2026-07-20T00:07:15.258712Z",
+    "as_of_local": "2026-07-19T17:07:05-07:00",
+    "as_of_utc": "2026-07-20T00:07:05Z",
     "audit_role_counts": {
       "retrospective_2026_holdout_validation": 73,
-      "scheduled_actualized_validation": 30,
-      "post_kickoff_forecast_pending_actual": 1
+      "scheduled_actualized_validation": 31
     },
     "prediction_grade_counts": {
-      "exact_correct": 66,
+      "exact_correct": 67,
       "draw_push": 24,
-      "incorrect": 13,
-      "pending_actual": 1
+      "incorrect": 13
     },
     "prediction_timing_counts": {
-      "retrospective": 103,
-      "post_kickoff_pending_result": 1
+      "retrospective": 104
     },
     "prediction_layer_counts": {
       "main_model_validation": 73,
@@ -14702,7 +14692,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5098,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -14897,7 +14887,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5134,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15099,7 +15089,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5872,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15298,7 +15288,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.6253,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15494,7 +15484,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.2066,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15693,7 +15683,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4418,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -15898,7 +15888,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.1897,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16100,7 +16090,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5312,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16300,7 +16290,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.1191,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16499,7 +16489,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.2096,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16701,7 +16691,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5187,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -16904,7 +16894,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4477,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17095,7 +17085,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4946,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17299,7 +17289,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.1544,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17496,7 +17486,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.1396,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17692,7 +17682,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.6174,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -17893,7 +17883,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.3328,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18094,7 +18084,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18298,7 +18288,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4232,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18492,7 +18482,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4523,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18698,7 +18688,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.3976,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -18900,7 +18890,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.2084,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19097,7 +19087,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4867,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19300,7 +19290,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.324,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19502,7 +19492,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.2452,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19703,7 +19693,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.3175,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -19905,7 +19895,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.608,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20100,7 +20090,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.6083,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20299,7 +20289,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.4721,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20491,7 +20481,7 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5791,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
       "prediction_scope": "result_available_retrospective",
       "fixture_status": "result_available_not_modeled",
@@ -20657,29 +20647,29 @@ window.MATCHUP_DATA = {
       "host_country": null,
       "home_code": "ESP",
       "away_code": "ARG",
-      "result": null,
-      "result_label": "Unknown",
-      "score": null,
+      "result": "H",
+      "result_label": "Home win",
+      "score": "1-0",
       "actual_upset": null,
       "fixture_id": "2026-80015",
-      "actual_available": false,
-      "actualization_status": "not_yet_actualized",
-      "actual_score": null,
+      "actual_available": true,
+      "actualization_status": "actualized",
+      "actual_score": "1-0",
       "prediction_layer": "scheduled_fixture_forecast",
-      "prediction_actual_status": "post_kickoff_prediction_pending_actual",
-      "prediction_correct": null,
-      "prediction_exact_correct": null,
-      "prediction_grade": "pending_actual",
-      "prediction_grade_label": "Actual result pending",
-      "prediction_credit": null,
-      "is_imputed_prediction": true,
-      "display_result_source": "prediction_imputed",
-      "prediction_timing": "post_kickoff_pending_result",
+      "prediction_actual_status": "actualized_prediction_correct",
+      "prediction_correct": true,
+      "prediction_exact_correct": true,
+      "prediction_grade": "exact_correct",
+      "prediction_grade_label": "Exact result correct",
+      "prediction_credit": 1.0,
+      "is_imputed_prediction": false,
+      "display_result_source": "actual",
+      "prediction_timing": "retrospective",
       "training_split_name": "historical_world_cups_pre_2026",
       "training_match_count": 964,
       "training_cutoff_date": "2022-12-18",
       "evaluation_split_name": "world_cup_2026_focus",
-      "audit_role": "post_kickoff_forecast_pending_actual",
+      "audit_role": "scheduled_actualized_validation",
       "predicted_result": "H",
       "predicted_label": "Home win",
       "probabilities": {
@@ -20689,11 +20679,11 @@ window.MATCHUP_DATA = {
       },
       "upset_risk": 0.5223,
       "pre_match_snapshot": false,
-      "predicted_at_utc": "2026-07-19T21:34:32.673031+00:00",
+      "predicted_at_utc": "2026-07-20T00:07:15.258712+00:00",
       "prediction_source": "scheduled_fixture_forecast",
-      "prediction_scope": "post_kickoff_pending_result",
-      "fixture_status": "past_kickoff_missing_model_result",
-      "status_label": "Kickoff has passed; the result/model-ready row has not been ingested yet.",
+      "prediction_scope": "result_available_retrospective",
+      "fixture_status": "result_available_not_modeled",
+      "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "archetypes": [
         "Heavyweight Clash",
         "Tactical Contrast"
@@ -20863,7 +20853,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -29074,
+      "minutes_from_as_of": -29227,
       "probabilities": {
         "home": 0.4902,
         "draw": 0.2258,
@@ -20895,7 +20885,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -28864,
+      "minutes_from_as_of": -29017,
       "probabilities": {
         "home": 0.4866,
         "draw": 0.2582,
@@ -20927,7 +20917,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -20,
-      "minutes_from_as_of": -28594,
+      "minutes_from_as_of": -28747,
       "probabilities": {
         "home": 0.4128,
         "draw": 0.3242,
@@ -20959,7 +20949,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -27394,
+      "minutes_from_as_of": -27547,
       "probabilities": {
         "home": 0.7934,
         "draw": 0.1149,
@@ -20991,7 +20981,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -27634,
+      "minutes_from_as_of": -27787,
       "probabilities": {
         "home": 0.2728,
         "draw": 0.3747,
@@ -21023,7 +21013,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -19,
-      "minutes_from_as_of": -27094,
+      "minutes_from_as_of": -27247,
       "probabilities": {
         "home": 0.5582,
         "draw": 0.2542,
@@ -21055,7 +21045,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -26014,
+      "minutes_from_as_of": -26167,
       "probabilities": {
         "home": 0.4688,
         "draw": 0.3137,
@@ -21087,7 +21077,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -26254,
+      "minutes_from_as_of": -26407,
       "probabilities": {
         "home": 0.8103,
         "draw": 0.1072,
@@ -21119,7 +21109,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -18,
-      "minutes_from_as_of": -25774,
+      "minutes_from_as_of": -25927,
       "probabilities": {
         "home": 0.8809,
         "draw": 0.0704,
@@ -21151,7 +21141,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -24394,
+      "minutes_from_as_of": -24547,
       "probabilities": {
         "home": 0.4813,
         "draw": 0.2651,
@@ -21183,7 +21173,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -24634,
+      "minutes_from_as_of": -24787,
       "probabilities": {
         "home": 0.7904,
         "draw": 0.1146,
@@ -21215,7 +21205,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -17,
-      "minutes_from_as_of": -24154,
+      "minutes_from_as_of": -24307,
       "probabilities": {
         "home": 0.5523,
         "draw": 0.2339,
@@ -21247,7 +21237,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -23014,
+      "minutes_from_as_of": -23167,
       "probabilities": {
         "home": 0.8456,
         "draw": 0.0899,
@@ -21279,7 +21269,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -23254,
+      "minutes_from_as_of": -23407,
       "probabilities": {
         "home": 0.5054,
         "draw": 0.2389,
@@ -21311,7 +21301,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -16,
-      "minutes_from_as_of": -22804,
+      "minutes_from_as_of": -22957,
       "probabilities": {
         "home": 0.8604,
         "draw": 0.0769,
@@ -21343,7 +21333,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -15,
-      "minutes_from_as_of": -21874,
+      "minutes_from_as_of": -22027,
       "probabilities": {
         "home": 0.265,
         "draw": 0.3524,
@@ -21375,7 +21365,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -15,
-      "minutes_from_as_of": -21634,
+      "minutes_from_as_of": -21787,
       "probabilities": {
         "home": 0.2054,
         "draw": 0.1274,
@@ -21407,7 +21397,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -14,
-      "minutes_from_as_of": -20254,
+      "minutes_from_as_of": -20407,
       "probabilities": {
         "home": 0.5,
         "draw": 0.2535,
@@ -21439,7 +21429,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -14,
-      "minutes_from_as_of": -19954,
+      "minutes_from_as_of": -20107,
       "probabilities": {
         "home": 0.2223,
         "draw": 0.2009,
@@ -21471,7 +21461,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -13,
-      "minutes_from_as_of": -18874,
+      "minutes_from_as_of": -19027,
       "probabilities": {
         "home": 0.207,
         "draw": 0.1905,
@@ -21503,7 +21493,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -13,
-      "minutes_from_as_of": -18574,
+      "minutes_from_as_of": -18727,
       "probabilities": {
         "home": 0.2339,
         "draw": 0.2184,
@@ -21535,7 +21525,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -12,
-      "minutes_from_as_of": -17614,
+      "minutes_from_as_of": -17767,
       "probabilities": {
         "home": 0.7916,
         "draw": 0.114,
@@ -21567,7 +21557,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -12,
-      "minutes_from_as_of": -17374,
+      "minutes_from_as_of": -17527,
       "probabilities": {
         "home": 0.2442,
         "draw": 0.2425,
@@ -21599,7 +21589,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -10,
-      "minutes_from_as_of": -14494,
+      "minutes_from_as_of": -14647,
       "probabilities": {
         "home": 0.676,
         "draw": 0.1757,
@@ -21631,7 +21621,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -9,
-      "minutes_from_as_of": -13114,
+      "minutes_from_as_of": -13267,
       "probabilities": {
         "home": 0.7548,
         "draw": 0.1392,
@@ -21663,7 +21653,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -11314,
+      "minutes_from_as_of": -11467,
       "probabilities": {
         "home": 0.6825,
         "draw": 0.1579,
@@ -21695,7 +21685,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -8,
-      "minutes_from_as_of": -11554,
+      "minutes_from_as_of": -11707,
       "probabilities": {
         "home": 0.2614,
         "draw": 0.3465,
@@ -21727,7 +21717,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -5,
-      "minutes_from_as_of": -7354,
+      "minutes_from_as_of": -7507,
       "probabilities": {
         "home": 0.3496,
         "draw": 0.2587,
@@ -21759,7 +21749,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -4,
-      "minutes_from_as_of": -5914,
+      "minutes_from_as_of": -6067,
       "probabilities": {
         "home": 0.2384,
         "draw": 0.2338,
@@ -21791,7 +21781,7 @@ window.MATCHUP_DATA = {
       "fixture_status": "result_available_not_modeled",
       "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": -1,
-      "minutes_from_as_of": -1474,
+      "minutes_from_as_of": -1627,
       "probabilities": {
         "home": 0.4209,
         "draw": 0.2174,
@@ -21814,16 +21804,16 @@ window.MATCHUP_DATA = {
       "stage": "Final",
       "home_team": "Spain",
       "away_team": "Argentina",
-      "score": null,
+      "score": "1-0",
       "home_code": "ESP",
       "away_code": "ARG",
       "venue": "MetLife Stadium, East Rutherford",
       "host_country": null,
       "neutral": true,
-      "fixture_status": "past_kickoff_missing_model_result",
-      "status_label": "Kickoff has passed; the result/model-ready row has not been ingested yet.",
+      "fixture_status": "result_available_not_modeled",
+      "status_label": "Result exists in schedule/status sources but has not been modeled.",
       "days_from_as_of": 0,
-      "minutes_from_as_of": -154,
+      "minutes_from_as_of": -307,
       "probabilities": {
         "home": 0.4777,
         "draw": 0.2634,
@@ -21831,34 +21821,14 @@ window.MATCHUP_DATA = {
       },
       "predicted_result": "H",
       "prediction_source": "scheduled_fixture_forecast",
-      "prediction_scope": "post_kickoff_pending_result",
-      "actualization_status": "not_yet_actualized",
-      "prediction_actual_status": "post_kickoff_prediction_pending_actual",
-      "is_imputed_prediction": true,
-      "model_status": "Forecast row from 2026_matchup_viz.csv; actual result pending."
+      "prediction_scope": "result_available_retrospective",
+      "actualization_status": "actualized",
+      "prediction_actual_status": "actualized_prediction_correct",
+      "is_imputed_prediction": false,
+      "model_status": "Forecast row from 2026_matchup_viz.csv with an actual result available."
     }
   ],
   "hypothetical_matchups": {
-    "Belgium vs Argentina": {
-      "home": 0.1957,
-      "draw": 0.1261,
-      "away": 0.6781
-    },
-    "Argentina vs Belgium": {
-      "home": 0.7866,
-      "draw": 0.1139,
-      "away": 0.0995
-    },
-    "France vs Norway": {
-      "home": 0.7555,
-      "draw": 0.1233,
-      "away": 0.1212
-    },
-    "Norway vs France": {
-      "home": 0.2141,
-      "draw": 0.2128,
-      "away": 0.573
-    },
     "France vs Switzerland": {
       "home": 0.7622,
       "draw": 0.1157,
@@ -21868,16 +21838,6 @@ window.MATCHUP_DATA = {
       "home": 0.2072,
       "draw": 0.1903,
       "away": 0.6025
-    },
-    "France vs England": {
-      "home": 0.4881,
-      "draw": 0.2273,
-      "away": 0.2846
-    },
-    "England vs France": {
-      "home": 0.2373,
-      "draw": 0.2196,
-      "away": 0.5431
     },
     "Morocco vs Norway": {
       "home": 0.4268,
@@ -21889,16 +21849,6 @@ window.MATCHUP_DATA = {
       "draw": 0.3366,
       "away": 0.3152
     },
-    "France vs Argentina": {
-      "home": 0.4578,
-      "draw": 0.3146,
-      "away": 0.2275
-    },
-    "Argentina vs France": {
-      "home": 0.3527,
-      "draw": 0.3262,
-      "away": 0.3211
-    },
     "Spain vs Switzerland": {
       "home": 0.7776,
       "draw": 0.1252,
@@ -21908,66 +21858,6 @@ window.MATCHUP_DATA = {
       "home": 0.1975,
       "draw": 0.1284,
       "away": 0.6741
-    },
-    "Spain vs Norway": {
-      "home": 0.7895,
-      "draw": 0.1141,
-      "away": 0.0964
-    },
-    "Norway vs Spain": {
-      "home": 0.1977,
-      "draw": 0.133,
-      "away": 0.6693
-    },
-    "Morocco vs Switzerland": {
-      "home": 0.4195,
-      "draw": 0.3475,
-      "away": 0.2329
-    },
-    "Switzerland vs Morocco": {
-      "home": 0.3567,
-      "draw": 0.2729,
-      "away": 0.3705
-    },
-    "Belgium vs Norway": {
-      "home": 0.2517,
-      "draw": 0.2502,
-      "away": 0.4982
-    },
-    "Norway vs Belgium": {
-      "home": 0.5075,
-      "draw": 0.2594,
-      "away": 0.2331
-    },
-    "Morocco vs England": {
-      "home": 0.233,
-      "draw": 0.2238,
-      "away": 0.5432
-    },
-    "England vs Morocco": {
-      "home": 0.4744,
-      "draw": 0.2249,
-      "away": 0.3007
-    },
-    "Belgium vs Switzerland": {
-      "home": 0.3365,
-      "draw": 0.2642,
-      "away": 0.3993
-    },
-    "Switzerland vs Belgium": {
-      "home": 0.4122,
-      "draw": 0.347,
-      "away": 0.2408
-    },
-    "Morocco vs Argentina": {
-      "home": 0.2722,
-      "draw": 0.3881,
-      "away": 0.3396
-    },
-    "Argentina vs Morocco": {
-      "home": 0.7214,
-      "draw": 0.1412,
-      "away": 0.1375
     },
     "Spain vs England": {
       "home": 0.6585,
@@ -21979,6 +21869,66 @@ window.MATCHUP_DATA = {
       "draw": 0.3607,
       "away": 0.3565
     },
+    "Morocco vs Argentina": {
+      "home": 0.2722,
+      "draw": 0.3881,
+      "away": 0.3396
+    },
+    "Argentina vs Morocco": {
+      "home": 0.7214,
+      "draw": 0.1412,
+      "away": 0.1375
+    },
+    "France vs England": {
+      "home": 0.4881,
+      "draw": 0.2273,
+      "away": 0.2846
+    },
+    "England vs France": {
+      "home": 0.2373,
+      "draw": 0.2196,
+      "away": 0.5431
+    },
+    "France vs Norway": {
+      "home": 0.7555,
+      "draw": 0.1233,
+      "away": 0.1212
+    },
+    "Norway vs France": {
+      "home": 0.2141,
+      "draw": 0.2128,
+      "away": 0.573
+    },
+    "Belgium vs Switzerland": {
+      "home": 0.3365,
+      "draw": 0.2642,
+      "away": 0.3993
+    },
+    "Switzerland vs Belgium": {
+      "home": 0.4122,
+      "draw": 0.347,
+      "away": 0.2408
+    },
+    "Belgium vs Norway": {
+      "home": 0.2517,
+      "draw": 0.2502,
+      "away": 0.4982
+    },
+    "Norway vs Belgium": {
+      "home": 0.5075,
+      "draw": 0.2594,
+      "away": 0.2331
+    },
+    "Spain vs Norway": {
+      "home": 0.7895,
+      "draw": 0.1141,
+      "away": 0.0964
+    },
+    "Norway vs Spain": {
+      "home": 0.1977,
+      "draw": 0.133,
+      "away": 0.6693
+    },
     "Belgium vs England": {
       "home": 0.2467,
       "draw": 0.331,
@@ -21988,6 +21938,46 @@ window.MATCHUP_DATA = {
       "home": 0.7295,
       "draw": 0.1379,
       "away": 0.1326
+    },
+    "Morocco vs England": {
+      "home": 0.233,
+      "draw": 0.2238,
+      "away": 0.5432
+    },
+    "England vs Morocco": {
+      "home": 0.4744,
+      "draw": 0.2249,
+      "away": 0.3007
+    },
+    "Belgium vs Argentina": {
+      "home": 0.1957,
+      "draw": 0.1261,
+      "away": 0.6781
+    },
+    "Argentina vs Belgium": {
+      "home": 0.7866,
+      "draw": 0.1139,
+      "away": 0.0995
+    },
+    "France vs Argentina": {
+      "home": 0.4578,
+      "draw": 0.3146,
+      "away": 0.2275
+    },
+    "Argentina vs France": {
+      "home": 0.3527,
+      "draw": 0.3262,
+      "away": 0.3211
+    },
+    "Morocco vs Switzerland": {
+      "home": 0.4195,
+      "draw": 0.3475,
+      "away": 0.2329
+    },
+    "Switzerland vs Morocco": {
+      "home": 0.3567,
+      "draw": 0.2729,
+      "away": 0.3705
     },
     "Spain vs Argentina": {
       "home": 0.482,
